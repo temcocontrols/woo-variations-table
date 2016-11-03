@@ -7,7 +7,7 @@ Author: Alaa Rihan
 Author URI: https://lb.linkedin.com/in/alaa-rihan-6971b686
 Text Domain: woo-variations-table
 Domain Path: /lang/
-Version: 0.8
+Version: 0.8.1
 */
 
 // Exit if accessed directly
