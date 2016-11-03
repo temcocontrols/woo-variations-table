@@ -1,9 +1,12 @@
+.variations-table{
+    clear: both;
+    margin-bottom: 10px;
+}
 #variations .filters,
 #variations .filter{
     display: inline-block;
     vertical-align: top;
 }
-
 #variations .filter{
     margin: 0 5px 10px;
 }
