@@ -25,11 +25,11 @@ After downloading the ZIP file,
 
 == Changelog ==
 
-= 0.8.1 =
-* Fix a CSS issue.
-
 = 0.8 =
 * Initial release.
+
+= 0.8.1 =
+* Fix a css issue.
 
 == Feedback ==
 
