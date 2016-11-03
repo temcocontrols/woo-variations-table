@@ -14,7 +14,7 @@ Version: 0.8.1
 if ( !defined( 'ABSPATH' ) ) exit;
 
 
-define("WOO_VARIATIONS_TABLE_VERSION", 0.8);
+define("WOO_VARIATIONS_TABLE_VERSION", '0.8.1');
 
 // Check if WooCommerce is enabled
 add_action('plugins_loaded', 'check_woocommerce_enabled', 1);
