@@ -7,14 +7,16 @@ Author: Alaa Rihan
 Author URI: https://lb.linkedin.com/in/alaa-rihan-6971b686
 Text Domain: woo-variations-table
 Domain Path: /lang/
-Version: 0.8.1
+Version: 0.8.2
 */
 
 // Exit if accessed directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
 
-define("WOO_VARIATIONS_TABLE_VERSION", '0.8.1');
+define("WOO_VARIATIONS_TABLE_VERSION", '0.8.2');
+
+// include_once( plugin_dir_path( __FILE__ ) . 'inc/admin-options.php');
 
 // Check if WooCommerce is enabled
 add_action('plugins_loaded', 'check_woocommerce_enabled', 1);
@@ -47,7 +49,7 @@ function remove_variable_product_add_to_cart() {
 add_action( 'wp_enqueue_scripts', 'variations_table_scripts' );
 function variations_table_scripts() {
 	if(is_product()){
-		wp_enqueue_script( 'vuejs', plugins_url( 'js/vue.min.js', __FILE__ ), '', '2.0.3', false );
+		wp_enqueue_script( 'vuejs', 'https://unpkg.com/vue@2.1.8/dist/vue.min.js', '', '2.1.8', false );
 		wp_enqueue_script( 'woo-variations-table-script', plugins_url( 'js/woo-variations-table.js', __FILE__), 'vuejs', WOO_VARIATIONS_TABLE_VERSION, false );
 		wp_localize_script( 'woo-variations-table-script', 'localData', array(
 			'ajaxURL' => admin_url( 'admin-ajax.php' ),
@@ -64,7 +66,7 @@ function variations_table_ajax_variation_add_to_cart() {
     $product_id        = apply_filters( 'vartable_add_to_cart_product_id', absint( $_POST['product_id'] ) );
     $quantity          = empty( $_POST['quantity'] ) ? 1 : wc_stock_amount( $_POST['quantity'] );
     $variation_id      = isset( $_POST['variation_id'] ) ? absint( $_POST['variation_id'] ) : '';
-    $variations         = vartable_get_variation_data_from_variation_id($variation_id);
+    $variations         = variations_table_get_variation_data_from_variation_id($variation_id);
 
     $passed_validation = apply_filters( 'vartable_add_to_cart_validation', true, $product_id, $quantity, $variation_id, $variations, $cart_item_data );
 

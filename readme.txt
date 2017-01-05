@@ -2,8 +2,8 @@
 Contributors: alaa-rihan
 Tags: woocommerce, variations, table
 Requires at least: 4.0
-Tested up to: 4.6.1
-Stable tag: 0.8.1
+Tested up to: 4.7
+Stable tag: 0.8.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,6 +25,11 @@ After downloading the ZIP file,
 
 == Changelog ==
 
+= 0.8.2 =
+* Fix add to cart ajax functionallity (wasn't working).
+* Fix some css issues.
+* Update VueJS to latest version.
+
 = 0.8.1 =
 * Fix a CSS issue.
 
@@ -34,4 +39,4 @@ After downloading the ZIP file,
 == Feedback ==
 
 I'm developing this plugin for you. 
-If you discover a bug, you need a feature or have any idea, let us know by posting your suggestion on the plugin forum.
+If you discover a bug, you need a feature or have any idea, let me know by posting your suggestion on the plugin forum.
