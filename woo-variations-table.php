@@ -7,14 +7,14 @@ Author: Alaa Rihan
 Author URI: https://lb.linkedin.com/in/alaa-rihan-6971b686
 Text Domain: woo-variations-table
 Domain Path: /lang/
-Version: 0.8.2
+Version: 0.9.0
 */
 
 // Exit if accessed directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
 
-define("WOO_VARIATIONS_TABLE_VERSION", '0.8.2');
+define("WOO_VARIATIONS_TABLE_VERSION", '0.9.0');
 
 // include_once( plugin_dir_path( __FILE__ ) . 'inc/admin-options.php');
 
@@ -33,6 +33,72 @@ function woocommerce_disabled_notice(){
     echo '<div class="error"><p><strong>Woo Variations Table</strong> ' .sprintf( __( 'requires %sWooCommerce%s to be installed & activated!' , 'woo-variations-table' ), '<a href="http://wordpress.org/extend/plugins/woocommerce/">', '</a>' ) .'</p></div>';
 }
 
+// Settings page
+function woo_variations_table_settings() {
+  add_submenu_page( 'woocommerce', 'Woo Variations Table', 'Woo Variations Table', 'manage_options', 'woo_variations_table', 'woo_variations_table_settings_page_callback' ); 
+  //call register settings function
+	add_action( 'admin_init', 'woo_variations_table_register_settings' );
+  
+}
+
+function woo_variations_table_register_settings() {
+	//register our settings
+	register_setting( 'woo_variations_table_columns', 'woo_variations_table_columns' );
+}
+
+function woo_variations_table_settings_page_callback() {
+  $default_columns = array( 
+  'image_link' => 1,
+  'sku' => 1,
+  'variation_description' => 1,
+  'dimensions' => 0,
+  'weight' => 0,
+  'price_html' => 1,
+  );
+  $columns_labels =  array( 
+  'image_link' => 'Thumbnail',
+  'sku' => 'SKU',
+  'variation_description' => 'Description',
+  'dimensions' => 'Dimensions',
+  'weight' => 'Weight',
+  'price_html' => 'Price',
+  );
+  $columns = get_option('woo_variations_table_columns', $default_columns);
+  ?>
+<div class="wrap">
+  <h1>Woo Variations Table Settings</h1>
+  <form method="post" action="options.php">
+      <?php settings_fields( 'woo_variations_table_columns' ); ?>
+      <?php do_settings_sections( 'woo_variations_table_columns' ); ?>
+      <table class="form-table">
+          <tr valign="top">
+          <th scope="row">Columns to show</th>
+          <td><?php woo_variations_table_create_multi_select_options('woo-variations-table-columns', $default_columns, $columns, $columns_labels); ?></td>
+          </tr>
+           
+      </table>
+      
+      <?php submit_button(); ?>
+  
+  </form>
+</div>
+<?php
+}
+add_action('admin_menu', 'woo_variations_table_settings',99);
+function woo_variations_table_create_multi_select_options($id, $columns, $values, $labels) { 
+		echo "<ul class='mnt-checklist' id='$id' >"."\n";
+		foreach ($columns as $key => $value) {
+			$checked = " ";
+			if ($values[$key]) {
+				$checked = " checked='checked' ";
+			}
+			echo "<li>\n";
+			echo "<input type='checkbox' name='woo_variations_table_columns[$key]' $checked />".$labels[$key]."\n";
+			echo "</li>\n";
+		}
+		echo "</ul>\n";
+	 }
+
 // Add image size for product image thumbnail
 add_action( 'init', 'woo_variations_table_add_variation_thumb_image_size' );
 function woo_variations_table_add_variation_thumb_image_size() {
@@ -45,13 +111,26 @@ function remove_variable_product_add_to_cart() {
   remove_action( 'woocommerce_variable_add_to_cart', 'woocommerce_variable_add_to_cart', 30 );
 }
 
+add_action( 'woocommerce_single_product_summary', 'woo_variations_table_available_options_btn', 11 );
+function woo_variations_table_available_options_btn(){
+  global $product;
+  	if($product->product_type != 'variable')
+  		return;
+  ?>
+  <div class="available-options-btn">
+    <button scrollto="#variations-table" type="button" class="single_add_to_cart_button button alt"><?php echo __('Available options', 'bravocontrols'); ?></button>
+  </div>
+  <?php
+}
+
 // Enqueue scripts and styles
 add_action( 'wp_enqueue_scripts', 'variations_table_scripts' );
 function variations_table_scripts() {
 	if(is_product()){
 		wp_enqueue_script( 'vuejs', 'https://unpkg.com/vue@2.1.8/dist/vue.min.js', '', '2.1.8', false );
-		wp_enqueue_script( 'woo-variations-table-script', plugins_url( 'js/woo-variations-table.js', __FILE__), 'vuejs', WOO_VARIATIONS_TABLE_VERSION, false );
-		wp_localize_script( 'woo-variations-table-script', 'localData', array(
+		wp_enqueue_script( 'woo-variations-table', plugins_url( 'js/woo-variations-table.js', __FILE__), 'vuejs', WOO_VARIATIONS_TABLE_VERSION, false );
+		wp_enqueue_script( 'woo-variations-table-scripts', plugins_url( 'js/woo-variations-table-scripts.js', __FILE__), array( 'jquery' ), WOO_VARIATIONS_TABLE_VERSION , true);
+		wp_localize_script( 'woo-variations-table', 'localData', array(
 			'ajaxURL' => admin_url( 'admin-ajax.php' ),
 		) );
 		wp_enqueue_style( 'woo-variations-table-style', plugins_url( 'css/woo-variations-table.css', __FILE__ ), '', WOO_VARIATIONS_TABLE_VERSION);
@@ -117,15 +196,24 @@ function variations_table_print_table(){
             }
         endforeach;
         $attributes = json_encode($attrs);
+        $default_columns = array( 
+          'image_link' => 'on',
+          'sku' => 'on',
+          'variation_description' => 'on',
+          'dimensions' => 0,
+          'weight' => 0,
+          'price_html' => 'on',
+        );
+        $activeColumns = json_encode(get_option('woo_variations_table_columns', $default_columns));
         ?>
-        <div class="variations-table">
+        <div id='variations-table' class="variations-table">
             <h3 class="available-title"><?php echo esc_html_e( 'Available Options', 'woo-variations-table' );?>:</h3>
             <!-- grid component template -->
             <script type="text/x-template" id="grid-template">
               <table class="variations">
                 <thead>
                   <tr>
-                    <th v-for="column in columns"
+                    <th v-for="column in columns" v-if="activeColumns[column.key] == 'on'"
                       @click="sortBy(column.key)"
                       :class="[{ active: sortKey == column.key }, column.key]">
                       {{ column.title }}
@@ -138,7 +226,7 @@ function variations_table_print_table(){
                 </thead>
                 <tbody>
                   <tr v-for="(entry, index) in filteredData" :class="'variation-'+entry.variation_id+ ' image-'+ imageClass(entry['image_link'])">
-                    <td v-for="column in columns" :class="column.key">
+                    <td v-for="column in columns" :class="column.key" v-if="activeColumns[column.key] == 'on'">
                       <span class="item" v-if="column.type == 'image'"><img v-if="imageURL(entry[column.key]) != ''" :src="imageURL(entry[column.key])"></span>
                       <span class="item" v-if="column.type == 'text' ">{{entry[column.key]}}</span>
                       <span class="item" v-if="column.type == 'html'" v-html="entry[column.key]"></span>
@@ -167,6 +255,7 @@ function variations_table_print_table(){
               <data-grid
                 :data="gridData"
                 :columns="gridColumns"
+                :active-columns="activeColumns"
                 :filter-key="searchQuery"
                 :filters="filters">
               </data-grid>
@@ -176,6 +265,7 @@ function variations_table_print_table(){
                 var variations = <?php echo $variations; ?>;
                 var attributes = <?php echo $attributes; ?>;
                 var imageURL = '<?php echo $productImageURL; ?>';
+                var activeColumns = <?php echo $activeColumns; ?>;
                 // bootstrap the grid
                 var vm = new Vue({
                   el: '#variations',
@@ -185,8 +275,11 @@ function variations_table_print_table(){
                         {key: 'image_link', title: '', type: 'image'},
                         {key: 'sku', title: 'SKU', type: 'text'},
                         {key: 'variation_description', title: 'Description', type: 'html'},
+                        {key: 'weight', title: 'Weight', type: 'text'},
+                        {key: 'dimensions', title: 'Dimensions', type: 'text'},
                         {key: 'price_html', title: 'Price', type: 'html'}
                     ],
+                    activeColumns: activeColumns,
                     gridData: variations,
                     attributes: attributes,
                     activeFilters: [],
