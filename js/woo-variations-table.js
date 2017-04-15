@@ -96,6 +96,7 @@ Vue.component('data-grid', {
       var addToCartButton = this.$refs['variation-'+variation.variation_id];
       var quantity = this.$refs['quantity-'+variation.variation_id];
       jQuery(addToCartButton).addClass('loading');
+      jQuery(addToCartButton).removeClass('added');
       $fragment_refresh = {
         url: localData.ajaxURL,
         // url: woocommerce_params.ajax_url,

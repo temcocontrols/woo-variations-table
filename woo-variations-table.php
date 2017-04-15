@@ -7,16 +7,14 @@ Author: Alaa Rihan
 Author URI: https://lb.linkedin.com/in/alaa-rihan-6971b686
 Text Domain: woo-variations-table
 Domain Path: /lang/
-Version: 0.9.0
+Version: 1.0
 */
 
 // Exit if accessed directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
 
-define("WOO_VARIATIONS_TABLE_VERSION", '0.9.0');
-
-// include_once( plugin_dir_path( __FILE__ ) . 'inc/admin-options.php');
+define("WOO_VARIATIONS_TABLE_VERSION", '1.0');
 
 // Check if WooCommerce is enabled
 add_action('plugins_loaded', 'check_woocommerce_enabled', 1);
@@ -33,7 +31,8 @@ function woocommerce_disabled_notice(){
     echo '<div class="error"><p><strong>Woo Variations Table</strong> ' .sprintf( __( 'requires %sWooCommerce%s to be installed & activated!' , 'woo-variations-table' ), '<a href="http://wordpress.org/extend/plugins/woocommerce/">', '</a>' ) .'</p></div>';
 }
 
-// Settings page
+// Settings menu item
+add_action('admin_menu', 'woo_variations_table_settings',99);
 function woo_variations_table_settings() {
   add_submenu_page( 'woocommerce', 'Woo Variations Table', 'Woo Variations Table', 'manage_options', 'woo_variations_table', 'woo_variations_table_settings_page_callback' ); 
   //call register settings function
@@ -41,11 +40,12 @@ function woo_variations_table_settings() {
   
 }
 
+// Register our settings
 function woo_variations_table_register_settings() {
-	//register our settings
 	register_setting( 'woo_variations_table_columns', 'woo_variations_table_columns' );
 }
 
+// Settings page callback function
 function woo_variations_table_settings_page_callback() {
   $default_columns = array( 
   'image_link' => 1,
@@ -84,25 +84,20 @@ function woo_variations_table_settings_page_callback() {
 </div>
 <?php
 }
-add_action('admin_menu', 'woo_variations_table_settings',99);
-function woo_variations_table_create_multi_select_options($id, $columns, $values, $labels) { 
-		echo "<ul class='mnt-checklist' id='$id' >"."\n";
-		foreach ($columns as $key => $value) {
-			$checked = " ";
-			if ($values[$key]) {
-				$checked = " checked='checked' ";
-			}
-			echo "<li>\n";
-			echo "<input type='checkbox' name='woo_variations_table_columns[$key]' $checked />".$labels[$key]."\n";
-			echo "</li>\n";
-		}
-		echo "</ul>\n";
-	 }
 
-// Add image size for product image thumbnail
-add_action( 'init', 'woo_variations_table_add_variation_thumb_image_size' );
-function woo_variations_table_add_variation_thumb_image_size() {
-    add_image_size( 'woovt-variation-thumb', 80, 80, false ); 
+
+function woo_variations_table_create_multi_select_options($id, $columns, $values, $labels) { 
+	echo "<ul class='mnt-checklist' id='$id' >"."\n";
+	foreach ($columns as $key => $value) {
+		$checked = " ";
+		if ($values[$key]) {
+			$checked = " checked='checked' ";
+		}
+		echo "<li>\n";
+		echo "<input type='checkbox' name='woo_variations_table_columns[$key]' $checked />".$labels[$key]."\n";
+		echo "</li>\n";
+	}
+	echo "</ul>\n";
 }
 
 // Remove default variable product add to cart
@@ -114,7 +109,7 @@ function remove_variable_product_add_to_cart() {
 add_action( 'woocommerce_single_product_summary', 'woo_variations_table_available_options_btn', 11 );
 function woo_variations_table_available_options_btn(){
   global $product;
-  	if($product->product_type != 'variable')
+  	if(!$product->is_type('variable'))
   		return;
   ?>
   <div class="available-options-btn">
@@ -127,13 +122,13 @@ function woo_variations_table_available_options_btn(){
 add_action( 'wp_enqueue_scripts', 'variations_table_scripts' );
 function variations_table_scripts() {
 	if(is_product()){
-		wp_enqueue_script( 'vuejs', 'https://unpkg.com/vue@2.1.8/dist/vue.min.js', '', '2.1.8', false );
+		wp_enqueue_script( 'vuejs', '//unpkg.com/vue@2.2.6/dist/vue.min.js', array(), '2.2.6', false );
 		wp_enqueue_script( 'woo-variations-table', plugins_url( 'js/woo-variations-table.js', __FILE__), 'vuejs', WOO_VARIATIONS_TABLE_VERSION, false );
 		wp_enqueue_script( 'woo-variations-table-scripts', plugins_url( 'js/woo-variations-table-scripts.js', __FILE__), array( 'jquery' ), WOO_VARIATIONS_TABLE_VERSION , true);
 		wp_localize_script( 'woo-variations-table', 'localData', array(
 			'ajaxURL' => admin_url( 'admin-ajax.php' ),
 		) );
-		wp_enqueue_style( 'woo-variations-table-style', plugins_url( 'css/woo-variations-table.css', __FILE__ ), '', WOO_VARIATIONS_TABLE_VERSION);
+		wp_enqueue_style( 'woo-variations-table-style', plugins_url( 'css/woo-variations-table.css', __FILE__ ), array(), WOO_VARIATIONS_TABLE_VERSION);
 	}
 }
 
@@ -147,7 +142,7 @@ function variations_table_ajax_variation_add_to_cart() {
     $variation_id      = isset( $_POST['variation_id'] ) ? absint( $_POST['variation_id'] ) : '';
     $variations         = variations_table_get_variation_data_from_variation_id($variation_id);
 
-    $passed_validation = apply_filters( 'vartable_add_to_cart_validation', true, $product_id, $quantity, $variation_id, $variations, $cart_item_data );
+    $passed_validation = apply_filters( 'vartable_add_to_cart_validation', true, $product_id, $quantity, $variation_id, $variations);
 
     if ( $passed_validation && WC()->cart->add_to_cart( $product_id, $quantity, $variation_id, $variations ) ) {
         do_action( 'vartable_ajax_added_to_cart', $product_id );
@@ -179,7 +174,7 @@ add_filter('woocommerce_after_single_product_summary','variations_table_print_ta
 function variations_table_print_table(){
     global $product;
     if( $product->is_type( 'variable' ) ){
-        $productImageURL = wp_get_attachment_image_src(get_post_thumbnail_id( $product->id ), 'woovt-variation-thumb')[0];
+        $productImageURL = wp_get_attachment_image_src(get_post_thumbnail_id( $product->get_id() ), 'shop_single')[0];
         $variations = json_encode($product->get_available_variations());
         $original_attributes = $product->get_variation_attributes();
         $attrs = array();
@@ -226,12 +221,12 @@ function variations_table_print_table(){
                 </thead>
                 <tbody>
                   <tr v-for="(entry, index) in filteredData" :class="'variation-'+entry.variation_id+ ' image-'+ imageClass(entry['image_link'])">
-                    <td v-for="column in columns" :class="column.key" v-if="activeColumns[column.key] == 'on'">
+                    <td v-for="column in columns" :class="column.key" v-if="activeColumns[column.key] == 'on'" :data-title="column.title">
                       <span class="item" v-if="column.type == 'image'"><img v-if="imageURL(entry[column.key]) != ''" :src="imageURL(entry[column.key])"></span>
                       <span class="item" v-if="column.type == 'text' ">{{entry[column.key]}}</span>
                       <span class="item" v-if="column.type == 'html'" v-html="entry[column.key]"></span>
                     </td>
-                    <td class="quantity"><input :ref="'quantity-'+entry.variation_id" value="1" type="number" step="1" min="1" name="quantity" title="Qty" class="input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric"></td>
+                    <td class="quantity"><input :ref="'quantity-'+entry.variation_id" value="1" type="number" step="1" min="1" name="quantity" data-title="Qty" title="Qty" class="input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric"></td>
                     <td class="add-to-cart"><button :ref="'variation-'+entry.variation_id" @click="addToCart(entry)" type="submit" class="single_add_to_cart_button button alt" :class="{added: entry.added}">Add to cart</button></td>
                   </tr>
                 </tbody>
@@ -261,7 +256,7 @@ function variations_table_print_table(){
               </data-grid>
             </div>
             <script type="text/javascript">
-                var productID = '<?php echo $product->id; ?>';
+                var productID = '<?php echo $product->get_id(); ?>';
                 var variations = <?php echo $variations; ?>;
                 var attributes = <?php echo $attributes; ?>;
                 var imageURL = '<?php echo $productImageURL; ?>';
