@@ -2,8 +2,8 @@
 Contributors: alaa-rihan
 Tags: woocommerce, variations, table
 Requires at least: 4.0
-Tested up to: 4.7.3
-Stable tag: 1.0
+Tested up to: 4.7.4
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,6 +25,14 @@ After downloading the ZIP file,
 4. You can control what columns you would show in variation table from WooCommerce -> Woo Variations Table.
 
 == Changelog ==
+
+= 1.2 =
+* Add new option to show attributes values as columns in the table.
+* Fix Table wasn't working in Internet Explorer.
+* Show weight unit in the variations table.
+
+= 1.1 =
+* Support multilangual and include PO file.
 
 = 1.0 =
 * Make the variation table responsive.

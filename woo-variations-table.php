@@ -6,15 +6,15 @@ Description: Show WooCommerce variable products variations as table with filters
 Author: Alaa Rihan
 Author URI: https://lb.linkedin.com/in/alaa-rihan-6971b686
 Text Domain: woo-variations-table
-Domain Path: /lang/
-Version: 1.0
+Domain Path: /languages/
+Version: 1.2
 */
 
 // Exit if accessed directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
 
-define("WOO_VARIATIONS_TABLE_VERSION", '1.0');
+define("WOO_VARIATIONS_TABLE_VERSION", '1.2');
 
 // Check if WooCommerce is enabled
 add_action('plugins_loaded', 'check_woocommerce_enabled', 1);
@@ -28,13 +28,13 @@ function check_woocommerce_enabled(){
 
  // Display WC disabled notice
 function woocommerce_disabled_notice(){
-    echo '<div class="error"><p><strong>Woo Variations Table</strong> ' .sprintf( __( 'requires %sWooCommerce%s to be installed & activated!' , 'woo-variations-table' ), '<a href="http://wordpress.org/extend/plugins/woocommerce/">', '</a>' ) .'</p></div>';
+    echo '<div class="error"><p><strong>' .__('Woo Variations Table', 'woo-variations-table') .'</strong> ' .sprintf( __( 'requires %sWooCommerce%s to be installed & activated!' , 'woo-variations-table' ), '<a href="http://wordpress.org/extend/plugins/woocommerce/">', '</a>' ) .'</p></div>';
 }
 
 // Settings menu item
 add_action('admin_menu', 'woo_variations_table_settings',99);
 function woo_variations_table_settings() {
-  add_submenu_page( 'woocommerce', 'Woo Variations Table', 'Woo Variations Table', 'manage_options', 'woo_variations_table', 'woo_variations_table_settings_page_callback' ); 
+  add_submenu_page( 'woocommerce', __('Woo Variations Table', 'woo-variations-table'), __('Woo Variations Table', 'woo-variations-table'), 'manage_options', 'woo_variations_table', 'woo_variations_table_settings_page_callback' ); 
   //call register settings function
 	add_action( 'admin_init', 'woo_variations_table_register_settings' );
   
@@ -43,6 +43,7 @@ function woo_variations_table_settings() {
 // Register our settings
 function woo_variations_table_register_settings() {
 	register_setting( 'woo_variations_table_columns', 'woo_variations_table_columns' );
+	register_setting( 'woo_variations_table_columns', 'woo_variations_table_show_attributes' );
 }
 
 // Settings page callback function
@@ -52,30 +53,36 @@ function woo_variations_table_settings_page_callback() {
   'sku' => 1,
   'variation_description' => 1,
   'dimensions' => 0,
-  'weight' => 0,
+  'weight_html' => 0,
   'price_html' => 1,
   );
   $columns_labels =  array( 
-  'image_link' => 'Thumbnail',
-  'sku' => 'SKU',
-  'variation_description' => 'Description',
-  'dimensions' => 'Dimensions',
-  'weight' => 'Weight',
-  'price_html' => 'Price',
+  'image_link' => __('Thumbnail', 'woo-variations-table'),
+  'sku' => __('SKU', 'woo-variations-table'),
+  'variation_description' => __('Description', 'woo-variations-table'),
+  'dimensions' => __('Dimensions', 'woo-variations-table'),
+  'weight_html' => __('Weight', 'woo-variations-table'),
+  'price_html' => __('Price'),
   );
   $columns = get_option('woo_variations_table_columns', $default_columns);
+  $showAttributes = get_option('woo_variations_table_show_attributes', '');
   ?>
 <div class="wrap">
-  <h1>Woo Variations Table Settings</h1>
+  <h1><?php echo __('Woo Variations Table Settings', 'woo-variations-table'); ?></h1>
   <form method="post" action="options.php">
       <?php settings_fields( 'woo_variations_table_columns' ); ?>
       <?php do_settings_sections( 'woo_variations_table_columns' ); ?>
       <table class="form-table">
           <tr valign="top">
-          <th scope="row">Columns to show</th>
+          <th scope="row"><?php echo __('Columns to show', 'woo-variations-table'); ?></th>
           <td><?php woo_variations_table_create_multi_select_options('woo-variations-table-columns', $default_columns, $columns, $columns_labels); ?></td>
           </tr>
-           
+          <tr valign="top">
+          <th scope="row"><?php echo __('Show Attributes', 'woo-variations-table'); ?></th>
+          <td><ul style="margin-top: 5px;" class='mnt-checklist' id='woo-variations-table-attributes'><li>
+            <input type='checkbox' name='woo_variations_table_show_attributes' <?php echo $showAttributes ? "checked='checked'" : '';  ?> /> Show Attributes
+          </li></ul></td>
+          </tr>
       </table>
       
       <?php submit_button(); ?>
@@ -87,10 +94,10 @@ function woo_variations_table_settings_page_callback() {
 
 
 function woo_variations_table_create_multi_select_options($id, $columns, $values, $labels) { 
-	echo "<ul class='mnt-checklist' id='$id' >"."\n";
+	echo "<ul style='margin-top: 5px;' class='mnt-checklist' id='$id' >"."\n";
 	foreach ($columns as $key => $value) {
 		$checked = " ";
-		if ($values[$key]) {
+		if (isset($values[$key])) {
 			$checked = " checked='checked' ";
 		}
 		echo "<li>\n";
@@ -122,7 +129,7 @@ function woo_variations_table_available_options_btn(){
 add_action( 'wp_enqueue_scripts', 'variations_table_scripts' );
 function variations_table_scripts() {
 	if(is_product()){
-		wp_enqueue_script( 'vuejs', '//unpkg.com/vue@2.2.6/dist/vue.min.js', array(), '2.2.6', false );
+		wp_enqueue_script( 'vuejs', '//unpkg.com/vue@2.3.2/dist/vue.min.js', array(), '2.3.2', false );
 		wp_enqueue_script( 'woo-variations-table', plugins_url( 'js/woo-variations-table.js', __FILE__), 'vuejs', WOO_VARIATIONS_TABLE_VERSION, false );
 		wp_enqueue_script( 'woo-variations-table-scripts', plugins_url( 'js/woo-variations-table-scripts.js', __FILE__), array( 'jquery' ), WOO_VARIATIONS_TABLE_VERSION , true);
 		wp_localize_script( 'woo-variations-table', 'localData', array(
@@ -169,6 +176,22 @@ function variations_table_get_variation_data_from_variation_id( $variation_id ) 
     return $variation_data; // $variation_data will return only the data which can be used to store variation data
 }
 
+// Update database
+add_action('admin_init', 'variations_table_database_update');
+function variations_table_database_update(){
+  $plugin_db_version = get_option('woo_variations_table_db_version', 1.1);
+  if ($plugin_db_version < 1.2){
+    $activeColumns = get_option('woo_variations_table_columns');
+    if(isset($activeColumns['weight'])){
+      $activeColumns['weight_html'] = $activeColumns['weight'];
+      unset($activeColumns['weight']);
+      update_option('woo_variations_table_columns', $activeColumns);
+    }
+    update_option('woo_variations_table_show_attributes', '');
+    update_option('woo_variations_table_db_version', WOO_VARIATIONS_TABLE_VERSION);
+  }
+}
+
 // Print variations table after product summary
 add_filter('woocommerce_after_single_product_summary','variations_table_print_table',9);
 function variations_table_print_table(){
@@ -196,10 +219,11 @@ function variations_table_print_table(){
           'sku' => 'on',
           'variation_description' => 'on',
           'dimensions' => 0,
-          'weight' => 0,
+          'weight_html' => 0,
           'price_html' => 'on',
         );
         $activeColumns = json_encode(get_option('woo_variations_table_columns', $default_columns));
+        $showAttributes = json_encode(get_option('woo_variations_table_show_attributes', ''));
         ?>
         <div id='variations-table' class="variations-table">
             <h3 class="available-title"><?php echo esc_html_e( 'Available Options', 'woo-variations-table' );?>:</h3>
@@ -215,6 +239,7 @@ function variations_table_print_table(){
                       <span class="arrow" :class="sortOrders[column.key] > 0 ? 'asc' : 'dsc'">
                       </span>
                     </th>
+                    <th v-if="showAttributes" v-for="attr in attributes"> {{ attr.name }} </th>
                     <th class="quantity"><?php echo __("Quantity", 'variations-table'); ?></th>
                     <th class="add-to-cart"></th>
                   </tr>
@@ -226,6 +251,7 @@ function variations_table_print_table(){
                       <span class="item" v-if="column.type == 'text' ">{{entry[column.key]}}</span>
                       <span class="item" v-if="column.type == 'html'" v-html="entry[column.key]"></span>
                     </td>
+                    <td v-if="showAttributes" v-for="(attr, key, index) in entry.attributes" :data-title="attributes[key.substr(10)].name">{{ attr }}</td>
                     <td class="quantity"><input :ref="'quantity-'+entry.variation_id" value="1" type="number" step="1" min="1" name="quantity" data-title="Qty" title="Qty" class="input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric"></td>
                     <td class="add-to-cart"><button :ref="'variation-'+entry.variation_id" @click="addToCart(entry)" type="submit" class="single_add_to_cart_button button alt" :class="{added: entry.added}">Add to cart</button></td>
                   </tr>
@@ -252,7 +278,9 @@ function variations_table_print_table(){
                 :columns="gridColumns"
                 :active-columns="activeColumns"
                 :filter-key="searchQuery"
-                :filters="filters">
+                :filters="filters"
+                :attributes="attributes"
+                :show-attributes="showAttributes">
               </data-grid>
             </div>
             <script type="text/javascript">
@@ -261,6 +289,7 @@ function variations_table_print_table(){
                 var attributes = <?php echo $attributes; ?>;
                 var imageURL = '<?php echo $productImageURL; ?>';
                 var activeColumns = <?php echo $activeColumns; ?>;
+                var showAttributes = <?php echo $showAttributes; ?>;
                 // bootstrap the grid
                 var vm = new Vue({
                   el: '#variations',
@@ -270,7 +299,7 @@ function variations_table_print_table(){
                         {key: 'image_link', title: '', type: 'image'},
                         {key: 'sku', title: 'SKU', type: 'text'},
                         {key: 'variation_description', title: 'Description', type: 'html'},
-                        {key: 'weight', title: 'Weight', type: 'text'},
+                        {key: 'weight_html', title: 'Weight', type: 'text'},
                         {key: 'dimensions', title: 'Dimensions', type: 'text'},
                         {key: 'price_html', title: 'Price', type: 'html'}
                     ],
@@ -281,7 +310,8 @@ function variations_table_print_table(){
                     filters: [],
                     isLoading: true,
                     productID: productID,
-                    imageURL: imageURL
+                    imageURL: imageURL,
+                    showAttributes: showAttributes
                   },
                   mounted: function(){
                     var activeFilters = []
@@ -300,7 +330,8 @@ function variations_table_print_table(){
                             for(i=0; i < activeFilters.length; i++){
                                     if(activeFilters[i] != ""){
                                         var tup = activeFilters[i].split(':');
-                                        filters[i-filterAny] = {[tup[0]]:tup[1]};
+                                        filters[i-filterAny] = {};
+                                        filters[i-filterAny][tup[0]] = tup[1];
                                     }else{
                                         filterAny++
                                     }
