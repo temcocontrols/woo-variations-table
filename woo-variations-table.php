@@ -203,6 +203,7 @@ function variations_table_print_table(){
         $attrs = array();
         foreach ( $original_attributes as $key => $name ) :
             $correctkey = str_replace(' ', '-', strtolower($key));
+            $correctkey = preg_replace('/[^A-Za-z0-9\-\_]/', '', $correctkey);
             $attrs[$correctkey]['name']= wc_attribute_label($key);
             for($i=0; count($name) > $i; $i++){
                 $term = get_term_by('slug', array_values($name)[$i], $key);
