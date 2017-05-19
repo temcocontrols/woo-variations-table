@@ -199,12 +199,14 @@ function variations_table_print_table(){
     if( $product->is_type( 'variable' ) ){
         $productImageURL = wp_get_attachment_image_src(get_post_thumbnail_id( $product->get_id() ), 'shop_single')[0];
         $variations = json_encode($product->get_available_variations());
-        $original_attributes = $product->get_variation_attributes();
+        $product_attributes = $product->get_attributes();
+        $variation_attributes = $product->get_variation_attributes();
         $attrs = array();
-        foreach ( $original_attributes as $key => $name ) :
+        foreach ( $variation_attributes as $key => $name ) :
             $correctkey = str_replace(' ', '-', strtolower($key));
             $correctkey = preg_replace('/[^A-Za-z0-9\-\_]/', '', $correctkey);
             $attrs[$correctkey]['name']= wc_attribute_label($key);
+            $attrs[$correctkey]['visible'] =  $product_attributes[$correctkey]->get_visible();
             for($i=0; count($name) > $i; $i++){
                 $term = get_term_by('slug', array_values($name)[$i], $key);
                 if($term){
@@ -240,7 +242,9 @@ function variations_table_print_table(){
                       <span class="arrow" :class="sortOrders[column.key] > 0 ? 'asc' : 'dsc'">
                       </span>
                     </th>
-                    <th v-if="showAttributes" v-for="attr in attributes"> {{ attr.name }} </th>
+                    <template v-if="showAttributes" v-for="attr in attributes">
+                    <th v-if="attr.visible"> {{ attr.name }} </th>
+                    </template>
                     <th class="quantity"><?php echo __("Quantity", 'variations-table'); ?></th>
                     <th class="add-to-cart"></th>
                   </tr>
@@ -252,7 +256,9 @@ function variations_table_print_table(){
                       <span class="item" v-if="column.type == 'text' ">{{entry[column.key]}}</span>
                       <span class="item" v-if="column.type == 'html'" v-html="entry[column.key]"></span>
                     </td>
-                    <td v-if="showAttributes" v-for="(attr, key, index) in entry.attributes" :data-title="attributes[key.substr(10)].name">{{ attr }}</td>
+                    <template v-if="showAttributes" v-for="(attr, key, index) in entry.attributes">
+                    <td v-if="attributes[key.substr(10)].visible"" :data-title="attributes[key.substr(10)].name">{{ attr }}</td>
+                    </template>
                     <td class="quantity"><input :ref="'quantity-'+entry.variation_id" value="1" type="number" step="1" min="1" name="quantity" data-title="Qty" title="Qty" class="input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric"></td>
                     <td class="add-to-cart"><button :ref="'variation-'+entry.variation_id" @click="addToCart(entry)" type="submit" class="single_add_to_cart_button button alt" :class="{added: entry.added}">Add to cart</button></td>
                   </tr>
