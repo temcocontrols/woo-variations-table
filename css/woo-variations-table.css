@@ -35,7 +35,8 @@
 }
 
 #variations table.variations th.quantity,
-#variations table.variations th.price_html {
+#variations table.variations th.price_html,
+#variations table.variations th.weight_html{
     width: 90px;
 }
 

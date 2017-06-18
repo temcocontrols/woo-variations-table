@@ -7,14 +7,14 @@ Author: Alaa Rihan
 Author URI: https://lb.linkedin.com/in/alaa-rihan-6971b686
 Text Domain: woo-variations-table
 Domain Path: /languages/
-Version: 1.2
+Version: 1.3
 */
 
 // Exit if accessed directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
 
-define("WOO_VARIATIONS_TABLE_VERSION", '1.2');
+define("WOO_VARIATIONS_TABLE_VERSION", '1.3');
 
 // Check if WooCommerce is enabled
 add_action('plugins_loaded', 'check_woocommerce_enabled', 1);
@@ -54,6 +54,7 @@ function woo_variations_table_settings_page_callback() {
   'variation_description' => 1,
   'dimensions' => 0,
   'weight_html' => 0,
+  'stock' => 1,
   'price_html' => 1,
   );
   $columns_labels =  array( 
@@ -62,7 +63,8 @@ function woo_variations_table_settings_page_callback() {
   'variation_description' => __('Description', 'woo-variations-table'),
   'dimensions' => __('Dimensions', 'woo-variations-table'),
   'weight_html' => __('Weight', 'woo-variations-table'),
-  'price_html' => __('Price'),
+  'stock' =>  __('Stock', 'woo-variations-table'),
+  'price_html' => __('Price', 'woo-variations-table'),
   );
   $columns = get_option('woo_variations_table_columns', $default_columns);
   $showAttributes = get_option('woo_variations_table_show_attributes', '');
@@ -198,11 +200,23 @@ function variations_table_print_table(){
     global $product;
     if( $product->is_type( 'variable' ) ){
         $productImageURL = wp_get_attachment_image_src(get_post_thumbnail_id( $product->get_id() ), 'shop_single')[0];
-        $variations = json_encode($product->get_available_variations());
+        $variations = $product->get_available_variations();
+        
+        // Image link and Stock no longer exist in WooCommerce 3.x so do this work around
+        foreach ( $variations as $key => $variation ) {
+          if(!isset($variation['image_link']) && isset($variation['image'])){
+            $variations[$key]['image_link'] = $variation['image']['src'];
+          }
+          if(!isset($variation['stock']) && isset($variation['stock_quantity'])){
+            $variations[$key]['stock'] = $variation['stock_quantity'];
+          }
+        }
+        
+        $variations = json_encode($variations);
         $product_attributes = $product->get_attributes();
         $variation_attributes = $product->get_variation_attributes();
         $attrs = array();
-        foreach ( $variation_attributes as $key => $name ) :
+        foreach ( $variation_attributes as $key => $name ) {
             $correctkey = str_replace(' ', '-', strtolower($key));
             $correctkey = preg_replace('/[^A-Za-z0-9\-\_]/', '', $correctkey);
             $attrs[$correctkey]['name']= wc_attribute_label($key);
@@ -215,7 +229,7 @@ function variations_table_print_table(){
                   $attrs[$correctkey]['options'][]= array('name'=>array_values($name)[$i], 'slug'=>array_values($name)[$i]);
                 }
             }
-        endforeach;
+        }
         $attributes = json_encode($attrs);
         $default_columns = array( 
           'image_link' => 'on',
@@ -223,6 +237,7 @@ function variations_table_print_table(){
           'variation_description' => 'on',
           'dimensions' => 0,
           'weight_html' => 0,
+          'stock' => 0,
           'price_html' => 'on',
         );
         $activeColumns = json_encode(get_option('woo_variations_table_columns', $default_columns));
@@ -245,6 +260,13 @@ function variations_table_print_table(){
                     <template v-if="showAttributes" v-for="attr in attributes">
                     <th v-if="attr.visible"> {{ attr.name }} </th>
                     </template>
+                    <th class="stock" v-if="activeColumns['stock'] == 'on'" 
+                      @click="sortBy('stock')"
+                      :class="[{ active: sortKey == 'stock' }, 'stock']">
+                      <?php echo __("Stock", 'variations-table'); ?>
+                      <span class="arrow" :class="sortOrders['stock'] > 0 ? 'asc' : 'dsc'">
+                      </span>
+                    </th>
                     <th class="quantity"><?php echo __("Quantity", 'variations-table'); ?></th>
                     <th class="add-to-cart"></th>
                   </tr>
@@ -259,6 +281,15 @@ function variations_table_print_table(){
                     <template v-if="showAttributes" v-for="(attr, key, index) in entry.attributes">
                     <td v-if="attributes[key.substr(10)].visible"" :data-title="attributes[key.substr(10)].name">{{ attr }}</td>
                     </template>
+                    <td class="stock" v-if="activeColumns['stock'] == 'on'" data-title="Stock">
+                      <span class="item">
+                        <template v-if="entry['is_in_stock']">
+                          <span><?php echo __("In Stock", 'variations-table'); ?></span>
+                          <span v-if="entry['stock']">({{entry['stock']}})</span>
+                        </template>
+                        <span v-else><?php echo __("Out of Stock", 'variations-table'); ?></span>
+                      </span>
+                    </td>
                     <td class="quantity"><input :ref="'quantity-'+entry.variation_id" value="1" type="number" step="1" min="1" name="quantity" data-title="Qty" title="Qty" class="input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric"></td>
                     <td class="add-to-cart"><button :ref="'variation-'+entry.variation_id" @click="addToCart(entry)" type="submit" class="single_add_to_cart_button button alt" :class="{added: entry.added}">Add to cart</button></td>
                   </tr>

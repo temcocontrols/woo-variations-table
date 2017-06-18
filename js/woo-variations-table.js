@@ -15,6 +15,7 @@ Vue.component('data-grid', {
     this.columns.forEach(function (column) {
       sortOrders[column.key] = 1
     })
+    sortOrders['stock'] = 1
     return {
       sortKey: '',
       sortOrders: sortOrders
@@ -76,8 +77,9 @@ Vue.component('data-grid', {
       this.sortOrders[key] = this.sortOrders[key] * -1
     },
     imageURL: function(image){
+      var imageURL = '';
       if(image){
-      var imageURL = image;
+        imageURL = image;
       }else{
         imageURL = this.$parent.imageURL;
       }
