@@ -1,0 +1,104 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-27 20:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#: woo-variations-table.php:31 woo-variations-table.php:37
+#: woo-variations-table.php:37
+msgid "Woo Variations Table"
+msgstr ""
+
+#: woo-variations-table.php:31
+#, php-format
+msgid "requires %sWooCommerce%s to be installed & activated!"
+msgstr ""
+
+#: woo-variations-table.php:61
+msgid "Thumbnail"
+msgstr ""
+
+#: woo-variations-table.php:62
+msgid "SKU"
+msgstr ""
+
+#: woo-variations-table.php:63
+msgid "Description"
+msgstr ""
+
+#: woo-variations-table.php:64
+msgid "Dimensions"
+msgstr ""
+
+#: woo-variations-table.php:65
+msgid "Weight"
+msgstr ""
+
+#: woo-variations-table.php:66 woo-variations-table.php:272
+msgid "Stock"
+msgstr ""
+
+#: woo-variations-table.php:67
+msgid "Price"
+msgstr ""
+
+#: woo-variations-table.php:73
+msgid "Woo Variations Table Settings"
+msgstr ""
+
+#: woo-variations-table.php:79
+msgid "Columns to show"
+msgstr ""
+
+#: woo-variations-table.php:83
+msgid "Show Attributes"
+msgstr ""
+
+#: woo-variations-table.php:253
+msgid "Available Options"
+msgstr ""
+
+#: woo-variations-table.php:276
+msgid "Quantity"
+msgstr ""
+
+#: woo-variations-table.php:293
+msgid "In Stock"
+msgstr ""
+
+#: woo-variations-table.php:296
+msgid "Out of Stock"
+msgstr ""
+
+#: woo-variations-table.php:300
+msgid "Add to Cart"
+msgstr ""
+
+#. Name of the plugin
+msgid "Woo Variations table"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Show WooCommerce variable products variations as table with filters and "
+"sorting instead of normal dropdowns."
+msgstr ""
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://lb.linkedin.com/in/alaa-rihan-6971b686"
+msgstr ""
+
+#. Author of the plugin
+msgid "Alaa Rihan"
+msgstr ""

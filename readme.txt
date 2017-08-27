@@ -2,8 +2,8 @@
 Contributors: alaa-rihan
 Tags: woocommerce, variations, table
 Requires at least: 4.0
-Tested up to: 4.8
-Stable tag: 1.3
+Tested up to: 4.8.1
+Stable tag: 1.3.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,6 +40,11 @@ To show an attibute in the variations table go to plugin settings and enable "Sh
 
 
 == Changelog ==
+
+= 1.3.3 =
+* Fix variations price doesn't show up if all variations have the same price issue.
+* Fix filters don't work when the attribute label has spesial characters.
+* Fix translation issue were contain wrong text domain and Add to cart was not translatable.
 
 = 1.3 =
 * Add an option to show stock column.

@@ -7,14 +7,14 @@ Author: Alaa Rihan
 Author URI: https://lb.linkedin.com/in/alaa-rihan-6971b686
 Text Domain: woo-variations-table
 Domain Path: /languages/
-Version: 1.3
+Version: 1.3.3
 */
 
 // Exit if accessed directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
 
-define("WOO_VARIATIONS_TABLE_VERSION", '1.3');
+define("WOO_VARIATIONS_TABLE_VERSION", '1.3.3');
 
 // Check if WooCommerce is enabled
 add_action('plugins_loaded', 'check_woocommerce_enabled', 1);
@@ -181,8 +181,8 @@ function variations_table_get_variation_data_from_variation_id( $variation_id ) 
 // Update database
 add_action('admin_init', 'variations_table_database_update');
 function variations_table_database_update(){
-  $plugin_db_version = get_option('woo_variations_table_db_version', 1.1);
-  if ($plugin_db_version < 1.2){
+  $plugin_db_version = get_option('woo_variations_table_db_version', '1.1');
+  if (in_array($plugin_db_version, array('1.1', '1.0', '0.9.0', '0.8.1'))){
     $activeColumns = get_option('woo_variations_table_columns');
     if(isset($activeColumns['weight'])){
       $activeColumns['weight_html'] = $activeColumns['weight'];
@@ -190,6 +190,8 @@ function variations_table_database_update(){
       update_option('woo_variations_table_columns', $activeColumns);
     }
     update_option('woo_variations_table_show_attributes', '');
+  }
+  if($plugin_db_version != WOO_VARIATIONS_TABLE_VERSION){
     update_option('woo_variations_table_db_version', WOO_VARIATIONS_TABLE_VERSION);
   }
 }
@@ -202,13 +204,18 @@ function variations_table_print_table(){
         $productImageURL = wp_get_attachment_image_src(get_post_thumbnail_id( $product->get_id() ), 'shop_single')[0];
         $variations = $product->get_available_variations();
         
-        // Image link and Stock no longer exist in WooCommerce 3.x so do this work around
+        // Image link and Stock are no longer exist in WooCommerce 3.x so do this work around
         foreach ( $variations as $key => $variation ) {
           if(!isset($variation['image_link']) && isset($variation['image'])){
             $variations[$key]['image_link'] = $variation['image']['src'];
           }
           if(!isset($variation['stock']) && isset($variation['stock_quantity'])){
             $variations[$key]['stock'] = $variation['stock_quantity'];
+          }
+          
+          // price_html is empty if all variations have the same price in WooCommerce 3.x so do this work around
+          if(empty($variation['price_html'])){
+            $variations[$key]['price_html'] = $product->get_price_html();
           }
         }
         
@@ -217,8 +224,7 @@ function variations_table_print_table(){
         $variation_attributes = $product->get_variation_attributes();
         $attrs = array();
         foreach ( $variation_attributes as $key => $name ) {
-            $correctkey = str_replace(' ', '-', strtolower($key));
-            $correctkey = preg_replace('/[^A-Za-z0-9\-\_]/', '', $correctkey);
+            $correctkey = wc_sanitize_taxonomy_name( stripslashes( $key ) );
             $attrs[$correctkey]['name']= wc_attribute_label($key);
             $attrs[$correctkey]['visible'] =  $product_attributes[$correctkey]->get_visible();
             for($i=0; count($name) > $i; $i++){
@@ -263,11 +269,11 @@ function variations_table_print_table(){
                     <th class="stock" v-if="activeColumns['stock'] == 'on'" 
                       @click="sortBy('stock')"
                       :class="[{ active: sortKey == 'stock' }, 'stock']">
-                      <?php echo __("Stock", 'variations-table'); ?>
+                      <?php echo __("Stock", 'woo-variations-table'); ?>
                       <span class="arrow" :class="sortOrders['stock'] > 0 ? 'asc' : 'dsc'">
                       </span>
                     </th>
-                    <th class="quantity"><?php echo __("Quantity", 'variations-table'); ?></th>
+                    <th class="quantity"><?php echo __("Quantity", 'woo-variations-table'); ?></th>
                     <th class="add-to-cart"></th>
                   </tr>
                 </thead>
@@ -284,14 +290,14 @@ function variations_table_print_table(){
                     <td class="stock" v-if="activeColumns['stock'] == 'on'" data-title="Stock">
                       <span class="item">
                         <template v-if="entry['is_in_stock']">
-                          <span><?php echo __("In Stock", 'variations-table'); ?></span>
+                          <span><?php echo __("In Stock", 'woo-variations-table'); ?></span>
                           <span v-if="entry['stock']">({{entry['stock']}})</span>
                         </template>
-                        <span v-else><?php echo __("Out of Stock", 'variations-table'); ?></span>
+                        <span v-else><?php echo __("Out of Stock", 'woo-variations-table'); ?></span>
                       </span>
                     </td>
                     <td class="quantity"><input :ref="'quantity-'+entry.variation_id" value="1" type="number" step="1" min="1" name="quantity" data-title="Qty" title="Qty" class="input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric"></td>
-                    <td class="add-to-cart"><button :ref="'variation-'+entry.variation_id" @click="addToCart(entry)" type="submit" class="single_add_to_cart_button button alt" :class="{added: entry.added}">Add to cart</button></td>
+                    <td class="add-to-cart"><button :ref="'variation-'+entry.variation_id" @click="addToCart(entry)" type="submit" class="single_add_to_cart_button button alt" :class="{added: entry.added}"><?php echo __("Add to Cart", 'woo-variations-table'); ?></button></td>
                   </tr>
                 </tbody>
               </table>
