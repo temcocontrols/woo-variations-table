@@ -96,6 +96,12 @@ Vue.component('data-grid', {
       imageClass = imageClass[imageClass.length-1].split('.')[0].replace(/\s+/g, '');
       return imageClass;
     },
+    showAttributeNameFromSlug: function(attr, options){
+      var AttrName = options.filter(function(option){
+        return option.slug == attr;
+      });
+      return AttrName[0].name;
+    },
     addToCart: function(variation){
       var addToCartButton = this.$refs['variation-'+variation.variation_id];
       var quantity = this.$refs['quantity-'+variation.variation_id];
