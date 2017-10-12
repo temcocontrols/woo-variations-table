@@ -7,14 +7,14 @@ Author: Alaa Rihan
 Author URI: https://lb.linkedin.com/in/alaa-rihan-6971b686
 Text Domain: woo-variations-table
 Domain Path: /languages/
-Version: 1.3.5
+Version: 1.3.8
 */
 
 // Exit if accessed directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
 
-define("WOO_VARIATIONS_TABLE_VERSION", '1.3.5');
+define("WOO_VARIATIONS_TABLE_VERSION", '1.3.8');
 
 // Check if WooCommerce is enabled
 add_action('plugins_loaded', 'check_woocommerce_enabled', 1);
@@ -131,7 +131,7 @@ function woo_variations_table_available_options_btn(){
 add_action( 'wp_enqueue_scripts', 'variations_table_scripts' );
 function variations_table_scripts() {
 	if(is_product()){
-		wp_enqueue_script( 'vuejs', '//unpkg.com/vue@2.3.2/dist/vue.min.js', array(), '2.3.2', false );
+		wp_enqueue_script( 'vuejs', '//unpkg.com/vue@2.4.4/dist/vue.min.js', array(), '2.4.4', false );
 		wp_enqueue_script( 'woo-variations-table', plugins_url( 'js/woo-variations-table.js', __FILE__), 'vuejs', WOO_VARIATIONS_TABLE_VERSION, false );
 		wp_enqueue_script( 'woo-variations-table-scripts', plugins_url( 'js/woo-variations-table-scripts.js', __FILE__), array( 'jquery' ), WOO_VARIATIONS_TABLE_VERSION , true);
 		wp_localize_script( 'woo-variations-table', 'localData', array(
@@ -201,7 +201,11 @@ add_filter('woocommerce_after_single_product_summary','variations_table_print_ta
 function variations_table_print_table(){
     global $product;
     if( $product->is_type( 'variable' ) ){
-        $productImageURL = wp_get_attachment_image_src(get_post_thumbnail_id( $product->get_id() ), 'shop_single')[0];
+        $thumb_name = apply_filters( 'woo_variations_table_thumb_name', 'shop_single');
+        $productImageURL = wp_get_attachment_image_src(get_post_thumbnail_id( $product->get_id() ),  $thumb_name);
+        if (is_array($productImageURL) && count($productImageURL)){
+          $productImageURL = $productImageURL[0];
+        }
         $variations = $product->get_available_variations();
         
         // Image link is no longer exist in WooCommerce 3.x so do this work around
