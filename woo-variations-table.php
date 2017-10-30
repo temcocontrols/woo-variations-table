@@ -7,14 +7,14 @@ Author: Alaa Rihan
 Author URI: https://lb.linkedin.com/in/alaa-rihan-6971b686
 Text Domain: woo-variations-table
 Domain Path: /languages/
-Version: 1.3.8
+Version: 1.3.9
 */
 
 // Exit if accessed directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
 
-define("WOO_VARIATIONS_TABLE_VERSION", '1.3.8');
+define("WOO_VARIATIONS_TABLE_VERSION", '1.3.9');
 
 // Check if WooCommerce is enabled
 add_action('plugins_loaded', 'check_woocommerce_enabled', 1);
@@ -228,7 +228,8 @@ function variations_table_print_table(){
             $attrs[$correctkey]['name']= wc_attribute_label($key);
             $attrs[$correctkey]['visible'] =  $product_attributes[$correctkey]->get_visible();
             for($i=0; count($name) > $i; $i++){
-                $term = get_term_by('slug', array_values($name)[$i], $key);
+                $terms = array_values($name);
+                $term = get_term_by('slug', $terms[$i], $key);
                 if($term){
                 $attrs[$key]['options'][]=array('name'=>$term->name, 'slug'=>array_values($name)[$i]);
                 }else{
@@ -311,7 +312,7 @@ function variations_table_print_table(){
                     <div v-for="(attribute, key, index) in attributes" class="filter">
                         <label>{{ attribute.name }} </label>
                         <select v-model="activeFilters[index]" @change="setFilters()" class="form-control">
-                          <option value="">Any</option>
+                          <option value=""><?php echo __('Any', 'woo-variations-table'); ?></option>
                           <option v-for="option in attribute.options" :value="'attribute_'+key+':'+option.slug">{{ option.name }}</option>
                         </select>
                     </div>

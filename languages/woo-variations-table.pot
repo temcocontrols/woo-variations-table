@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-27 20:31+0000\n"
+"POT-Creation-Date: 2017-10-17 07:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -64,6 +64,10 @@ msgstr ""
 msgid "Show Attributes"
 msgstr ""
 
+#: woo-variations-table.php:125
+msgid "Available options"
+msgstr ""
+
 #: woo-variations-table.php:253
 msgid "Available Options"
 msgstr ""
@@ -72,16 +76,16 @@ msgstr ""
 msgid "Quantity"
 msgstr ""
 
-#: woo-variations-table.php:293
-msgid "In Stock"
-msgstr ""
-
 #: woo-variations-table.php:296
 msgid "Out of Stock"
 msgstr ""
 
 #: woo-variations-table.php:300
 msgid "Add to Cart"
+msgstr ""
+
+#: woo-variations-table.php:314
+msgid "Any"
 msgstr ""
 
 #. Name of the plugin
