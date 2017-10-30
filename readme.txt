@@ -3,7 +3,7 @@ Contributors: alaa-rihan
 Tags: woocommerce, variations, table
 Requires at least: 4.0
 Tested up to: 4.8.2
-Stable tag: 1.3.9
+Stable tag: 1.3.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,6 +40,9 @@ To show an attibute in the variations table go to plugin settings and enable "Sh
 
 
 == Changelog ==
+
+= 1.3.10 =
+* Fix PHP error happened in old PHP versions
 
 = 1.3.9 =
 * Make 'Any' translatable.

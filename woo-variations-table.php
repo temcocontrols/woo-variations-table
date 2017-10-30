@@ -7,14 +7,14 @@ Author: Alaa Rihan
 Author URI: https://lb.linkedin.com/in/alaa-rihan-6971b686
 Text Domain: woo-variations-table
 Domain Path: /languages/
-Version: 1.3.9
+Version: 1.3.10
 */
 
 // Exit if accessed directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
 
-define("WOO_VARIATIONS_TABLE_VERSION", '1.3.9');
+define("WOO_VARIATIONS_TABLE_VERSION", '1.3.10');
 
 // Check if WooCommerce is enabled
 add_action('plugins_loaded', 'check_woocommerce_enabled', 1);
@@ -230,10 +230,12 @@ function variations_table_print_table(){
             for($i=0; count($name) > $i; $i++){
                 $terms = array_values($name);
                 $term = get_term_by('slug', $terms[$i], $key);
+                $slug = array_values($name);
+                $slug = $slug[$i];
                 if($term){
-                $attrs[$key]['options'][]=array('name'=>$term->name, 'slug'=>array_values($name)[$i]);
+                  $attrs[$key]['options'][]=array('name'=>$term->name, 'slug'=> $slug);
                 }else{
-                  $attrs[$correctkey]['options'][]= array('name'=>array_values($name)[$i], 'slug'=>array_values($name)[$i]);
+                  $attrs[$correctkey]['options'][]= array('name'=>$slug, 'slug'=>$slug);
                 }
             }
         }
