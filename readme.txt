@@ -106,6 +106,7 @@ To show an attibute in the variations table go to plugin settings and enable "Sh
 * Add new option to show attributes values as columns in the table.
 * Fix Table wasn't working in Internet Explorer.
 * Show weight unit in the variations table.
+* Other bug fixes and improvements
 
 = 1.1 =
 * Support multilangual and include PO file.
