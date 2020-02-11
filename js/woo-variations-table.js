@@ -117,13 +117,14 @@ Vue.component('data-grid', {
         method: "POST",
         url: localData.ajaxURL,
         data: {
-            "action" : "add_variation_to_cart",
+            "action" : "variation_add_to_cart",
             "product_id" : this.$parent.productID,
             "variation_id" : variation.variation_id,
             "quantity" : jQuery(quantity).val(),
         }   
       })
         .done(function( msg ) {
+         
           jQuery(addToCartButton).removeClass('loading');
           jQuery(addToCartButton).addClass('added');
           if(!variation.added){
@@ -132,7 +133,7 @@ Vue.component('data-grid', {
           jQuery.ajax( $fragment_refresh );
         })
         .fail(function(error) {
-          alert( error );
+          console.log( error );
         });
     }
   }

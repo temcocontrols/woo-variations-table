@@ -102,6 +102,11 @@ To show an attibute in the variations table go to plugin settings and enable "Sh
 = 0.8.1 =
 * Fix a CSS issue.
 
+= 0.8.2 =
+* Fix add to cart ajax functionallity (wasn't working).
+* Fix some css issues.
+* Update VueJS to latest version.
+
 = 0.8.1 =
 * Fix a CSS issue.
 
