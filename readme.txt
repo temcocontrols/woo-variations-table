@@ -4,11 +4,11 @@ Tags: woocommerce, variations, table
 Requires at least: 4.0.0
 Tested up to: 5.3.2
 Requires PHP: 5.6.20
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Show WooCommerce variable products variations as table with filters and sorting instead of normal dropdowns.
+Show WooCommerce variable products variations as table with search filter by attributes and sorting instead of normal select options dropdowns.
 
 == Description ==
 
@@ -42,8 +42,9 @@ To show an attibute in the variations table go to plugin settings and enable "Sh
 
 == Changelog ==
 
-= 2.0.1 =
+= 2.0.2 =
 * Make Stock header translatable
+* Small bug fix
 
 = 2.0.0 =
 * Refactor the code and use SvelteJS for the UI instead of VueJS
