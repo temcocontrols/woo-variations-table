@@ -102,11 +102,15 @@ To show an attibute in the variations table go to plugin settings and enable "Sh
 = 0.8.1 =
 * Fix a CSS issue.
 
+= 1.3 =
+* Add an option to show stock column.
+* Show only attributes with "Visible on the product page" enabled option when enable "Show Attributes" option.
+* Other bug fixes & improvments.
+
 = 1.2 =
 * Add new option to show attributes values as columns in the table.
 * Fix Table wasn't working in Internet Explorer.
 * Show weight unit in the variations table.
-* Other bug fixes and improvements
 
 = 1.1 =
 * Support multilangual and include PO file.
