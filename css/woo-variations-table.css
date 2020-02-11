@@ -77,6 +77,10 @@
     display: none;
 }
 
+#variations table.variations tr{
+    display: table-row;
+}
+
 #variations table.variations td {
     display: table-cell;
     border: #eee solid 1px;

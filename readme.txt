@@ -102,6 +102,11 @@ To show an attibute in the variations table go to plugin settings and enable "Sh
 = 0.8.1 =
 * Fix a CSS issue.
 
+= 1.3.9 =
+* Make 'Any' translatable.
+* Fix PHP error happened in old PHP versions
+* Small css fix.
+
 = 1.3.8 =
 * CSS improvments to compatible with more themes like Storefront and other WooCommerce themes.
 * Fix a PHP bug to compatible with older PHP versions.
