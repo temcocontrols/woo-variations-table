@@ -10,11 +10,15 @@
 }
 
 #variations .variation-filters {
-    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
 }
 
 #variations .filter {
-    margin: 0 5px 10px;
+    margin: 0 5px;
+}
+
+#variations .filter:first-child {
+    margin-left: 0;
 }
 
 #variations .filter label {
@@ -24,6 +28,10 @@
 #variations table.variations th {
     cursor: pointer;
     white-space: nowrap;
+    display: table-cell;
+    border: #eee solid 1px;
+    padding: 10px;
+    vertical-align: middle;
 }
 
 #variations table.variations th.image_link {
@@ -69,6 +77,13 @@
     display: none;
 }
 
+#variations table.variations td {
+    display: table-cell;
+    border: #eee solid 1px;
+    padding: 10px;
+    vertical-align: middle;
+}
+
 #variations table.variations .arrow.asc {
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
@@ -97,6 +112,14 @@
 
 .available-options-btn {
     margin-bottom: 15px;
+}
+
+#variations input,
+#variations select{
+    border-radius: 0;
+    border: solid #eee 1px;
+    padding: 5px;
+    height: 2.5em;
 }
 
 @media screen and (max-width: 767px) {

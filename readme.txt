@@ -102,6 +102,11 @@ To show an attibute in the variations table go to plugin settings and enable "Sh
 = 0.8.1 =
 * Fix a CSS issue.
 
+= 1.3.8 =
+* CSS improvments to compatible with more themes like Storefront and other WooCommerce themes.
+* Fix a PHP bug to compatible with older PHP versions.
+* Add new filter to filter variation thumb name.
+
 = 1.3.5 =
 * Show Attribute name instead of slug in the table.
 * Add some actions and filters hooks to let others extend this plugin.
