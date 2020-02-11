@@ -105,6 +105,9 @@ To show an attibute in the variations table go to plugin settings and enable "Sh
 = 0.8 =
 * Initial release.
 
+= 0.8.1 =
+* Fix a css issue.
+
 == Feedback ==
 
 I'm developing this plugin for you. 
