@@ -102,6 +102,11 @@ To show an attibute in the variations table go to plugin settings and enable "Sh
 = 0.8.1 =
 * Fix a CSS issue.
 
+= 1.3.3 =
+* Fix variations price doesn't show up if all variations have the same price issue.
+* Fix filters don't work when the attribute label has spesial characters.
+* Fix translation issue were contain wrong text domain and Add to cart was not translatable.
+
 = 1.3 =
 * Add an option to show stock column.
 * Show only attributes with "Visible on the product page" enabled option when enable "Show Attributes" option.
