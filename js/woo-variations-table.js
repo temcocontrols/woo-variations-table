@@ -100,6 +100,7 @@ Vue.component('data-grid', {
       var AttrName = options.filter(function(option){
         return option.slug == attr;
       });
+	  if(!AttrName[0]) return '';
       return AttrName[0].name;
     },
     addToCart: function(variation){
