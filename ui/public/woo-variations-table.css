@@ -32,20 +32,30 @@
     border: #eee solid 1px;
     padding: 10px;
     vertical-align: middle;
+    font-weight: normal;
+}
+
+#variations table.variations th{
+    min-width: 40px;
 }
 
 #variations table.variations th.image_link {
     width: 140px;
+    cursor: auto;
 }
 
 #variations table.variations th.add-to-cart {
-    width: 165px;
+    width: 160px;
+    cursor: auto;
+}
+#variations table.variations th.quantity{
+    cursor: auto;
 }
 
 #variations table.variations th.quantity,
 #variations table.variations th.price_html,
 #variations table.variations th.weight_html{
-    width: 90px;
+    width: 60px;
 }
 
 #variations table.variations input.qty {
@@ -53,11 +63,11 @@
 }
 
 #variations table.variations th.sku {
-    width: 150px;
+    width: 90px;
 }
 
 #variations table.variations th.active {
-    color: #000;
+    font-weight: bold;
 }
 
 #variations table.variations th.active .arrow {
@@ -88,13 +98,13 @@
     vertical-align: middle;
 }
 
-#variations table.variations .arrow.asc {
+#variations table.variations .arrow.dsc {
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
     border-bottom: 4px solid #666666;
 }
 
-#variations table.variations .arrow.dsc {
+#variations table.variations .arrow.asc {
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
     border-top: 4px solid #666666;
@@ -109,7 +119,7 @@
     white-space: nowrap;
 }
 
-#variations .image_link img {
+#variations .item img {
     width: 100px;
     height: auto;
 }

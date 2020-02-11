@@ -1,0 +1,570 @@
+var wooVariationsTableData = {
+  "variations": [
+    {
+      "attributes": {
+        "attribute_color": "Red",
+        "attribute_size": "Small",
+        "attribute_pa_condition": "new"
+      },
+      "availability_html": "<p class=\"stock in-stock\">90 in stock</p>\n",
+      "backorders_allowed": true,
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "dimensions_html": "N/A",
+      "display_price": 20,
+      "display_regular_price": 20,
+      "image": {
+        "title": "Hoodie",
+        "caption": "",
+        "url": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg",
+        "alt": "",
+        "src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg",
+        "srcset": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg 600w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-450x450.jpg 450w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-100x100.jpg 100w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-300x300.jpg 300w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-150x150.jpg 150w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-768x768.jpg 768w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg 801w",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "full_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg",
+        "full_src_w": 801,
+        "full_src_h": 801,
+        "gallery_thumbnail_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-100x100.jpg",
+        "gallery_thumbnail_src_w": 100,
+        "gallery_thumbnail_src_h": 100,
+        "thumb_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-450x450.jpg",
+        "thumb_src_w": 450,
+        "thumb_src_h": 450,
+        "src_w": 600,
+        "src_h": 600
+      },
+      "image_id": "20",
+      "is_downloadable": false,
+      "is_in_stock": true,
+      "is_purchasable": true,
+      "is_sold_individually": "no",
+      "is_virtual": false,
+      "max_qty": "",
+      "min_qty": 1,
+      "price_html": "<span class=\"price\"><span class=\"woocommerce-Price-amount amount\"><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>20.00</span></span>",
+      "sku": "REDSMALL",
+      "variation_description": "<p>This is a variation description</p>\n",
+      "variation_id": 47,
+      "variation_is_active": true,
+      "variation_is_visible": true,
+      "weight": "",
+      "weight_html": "N/A",
+      "image_link": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg"
+    },
+    {
+      "attributes": {
+        "attribute_color": "Red",
+        "attribute_size": "Medium",
+        "attribute_pa_condition": "new"
+      },
+      "availability_html": "",
+      "backorders_allowed": false,
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "dimensions_html": "N/A",
+      "display_price": 21,
+      "display_regular_price": 21,
+      "image": {
+        "title": "Hoodie",
+        "caption": "",
+        "url": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg",
+        "alt": "",
+        "src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg",
+        "srcset": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg 600w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-450x450.jpg 450w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-100x100.jpg 100w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-300x300.jpg 300w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-150x150.jpg 150w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-768x768.jpg 768w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg 801w",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "full_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg",
+        "full_src_w": 801,
+        "full_src_h": 801,
+        "gallery_thumbnail_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-100x100.jpg",
+        "gallery_thumbnail_src_w": 100,
+        "gallery_thumbnail_src_h": 100,
+        "thumb_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-450x450.jpg",
+        "thumb_src_w": 450,
+        "thumb_src_h": 450,
+        "src_w": 600,
+        "src_h": 600
+      },
+      "image_id": "20",
+      "is_downloadable": false,
+      "is_in_stock": true,
+      "is_purchasable": true,
+      "is_sold_individually": "no",
+      "is_virtual": false,
+      "max_qty": "",
+      "min_qty": 1,
+      "price_html": "<span class=\"price\"><span class=\"woocommerce-Price-amount amount\"><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>21.00</span></span>",
+      "sku": "REDMED",
+      "variation_description": "<p>This is a variation description</p>\n",
+      "variation_id": 48,
+      "variation_is_active": true,
+      "variation_is_visible": true,
+      "weight": "",
+      "weight_html": "N/A",
+      "image_link": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg"
+    },
+    {
+      "attributes": {
+        "attribute_color": "Red",
+        "attribute_size": "Large",
+        "attribute_pa_condition": "new"
+      },
+      "availability_html": "",
+      "backorders_allowed": false,
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "dimensions_html": "N/A",
+      "display_price": 21,
+      "display_regular_price": 21,
+      "image": {
+        "title": "Beanie",
+        "caption": "",
+        "url": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/beanie.jpg",
+        "alt": "",
+        "src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/beanie-600x600.jpg",
+        "srcset": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/beanie-600x600.jpg 600w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/beanie-450x450.jpg 450w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/beanie-100x100.jpg 100w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/beanie-300x300.jpg 300w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/beanie-150x150.jpg 150w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/beanie-768x768.jpg 768w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/beanie.jpg 801w",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "full_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/beanie.jpg",
+        "full_src_w": 801,
+        "full_src_h": 801,
+        "gallery_thumbnail_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/beanie-100x100.jpg",
+        "gallery_thumbnail_src_w": 100,
+        "gallery_thumbnail_src_h": 100,
+        "thumb_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/beanie-450x450.jpg",
+        "thumb_src_w": 450,
+        "thumb_src_h": 450,
+        "src_w": 600,
+        "src_h": 600
+      },
+      "image_id": "14",
+      "is_downloadable": false,
+      "is_in_stock": true,
+      "is_purchasable": true,
+      "is_sold_individually": "no",
+      "is_virtual": false,
+      "max_qty": "",
+      "min_qty": 1,
+      "price_html": "<span class=\"price\"><span class=\"woocommerce-Price-amount amount\"><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>21.00</span></span>",
+      "sku": "REDLARGE",
+      "variation_description": "<p>This is a variation description</p>\n",
+      "variation_id": 49,
+      "variation_is_active": true,
+      "variation_is_visible": true,
+      "weight": "",
+      "weight_html": "N/A",
+      "image_link": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/beanie-600x600.jpg"
+    },
+    {
+      "attributes": {
+        "attribute_color": "Blue",
+        "attribute_size": "Small",
+        "attribute_pa_condition": "new"
+      },
+      "availability_html": "",
+      "backorders_allowed": false,
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "dimensions_html": "N/A",
+      "display_price": 22,
+      "display_regular_price": 22,
+      "image": {
+        "title": "Hoodie",
+        "caption": "",
+        "url": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg",
+        "alt": "",
+        "src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg",
+        "srcset": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg 600w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-450x450.jpg 450w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-100x100.jpg 100w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-300x300.jpg 300w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-150x150.jpg 150w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-768x768.jpg 768w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg 801w",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "full_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg",
+        "full_src_w": 801,
+        "full_src_h": 801,
+        "gallery_thumbnail_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-100x100.jpg",
+        "gallery_thumbnail_src_w": 100,
+        "gallery_thumbnail_src_h": 100,
+        "thumb_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-450x450.jpg",
+        "thumb_src_w": 450,
+        "thumb_src_h": 450,
+        "src_w": 600,
+        "src_h": 600
+      },
+      "image_id": "20",
+      "is_downloadable": false,
+      "is_in_stock": true,
+      "is_purchasable": true,
+      "is_sold_individually": "no",
+      "is_virtual": false,
+      "max_qty": "",
+      "min_qty": 1,
+      "price_html": "<span class=\"price\"><span class=\"woocommerce-Price-amount amount\"><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>22.00</span></span>",
+      "sku": "BLUESMALL",
+      "variation_description": "<p>This is a variation description</p>\n",
+      "variation_id": 50,
+      "variation_is_active": true,
+      "variation_is_visible": true,
+      "weight": "",
+      "weight_html": "N/A",
+      "image_link": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg"
+    },
+    {
+      "attributes": {
+        "attribute_color": "Blue",
+        "attribute_size": "Medium",
+        "attribute_pa_condition": "new"
+      },
+      "availability_html": "",
+      "backorders_allowed": false,
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "dimensions_html": "N/A",
+      "display_price": 11,
+      "display_regular_price": 11,
+      "image": {
+        "title": "Hoodie",
+        "caption": "",
+        "url": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg",
+        "alt": "",
+        "src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg",
+        "srcset": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg 600w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-450x450.jpg 450w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-100x100.jpg 100w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-300x300.jpg 300w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-150x150.jpg 150w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-768x768.jpg 768w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg 801w",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "full_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg",
+        "full_src_w": 801,
+        "full_src_h": 801,
+        "gallery_thumbnail_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-100x100.jpg",
+        "gallery_thumbnail_src_w": 100,
+        "gallery_thumbnail_src_h": 100,
+        "thumb_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-450x450.jpg",
+        "thumb_src_w": 450,
+        "thumb_src_h": 450,
+        "src_w": 600,
+        "src_h": 600
+      },
+      "image_id": "20",
+      "is_downloadable": false,
+      "is_in_stock": true,
+      "is_purchasable": true,
+      "is_sold_individually": "no",
+      "is_virtual": false,
+      "max_qty": "",
+      "min_qty": 1,
+      "price_html": "<span class=\"price\"><span class=\"woocommerce-Price-amount amount\"><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>11.00</span></span>",
+      "sku": "BLUEMED",
+      "variation_description": "<p>This is a variation description</p>\n",
+      "variation_id": 51,
+      "variation_is_active": true,
+      "variation_is_visible": true,
+      "weight": "",
+      "weight_html": "N/A",
+      "image_link": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg"
+    },
+    {
+      "attributes": {
+        "attribute_color": "Blue",
+        "attribute_size": "Large",
+        "attribute_pa_condition": "new"
+      },
+      "availability_html": "<p class=\"stock in-stock\">10 in stock</p>\n",
+      "backorders_allowed": true,
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "dimensions_html": "N/A",
+      "display_price": 22,
+      "display_regular_price": 22,
+      "image": {
+        "title": "Hoodie",
+        "caption": "",
+        "url": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg",
+        "alt": "",
+        "src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg",
+        "srcset": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg 600w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-450x450.jpg 450w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-100x100.jpg 100w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-300x300.jpg 300w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-150x150.jpg 150w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-768x768.jpg 768w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg 801w",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "full_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg",
+        "full_src_w": 801,
+        "full_src_h": 801,
+        "gallery_thumbnail_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-100x100.jpg",
+        "gallery_thumbnail_src_w": 100,
+        "gallery_thumbnail_src_h": 100,
+        "thumb_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-450x450.jpg",
+        "thumb_src_w": 450,
+        "thumb_src_h": 450,
+        "src_w": 600,
+        "src_h": 600
+      },
+      "image_id": "20",
+      "is_downloadable": false,
+      "is_in_stock": true,
+      "is_purchasable": true,
+      "is_sold_individually": "no",
+      "is_virtual": false,
+      "max_qty": "",
+      "min_qty": 1,
+      "price_html": "<span class=\"price\"><span class=\"woocommerce-Price-amount amount\"><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>22.00</span></span>",
+      "sku": "BLUELARGE",
+      "variation_description": "<p>This is a variation description</p>\n",
+      "variation_id": 52,
+      "variation_is_active": true,
+      "variation_is_visible": true,
+      "weight": "",
+      "weight_html": "N/A",
+      "image_link": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg"
+    },
+    {
+      "attributes": {
+        "attribute_color": "Green",
+        "attribute_size": "Small",
+        "attribute_pa_condition": "used"
+      },
+      "availability_html": "",
+      "backorders_allowed": false,
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "dimensions_html": "N/A",
+      "display_price": 16,
+      "display_regular_price": 16,
+      "image": {
+        "title": "Hoodie",
+        "caption": "",
+        "url": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg",
+        "alt": "",
+        "src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg",
+        "srcset": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg 600w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-450x450.jpg 450w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-100x100.jpg 100w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-300x300.jpg 300w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-150x150.jpg 150w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-768x768.jpg 768w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg 801w",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "full_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg",
+        "full_src_w": 801,
+        "full_src_h": 801,
+        "gallery_thumbnail_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-100x100.jpg",
+        "gallery_thumbnail_src_w": 100,
+        "gallery_thumbnail_src_h": 100,
+        "thumb_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-450x450.jpg",
+        "thumb_src_w": 450,
+        "thumb_src_h": 450,
+        "src_w": 600,
+        "src_h": 600
+      },
+      "image_id": "20",
+      "is_downloadable": false,
+      "is_in_stock": true,
+      "is_purchasable": true,
+      "is_sold_individually": "no",
+      "is_virtual": false,
+      "max_qty": "",
+      "min_qty": 1,
+      "price_html": "<span class=\"price\"><span class=\"woocommerce-Price-amount amount\"><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>16.00</span></span>",
+      "sku": "GSMALL",
+      "variation_description": "<p>This is a variation description</p>\n",
+      "variation_id": 53,
+      "variation_is_active": true,
+      "variation_is_visible": true,
+      "weight": "",
+      "weight_html": "N/A",
+      "image_link": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg"
+    },
+    {
+      "attributes": {
+        "attribute_color": "Green",
+        "attribute_size": "Medium",
+        "attribute_pa_condition": "new"
+      },
+      "availability_html": "",
+      "backorders_allowed": false,
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "dimensions_html": "N/A",
+      "display_price": 20,
+      "display_regular_price": 20,
+      "image": {
+        "title": "Hoodie",
+        "caption": "",
+        "url": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg",
+        "alt": "",
+        "src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg",
+        "srcset": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg 600w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-450x450.jpg 450w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-100x100.jpg 100w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-300x300.jpg 300w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-150x150.jpg 150w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-768x768.jpg 768w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg 801w",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "full_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg",
+        "full_src_w": 801,
+        "full_src_h": 801,
+        "gallery_thumbnail_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-100x100.jpg",
+        "gallery_thumbnail_src_w": 100,
+        "gallery_thumbnail_src_h": 100,
+        "thumb_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-450x450.jpg",
+        "thumb_src_w": 450,
+        "thumb_src_h": 450,
+        "src_w": 600,
+        "src_h": 600
+      },
+      "image_id": "20",
+      "is_downloadable": false,
+      "is_in_stock": true,
+      "is_purchasable": true,
+      "is_sold_individually": "no",
+      "is_virtual": false,
+      "max_qty": "",
+      "min_qty": 1,
+      "price_html": "<span class=\"price\"><span class=\"woocommerce-Price-amount amount\"><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>20.00</span></span>",
+      "sku": "GMED",
+      "variation_description": "<p>This is a variation description</p>\n",
+      "variation_id": 54,
+      "variation_is_active": true,
+      "variation_is_visible": true,
+      "weight": "",
+      "weight_html": "N/A",
+      "image_link": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg"
+    },
+    {
+      "attributes": {
+        "attribute_color": "Green",
+        "attribute_size": "Large",
+        "attribute_pa_condition": "used"
+      },
+      "availability_html": "",
+      "backorders_allowed": false,
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "dimensions_html": "N/A",
+      "display_price": 23,
+      "display_regular_price": 23,
+      "image": {
+        "title": "Hoodie",
+        "caption": "",
+        "url": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg",
+        "alt": "",
+        "src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg",
+        "srcset": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg 600w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-450x450.jpg 450w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-100x100.jpg 100w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-300x300.jpg 300w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-150x150.jpg 150w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-768x768.jpg 768w, https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg 801w",
+        "sizes": "(max-width: 600px) 100vw, 600px",
+        "full_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg",
+        "full_src_w": 801,
+        "full_src_h": 801,
+        "gallery_thumbnail_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-100x100.jpg",
+        "gallery_thumbnail_src_w": 100,
+        "gallery_thumbnail_src_h": 100,
+        "thumb_src": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-450x450.jpg",
+        "thumb_src_w": 450,
+        "thumb_src_h": 450,
+        "src_w": 600,
+        "src_h": 600
+      },
+      "image_id": "20",
+      "is_downloadable": false,
+      "is_in_stock": true,
+      "is_purchasable": true,
+      "is_sold_individually": "no",
+      "is_virtual": false,
+      "max_qty": "",
+      "min_qty": 1,
+      "price_html": "<span class=\"price\"><span class=\"woocommerce-Price-amount amount\"><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>23.00</span></span>",
+      "sku": "GLARGE",
+      "variation_description": "<p>This is a variation description</p>\n",
+      "variation_id": 55,
+      "variation_is_active": true,
+      "variation_is_visible": true,
+      "weight": "",
+      "weight_html": "N/A",
+      "image_link": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie-600x600.jpg"
+    }
+  ],
+  "attributes": [
+    {
+      "key": "color",
+      "name": "Color",
+      "visible": true,
+      "options": [
+        {
+          "name": "Red",
+          "slug": "Red"
+        },
+        {
+          "name": "Blue",
+          "slug": "Blue"
+        },
+        {
+          "name": "Green",
+          "slug": "Green"
+        }
+      ]
+    },
+    {
+      "key": "size",
+      "name": "Size",
+      "visible": true,
+      "options": [
+        {
+          "name": "Small",
+          "slug": "Small"
+        },
+        {
+          "name": "Medium",
+          "slug": "Medium"
+        },
+        {
+          "name": "Large",
+          "slug": "Large"
+        }
+      ]
+    },
+    {
+      "key": "pa_condition",
+      "name": "Condition",
+      "visible": false,
+      "options": [
+        {
+          "name": "New",
+          "slug": "new"
+        },
+        {
+          "name": "Used",
+          "slug": "used"
+        }
+      ]
+    }
+  ],
+  "showAttributes": "on",
+  "activeColumns": {
+    "image_link": "on",
+    "sku": "on",
+    "variation_description": "on",
+    "stock": "on",
+    "price_html": "on",
+    "quantity": "on"
+  },
+  "imageURL": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg",
+  "ajaxURL": "https://woo-variations-table.cloudaccess.host/wp-admin/admin-ajax.php?add_variation_to_cart=1",
+  "textVars": {
+    "columnsText": {
+      "sku": "SKU",
+      "variation_description": "Description",
+      "weight_html": "Weight",
+      "dimensions": "Dimensions",
+      "price_html": "Price"
+    },
+    "addToCartText": "Add to Cart",
+    "qtyText": "Quantity",
+    "anyText": "Any",
+    "searchPlaceholderText": "Keywords",
+    "noResultsText": "No results!"
+  }
+}

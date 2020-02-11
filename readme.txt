@@ -1,9 +1,10 @@
 === Woo Variations Table ===
 Contributors: alaa-rihan
 Tags: woocommerce, variations, table
-Requires at least: 4.0
-Tested up to: 4.8.2
-Stable tag: 1.3.10
+Requires at least: 4.0.0
+Tested up to: 5.3.2
+Requires PHP: 5.6.20
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,10 +37,18 @@ No, this plugin designed to show the variable products varations in a table.
 
 = How to Show/Hide an attribute in the variations table? =
  
-To show an attibute in the variations table go to plugin settings and enable "Show Attributes" option then go to the product edit page and enable "Visible on the product page" option for the attribute you want to show.
+To show an attibute in the variations table go to plugin settings and enable "Show Attributes" option then go to the product edit page and enable "Visible on the product page" option for the attribute that you want to show.
 
 
 == Changelog ==
+= 2.0.0 =
+* Refactor the code and use SvelteJS for the UI instead of VueJS
+* Use the built-in WooCommerce ajax add to cart function to add to cart instead of the custom function that used before.
+* Sort by attributes values is possible now.
+* Add spinner icon to show up when click add to cart button.
+* Add tick icon to show up in add to cart button when the item added to cart.
+* Make all texts translatable and update pot file.
+* It's much faster and stable now.
 
 = 1.3.10 =
 * Fix PHP error happened in old PHP versions

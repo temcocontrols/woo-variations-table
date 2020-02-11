@@ -3,93 +3,97 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-17 07:13+0000\n"
+"POT-Creation-Date: 2020-02-09 23:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
 "Language: \n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco - https://localise.biz/"
+"X-Generator: Loco https://localise.biz/"
 
-#: woo-variations-table.php:31 woo-variations-table.php:37
-#: woo-variations-table.php:37
+#: woo-variations-table.php:35 woo-variations-table.php:41 
+#: woo-variations-table.php:41
 msgid "Woo Variations Table"
 msgstr ""
 
-#: woo-variations-table.php:31
+#: woo-variations-table.php:35
 #, php-format
 msgid "requires %sWooCommerce%s to be installed & activated!"
 msgstr ""
 
-#: woo-variations-table.php:61
+#: woo-variations-table.php:66
 msgid "Thumbnail"
 msgstr ""
 
-#: woo-variations-table.php:62
+#: woo-variations-table.php:67 woo-variations-table.php:230
 msgid "SKU"
 msgstr ""
 
-#: woo-variations-table.php:63
+#: woo-variations-table.php:68 woo-variations-table.php:231
 msgid "Description"
 msgstr ""
 
-#: woo-variations-table.php:64
+#: woo-variations-table.php:69 woo-variations-table.php:233
 msgid "Dimensions"
 msgstr ""
 
-#: woo-variations-table.php:65
+#: woo-variations-table.php:70 woo-variations-table.php:232
 msgid "Weight"
 msgstr ""
 
-#: woo-variations-table.php:66 woo-variations-table.php:272
+#: woo-variations-table.php:71
 msgid "Stock"
 msgstr ""
 
-#: woo-variations-table.php:67
+#: woo-variations-table.php:72 woo-variations-table.php:234
 msgid "Price"
 msgstr ""
 
-#: woo-variations-table.php:73
-msgid "Woo Variations Table Settings"
-msgstr ""
-
-#: woo-variations-table.php:79
-msgid "Columns to show"
-msgstr ""
-
-#: woo-variations-table.php:83
-msgid "Show Attributes"
-msgstr ""
-
-#: woo-variations-table.php:125
-msgid "Available options"
-msgstr ""
-
-#: woo-variations-table.php:253
-msgid "Available Options"
-msgstr ""
-
-#: woo-variations-table.php:276
+#: woo-variations-table.php:73 woo-variations-table.php:247
 msgid "Quantity"
 msgstr ""
 
-#: woo-variations-table.php:296
-msgid "Out of Stock"
+#: woo-variations-table.php:79
+msgid "Woo Variations Table Settings"
 msgstr ""
 
-#: woo-variations-table.php:300
+#: woo-variations-table.php:85
+msgid "Columns to show"
+msgstr ""
+
+#: woo-variations-table.php:89
+msgid "Show Attributes"
+msgstr ""
+
+#: woo-variations-table.php:91
+msgid "Show Product Attributes"
+msgstr ""
+
+#: woo-variations-table.php:131
+msgid "Available options"
+msgstr ""
+
+#: woo-variations-table.php:246
 msgid "Add to Cart"
 msgstr ""
 
-#: woo-variations-table.php:314
+#: woo-variations-table.php:248
 msgid "Any"
 msgstr ""
 
-#. Name of the plugin
-msgid "Woo Variations table"
+#: woo-variations-table.php:249
+msgid "Keywords"
+msgstr ""
+
+#: woo-variations-table.php:250
+msgid "No results!"
+msgstr ""
+
+#: woo-variations-table.php:259
+msgid "Available Options:"
 msgstr ""
 
 #. Description of the plugin
