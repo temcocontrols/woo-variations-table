@@ -105,6 +105,7 @@ To show an attibute in the variations table go to plugin settings and enable "Sh
 = 1.3 =
 * Add an option to show stock column.
 * Show only attributes with "Visible on the product page" enabled option when enable "Show Attributes" option.
+* Show variation image as thumbnail when available (bug fix for WooCommerce 3.x).
 * Other bug fixes & improvments.
 
 = 1.2 =
