@@ -41,6 +41,10 @@ To show an attibute in the variations table go to plugin settings and enable "Sh
 
 
 == Changelog ==
+
+= 2.0.1 =
+* Make Stock header translatable
+
 = 2.0.0 =
 * Refactor the code and use SvelteJS for the UI instead of VueJS
 * Use the built-in WooCommerce ajax add to cart function to add to cart instead of the custom function that used before.

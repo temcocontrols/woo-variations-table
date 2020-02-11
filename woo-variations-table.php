@@ -259,6 +259,7 @@ function variations_table_print_table()
             "anyText" => __("Any", 'woo-variations-table'),
             "searchPlaceholderText" => __("Keywords", 'woo-variations-table'),
             "noResultsText" => __("No results!", 'woo-variations-table'),
+            "stockText" => __("Stock", 'woo-variations-table'),
           ),
         );
 

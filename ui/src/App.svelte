@@ -159,7 +159,7 @@
 			<th class="stock" 
 				on:click={() => sortBy('availability_html')}
 				class:active="{sortKey === 'availability_html'}">
-				Stock
+				textVars.stockText
 				<span 
 					class="arrow" 
 					class:asc="{sortOrders['availability_html'] > 0 || sortKey !== 'availability_html'}"  
