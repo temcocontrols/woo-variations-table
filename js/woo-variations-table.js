@@ -4,9 +4,11 @@ Vue.component('data-grid', {
   props: {
     data: Array,
     columns: Array,
-    activeColumns: Array,
+    activeColumns: Object,
     filterKey: String,
     filters: Array,
+    attributes: Object,
+    showAttributes: String
   },
   data: function () {
     var sortOrders = {}

@@ -102,6 +102,14 @@ To show an attibute in the variations table go to plugin settings and enable "Sh
 = 0.8.1 =
 * Fix a CSS issue.
 
+= 1.2 =
+* Add new option to show attributes values as columns in the table.
+* Fix Table wasn't working in Internet Explorer.
+* Show weight unit in the variations table.
+
+= 1.1 =
+* Support multilangual and include PO file.
+
 = 1.0 =
 * Make the variation table responsive.
 * WooCommerce 3.x compatible.
