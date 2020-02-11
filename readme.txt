@@ -102,6 +102,10 @@ To show an attibute in the variations table go to plugin settings and enable "Sh
 = 0.8.1 =
 * Fix a CSS issue.
 
+= 1.3.5 =
+* Show Attribute name instead of slug in the table.
+* Add some actions and filters hooks to let others extend this plugin.
+
 = 1.3.3 =
 * Fix variations price doesn't show up if all variations have the same price issue.
 * Fix filters don't work when the attribute label has spesial characters.
