@@ -4,6 +4,7 @@ Vue.component('data-grid', {
   props: {
     data: Array,
     columns: Array,
+    activeColumns: Array,
     filterKey: String,
     filters: Array,
   },

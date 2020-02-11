@@ -102,6 +102,10 @@ To show an attibute in the variations table go to plugin settings and enable "Sh
 = 0.8.1 =
 * Fix a CSS issue.
 
+= 0.9.0 =
+* Add settings to control what columns to show in the table.
+* Add "Available options" button under product price to scroll down to the variations table.
+
 = 0.8.2 =
 * Fix add to cart ajax functionallity (wasn't working).
 * Fix some css issues.
