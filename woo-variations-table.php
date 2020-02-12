@@ -7,7 +7,7 @@ Author: Alaa Rihan
 Author URI: https://lb.linkedin.com/in/alaa-rihan-6971b686
 Text Domain: woo-variations-table
 Domain Path: /languages/
-Version: 2.0.4
+Version: 2.0.5
 Requires at least: 4.0.0
 Requires PHP: 5.6.20
 WC requires at least: 3.0.0
@@ -20,7 +20,7 @@ if (!defined('ABSPATH')) {
 }
 
 
-define("WOO_VARIATIONS_TABLE_VERSION", '2.0.4');
+define("WOO_VARIATIONS_TABLE_VERSION", '2.0.5');
 
 // Check if WooCommerce is enabled
 add_action('plugins_loaded', 'check_woocommerce_enabled', 1);
@@ -39,19 +39,19 @@ function woocommerce_disabled_notice()
 }
 
 // Settings menu item
-add_action('admin_menu', 'woo_variations_table_settings', 99);
-function woo_variations_table_settings()
+add_action('admin_menu', 'woo_variations_table_settings_menu', 99);
+function woo_variations_table_settings_menu()
 {
     add_submenu_page('woocommerce', __('Woo Variations Table', 'woo-variations-table'), __('Woo Variations Table', 'woo-variations-table'), 'manage_options', 'woo_variations_table', 'woo_variations_table_settings_page_callback');
-    //call register settings function
-    add_action('admin_init', 'woo_variations_table_register_settings');
 }
 
 // Register our settings
+add_action('admin_init', 'woo_variations_table_register_settings');
 function woo_variations_table_register_settings()
 {
-    register_setting('woo_variations_table_columns', 'woo_variations_table_columns');
-    register_setting('woo_variations_table_columns', 'woo_variations_table_show_attributes');
+    register_setting('woo_variations_table_settings', 'woo_variations_table_columns');
+    register_setting('woo_variations_table_settings', 'woo_variations_table_show_attributes');
+    register_setting('woo_variations_table_settings', 'woo_variations_table_show_spinner');
 }
 
 // Settings page callback function
@@ -84,8 +84,8 @@ function woo_variations_table_settings_page_callback()
 <div class="wrap">
   <h1><?php echo __('Woo Variations Table Settings', 'woo-variations-table'); ?></h1>
   <form method="post" action="options.php">
-      <?php settings_fields('woo_variations_table_columns'); ?>
-      <?php do_settings_sections('woo_variations_table_columns'); ?>
+      <?php settings_fields('woo_variations_table_settings'); ?>
+      <?php do_settings_sections('woo_variations_table_settings'); ?>
       <table class="form-table">
           <tr valign="top">
           <th scope="row"><?php echo __('Columns to show', 'woo-variations-table'); ?></th>

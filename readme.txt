@@ -4,7 +4,7 @@ Tags: woocommerce, variations, table
 Requires at least: 4.0.0
 Tested up to: 5.3.2
 Requires PHP: 5.6.20
-Stable tag: 2.0.4
+Stable tag: 2.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,6 +41,9 @@ To show an attibute in the variations table go to plugin settings and enable "Sh
 
 
 == Changelog ==
+
+= 2.0.5 =
+* Fix Add to cart loader icon option can not be unchecked
 
 = 2.0.4 =
 * Fix add to cart event triggers to work with jQuery
