@@ -71,7 +71,7 @@ function findAttributeByKey(key){
     for( let key in item.attributes ) {
       formData.append(key, item.attributes[key]);
     }
-    document.body.dispatchEvent(new Event('adding_to_cart', [addToCartBtn, formData]));
+   jQuery(document.body).trigger('adding_to_cart', [jQuery(addToCartBtn), formData]);
 
     postData(ajaxURL, formData).then((response) => {
       added = true
@@ -80,7 +80,7 @@ function findAttributeByKey(key){
       window.location = response.product_url;
         return;
       }
-      document.body.dispatchEvent(new Event('added_to_cart', [response.fragments, response.cart_hash, addToCartBtn]));
+      jQuery(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash, undefined]);
     }).catch(error => {
       console.log(error)
     })
@@ -152,7 +152,7 @@ function findAttributeByKey(key){
       bind:this={addToCartBtn} 
       on:click|preventDefault={addToCart} 
       type="submit" 
-      class="single_add_to_cart_button button alt" 
+      class="single_add_to_cart_button button alt"
       class:added class:loading
     >
     {textVars.addToCartText}
