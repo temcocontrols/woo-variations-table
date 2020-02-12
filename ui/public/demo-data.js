@@ -553,6 +553,7 @@ var wooVariationsTableData = {
   },
   "imageURL": "https://woo-variations-table.cloudaccess.host/wp-content/uploads/2020/02/hoodie.jpg",
   "ajaxURL": "https://woo-variations-table.cloudaccess.host/wp-admin/admin-ajax.php?add_variation_to_cart=1",
+  "showSpinner": "on",
   "textVars": {
     "columnsText": {
       "sku": "SKU",

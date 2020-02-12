@@ -7,7 +7,7 @@ Author: Alaa Rihan
 Author URI: https://lb.linkedin.com/in/alaa-rihan-6971b686
 Text Domain: woo-variations-table
 Domain Path: /languages/
-Version: 2.0.2
+Version: 2.0.3
 Requires at least: 4.0.0
 Requires PHP: 5.6.20
 WC requires at least: 3.0.0
@@ -20,7 +20,7 @@ if (!defined('ABSPATH')) {
 }
 
 
-define("WOO_VARIATIONS_TABLE_VERSION", '2.0.2');
+define("WOO_VARIATIONS_TABLE_VERSION", '2.0.3');
 
 // Check if WooCommerce is enabled
 add_action('plugins_loaded', 'check_woocommerce_enabled', 1);
@@ -78,7 +78,9 @@ function woo_variations_table_settings_page_callback()
   'quantity' => __('Quantity', 'woo-variations-table'),
   );
     $columns = get_option('woo_variations_table_columns', $default_columns);
-    $showAttributes = get_option('woo_variations_table_show_attributes', ''); ?>
+    $showAttributes = get_option('woo_variations_table_show_attributes', '');
+    $showSpinner = get_option('woo_variations_table_show_spinner', 'on'); 
+?>
 <div class="wrap">
   <h1><?php echo __('Woo Variations Table Settings', 'woo-variations-table'); ?></h1>
   <form method="post" action="options.php">
@@ -93,6 +95,12 @@ function woo_variations_table_settings_page_callback()
           <th scope="row"><?php echo __('Show Attributes', 'woo-variations-table'); ?></th>
           <td><ul style="margin-top: 5px;" class='mnt-checklist' id='woo-variations-table-attributes'><li>
             <label><input type='checkbox' name='woo_variations_table_show_attributes' <?php echo $showAttributes ? "checked='checked'" : ''; ?> /> <?php echo __('Show Product Attributes', 'woo-variations-table'); ?></label>
+          </li></ul></td>
+          </tr>
+          <tr valign="top">
+          <th scope="row"><?php echo __('Add to cart loader icon', 'woo-variations-table'); ?></th>
+          <td><ul style="margin-top: 5px;" class='mnt-checklist' id='woo-variations-table-attributes'><li>
+            <label><input type='checkbox' name='woo_variations_table_show_spinner' <?php echo $showSpinner ? "checked='checked'" : ''; ?> /> <?php echo __('Show animated loader icon when click add to cart and tick icon when variation added to cart', 'woo-variations-table'); ?></label>
           </li></ul></td>
           </tr>
       </table>
@@ -152,18 +160,11 @@ function variations_table_scripts()
     }
 }
 
-function variations_table_get_variation_data_from_variation_id($variation_id)
-{
-    $_product = new WC_Product_Variation($variation_id);
-    $variation_data = $_product->get_variation_attributes();
-    return $variation_data; // $variation_data will return only the data which can be used to store variation data
-}
-
 // Update database
 add_action('admin_init', 'variations_table_database_update');
 function variations_table_database_update()
 {
-    $plugin_db_version = get_option('woo_variations_table_db_version', '1.1');
+    $plugin_db_version = get_option('woo_variations_table_db_version', WOO_VARIATIONS_TABLE_VERSION);
     if (in_array($plugin_db_version, array('1.1', '1.0', '0.9.0', '0.8.1'))) {
         $activeColumns = get_option('woo_variations_table_columns');
         if (isset($activeColumns['weight'])) {
@@ -237,6 +238,7 @@ function variations_table_print_table()
         );
         $activeColumns = get_option('woo_variations_table_columns', $default_columns);
         $showAttributes = get_option('woo_variations_table_show_attributes', '');
+        $showSpinner = get_option('woo_variations_table_show_spinner', 'on');
         $columnsText = array(
           'sku' => __('SKU', 'woo-variations-table'),
           'variation_description' => __('Description', 'woo-variations-table'),
@@ -251,7 +253,8 @@ function variations_table_print_table()
           "showAttributes" => $showAttributes,
           "activeColumns" => $activeColumns,
           "imageURL" => $productImageURL,
-          'ajaxURL' => admin_url('admin-ajax.php?add_variation_to_cart=1'),
+          "ajaxURL" => admin_url('admin-ajax.php?add_variation_to_cart=1'),
+          "showSpinner" => $showSpinner,
           "textVars" => array(
             "columnsText" => $columnsText,
             "addToCartText" => __("Add to Cart", 'woo-variations-table'),

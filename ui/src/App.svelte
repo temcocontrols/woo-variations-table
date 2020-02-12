@@ -10,6 +10,7 @@
 	export let sortKey;
 	export let imageURL;
 	export let ajaxURL;
+	export let showSpinner;
 	let filters = [];
 	let activeFilters = [];
 	let searchQuery = "";
@@ -37,10 +38,10 @@
 				columnsNum++
 			}
 		});
-		if(activeColumns['stock'] == 'on'){
+		if(activeColumns['stock'] === 'on'){
 			columnsNum++
 		}
-		if(activeColumns['quantity'] == 'on'){
+		if(activeColumns['quantity'] === 'on'){
 			columnsNum++
 		}
 		if(showAttributes){
@@ -70,7 +71,7 @@
 					ok++
 			}
 		}
-		if(ok == filters.length){
+		if(ok === filters.length){
 			return true;
 		}
 		return false;
@@ -167,7 +168,7 @@
 				></span>
 			</th>
 			{/if}
-			{#if activeColumns['quantity'] == 'on'}
+			{#if activeColumns['quantity'] === 'on'}
 			<th class="quantity">{ textVars.qtyText }</th>
 			{/if}
 			<th class="add-to-cart"></th>
@@ -183,6 +184,7 @@
 					attributes={attributes}
 					productImageURL={imageURL}
 					ajaxURL={ajaxURL}
+					showSpinner={showSpinner}
 					textVars={textVars}
 				/>
 			{/each}

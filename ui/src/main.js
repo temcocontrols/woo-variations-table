@@ -9,6 +9,7 @@ const app = new App({
 		activeColumns: wooVariationsTableData.activeColumns,
 		imageURL: wooVariationsTableData.imageURL,
 		ajaxURL: '/?wc-ajax=add_to_cart',
+		showSpinner: wooVariationsTableData.showSpinner,
 		textVars: wooVariationsTableData.textVars
 	}
 });

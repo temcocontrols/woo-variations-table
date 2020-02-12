@@ -9,6 +9,7 @@
   export let productImageURL;
   export let ajaxURL;
   export let textVars;
+  export let showSpinner;
   let addToCartBtn;
   let quantity = 1;
   let added = false;
@@ -35,7 +36,7 @@
   }
   function getAttributeNameFromSlug(attr, options){
     var AttrName = options.filter(function(option){
-      return option.slug == attr;
+      return option.slug === attr;
     });
   if(!AttrName[0] || !AttrName[0].name) return '';
     return AttrName[0].name;
@@ -88,19 +89,19 @@ function findAttributeByKey(key){
 
 <tr class="variation-{item.variation_id} image-{imageClass(item['image_link'])}">
 {#each columns as column, i}
-{#if activeColumns[column.key] == 'on'}
+{#if activeColumns[column.key] === 'on'}
 <td data-title={column.title}>
-    {#if column.type == 'image'}
+    {#if column.type === 'image'}
     <span class="item">
         {#if imageURL(item[column.key]) != ''}
         <img src={imageURL(item[column.key])} alt="{item.sku}">
         {/if}
     </span>
     {/if}
-    {#if column.type == 'text'}
+    {#if column.type === 'text'}
     <span class="item">{item[column.key]}</span>
     {/if}
-    {#if column.type == 'html'}
+    {#if column.type === 'html'}
     <span class="item">{ @html item[column.key] }</span>
     {/if}
 </td>
@@ -116,7 +117,7 @@ function findAttributeByKey(key){
 {/each}
 {/if}
 
-{#if activeColumns['stock'] == 'on'}
+{#if activeColumns['stock'] === 'on'}
 <td class="stock" data-title="Stock">
     <span class="item">
     {#if item['availability_html']}
@@ -129,7 +130,7 @@ function findAttributeByKey(key){
     </span>
 </td>
 {/if}
-{#if activeColumns['quantity'] == 'on'}
+{#if activeColumns['quantity'] === 'on'}
 <td class="quantity">
     <input 
       bind:value={quantity} 
@@ -155,10 +156,10 @@ function findAttributeByKey(key){
       class:added class:loading
     >
     {textVars.addToCartText}
-    {#if loading}
+    {#if loading && showSpinner === "on"}
         <Spinner />
     {/if}
-    {#if !loading && added}
+    {#if !loading && added && showSpinner === "on"}
         <TickIcon />
     {/if}
     </button>
