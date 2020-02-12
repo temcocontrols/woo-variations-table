@@ -7,7 +7,7 @@ Author: Alaa Rihan
 Author URI: https://lb.linkedin.com/in/alaa-rihan-6971b686
 Text Domain: woo-variations-table
 Domain Path: /languages/
-Version: 2.0.5
+Version: 2.0.6
 Requires at least: 4.0.0
 Requires PHP: 5.6.20
 WC requires at least: 3.0.0
@@ -20,7 +20,7 @@ if (!defined('ABSPATH')) {
 }
 
 
-define("WOO_VARIATIONS_TABLE_VERSION", '2.0.5');
+define("WOO_VARIATIONS_TABLE_VERSION", '2.0.6');
 
 // Check if WooCommerce is enabled
 add_action('plugins_loaded', 'check_woocommerce_enabled', 1);
@@ -272,5 +272,8 @@ function variations_table_print_table()
           <div id="woo-variations-table-component"></div>
         </div>
         <?php
+    } else {
+        wp_dequeue_script('woo-variations-table-scripts');
+        wp_dequeue_script('woo-variations-table-app');
     }
 }
