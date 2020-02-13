@@ -4,7 +4,7 @@ Tags: woocommerce, variations, table
 Requires at least: 4.0.0
 Tested up to: 5.3.2
 Requires PHP: 5.6.20
-Stable tag: 2.0.6
+Stable tag: 2.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,6 +41,10 @@ To show an attibute in the variations table go to plugin settings and enable "Sh
 
 
 == Changelog ==
+
+= 2.0.7 =
+* Enable quantity column by default
+* Some code improvements
 
 = 2.0.6 =
 * Fix js error showing up in console when the product is not variable

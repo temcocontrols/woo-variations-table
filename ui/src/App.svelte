@@ -160,7 +160,7 @@
 			<th class="stock" 
 				on:click={() => sortBy('availability_html')}
 				class:active="{sortKey === 'availability_html'}">
-				{textVars.stockText}
+				{textVars.columnsText.stock}
 				<span 
 					class="arrow" 
 					class:asc="{sortOrders['availability_html'] > 0 || sortKey !== 'availability_html'}"  
@@ -169,7 +169,7 @@
 			</th>
 			{/if}
 			{#if activeColumns['quantity'] === 'on'}
-			<th class="quantity">{ textVars.qtyText }</th>
+			<th class="quantity">{ textVars.columnsText.quantity }</th>
 			{/if}
 			<th class="add-to-cart"></th>
 			</tr>

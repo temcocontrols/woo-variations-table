@@ -7,7 +7,7 @@ Author: Alaa Rihan
 Author URI: https://lb.linkedin.com/in/alaa-rihan-6971b686
 Text Domain: woo-variations-table
 Domain Path: /languages/
-Version: 2.0.6
+Version: 2.0.7
 Requires at least: 4.0.0
 Requires PHP: 5.6.20
 WC requires at least: 3.0.0
@@ -20,7 +20,7 @@ if (!defined('ABSPATH')) {
 }
 
 
-define("WOO_VARIATIONS_TABLE_VERSION", '2.0.6');
+define("WOO_VARIATIONS_TABLE_VERSION", '2.0.7');
 
 // Check if WooCommerce is enabled
 add_action('plugins_loaded', 'check_woocommerce_enabled', 1);
@@ -231,10 +231,11 @@ function variations_table_print_table()
           'image_link' => 'on',
           'sku' => 'on',
           'variation_description' => 'on',
-          'dimensions' => false,
-          'weight_html' => false,
-          'stock' => false,
+          'dimensions' => '',
+          'weight_html' => '',
+          'stock' => '',
           'price_html' => 'on',
+          'quantity' => 'on',
         );
         $activeColumns = get_option('woo_variations_table_columns', $default_columns);
         $showAttributes = get_option('woo_variations_table_show_attributes', '');
@@ -245,6 +246,8 @@ function variations_table_print_table()
           'weight_html' => __('Weight', 'woo-variations-table'),
           'dimensions' => __('Dimensions', 'woo-variations-table'),
           'price_html' => __('Price', 'woo-variations-table'),
+          'stock' => __('Stock', 'woo-variations-table'),
+          'quantity' => __('Quantity', 'woo-variations-table'),
         );
 
         $woo_variations_table_data = array(
@@ -258,11 +261,9 @@ function variations_table_print_table()
           "textVars" => array(
             "columnsText" => $columnsText,
             "addToCartText" => __("Add to Cart", 'woo-variations-table'),
-            "qtyText" => __("Quantity", 'woo-variations-table'),
             "anyText" => __("Any", 'woo-variations-table'),
             "searchPlaceholderText" => __("Keywords", 'woo-variations-table'),
             "noResultsText" => __("No results!", 'woo-variations-table'),
-            "stockText" => __("Stock", 'woo-variations-table'),
           ),
         );
 
