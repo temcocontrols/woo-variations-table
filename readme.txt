@@ -17,7 +17,7 @@ Woo Variations Table replace the default WooCommerce variations dropdowns by a t
 = Features =
 
 * Show a table of variable product variations instead of forcing the customer to select options before he see the product add to cart button.
-* You can control what columns to show/hide in the variations table fre settings page WooCommerce -> Woo Variations Table
+* You can control what columns to show/hide in the variations table from settings page WooCommerce -> Woo Variations Table
 * You can show variation attributes values as columns in the table.
 * You can filter the variations using the attributes values as select boxes.
 * You can search variations by typing your search keywords.
