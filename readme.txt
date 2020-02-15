@@ -1,10 +1,10 @@
 === Woo Variations Table ===
 Contributors: alaa-rihan
-Tags: woocommerce, variations, table
+Tags: woocommerce, variations, table, variations table, woocommerce variable, variable product, AJAX, AJAX add to cart, variations list
 Requires at least: 4.0.0
 Tested up to: 5.3.2
 Requires PHP: 5.6.20
-Stable tag: 2.0.7
+Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,9 +12,17 @@ Show WooCommerce variable products variations as table with search filter by att
 
 == Description ==
 
-Woo Variations Table replace the default WooCommerce variations dropdowns by professional table with filters by attributes and keywords with AJAX add to cart.
+Woo Variations Table replace the default WooCommerce variations dropdowns by a table with search by keywords and filters by attributes with AJAX add to cart button.
 
-You can control what columns to show in the variations table from settings `WooCommerce -> Woo Variations Table`.
+= Features =
+
+* Show a table of variable product variations instead of forcing the customer to select options before he see the product add to cart button.
+* You can control what columns to show/hide in the variations table fre settings page WooCommerce -> Woo Variations Table
+* You can show variation attributes values as columns in the table.
+* You can filter the variations using the attributes values as select boxes.
+* You can search variations by typing your search keywords.
+* Each variation will have its own "add to cart" button and this button use AJAX so ne reload needed to add it to cart.
+* You can select where you want the variations table to show up in the product page.
 
 == Installation ==
 
@@ -29,7 +37,7 @@ After downloading the ZIP file,
 
 = What is this plugin for? =
  
-This plugin replace the default WooCommerce variations dropdowns by professional table with filters by attributes and keywords with AJAX add to cart.
+This plugin replace the default WooCommerce variations dropdowns by professional table with filters by attributes and search by keywords and it also do AJAX add to cart ( no reload when click add to cart button ).
  
 = Can this plugin show the shop/category products as a table? =
  
@@ -41,6 +49,11 @@ To show an attibute in the variations table go to plugin settings and enable "Sh
 
 
 == Changelog ==
+
+= 2.1.0 =
+* Add new option to control where to place the variations table
+* Add new option to show/hide "Available Options" button
+* Other small fixes and improvements
 
 = 2.0.7 =
 * Enable quantity column by default
@@ -182,4 +195,5 @@ To show an attibute in the variations table go to plugin settings and enable "Sh
 == Feedback ==
 
 I'm developing this plugin for you. 
-If you discover a bug, you need a feature or have any idea, let me know by posting your suggestion on the plugin forum.
+If you discover a bug, you need a feature or have any idea to, let me know by posting your suggestion on the plugin github page..
+https://github.com/alaarihan/woo-variations-table

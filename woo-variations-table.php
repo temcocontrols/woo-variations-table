@@ -7,7 +7,7 @@ Author: Alaa Rihan
 Author URI: https://lb.linkedin.com/in/alaa-rihan-6971b686
 Text Domain: woo-variations-table
 Domain Path: /languages/
-Version: 2.0.7
+Version: 2.1.0
 Requires at least: 4.0.0
 Requires PHP: 5.6.20
 WC requires at least: 3.0.0
@@ -20,7 +20,7 @@ if (!defined('ABSPATH')) {
 }
 
 
-define("WOO_VARIATIONS_TABLE_VERSION", '2.0.7');
+define("WOO_VARIATIONS_TABLE_VERSION", '2.1.0');
 
 // Check if WooCommerce is enabled
 add_action('plugins_loaded', 'check_woocommerce_enabled', 1);
@@ -52,6 +52,8 @@ function woo_variations_table_register_settings()
     register_setting('woo_variations_table_settings', 'woo_variations_table_columns');
     register_setting('woo_variations_table_settings', 'woo_variations_table_show_attributes');
     register_setting('woo_variations_table_settings', 'woo_variations_table_show_spinner');
+    register_setting('woo_variations_table_settings', 'woo_variations_table_place');
+    register_setting('woo_variations_table_settings', 'woo_variations_table_show_available_options_btn');
 }
 
 // Settings page callback function
@@ -79,8 +81,9 @@ function woo_variations_table_settings_page_callback()
   );
     $columns = get_option('woo_variations_table_columns', $default_columns);
     $showAttributes = get_option('woo_variations_table_show_attributes', '');
-    $showSpinner = get_option('woo_variations_table_show_spinner', 'on'); 
-?>
+    $showSpinner = get_option('woo_variations_table_show_spinner', 'on');
+    $place = get_option('woo_variations_table_place', 'woocommerce_after_single_product_summary_9');
+    $showAvailableOptionBtn = get_option('woo_variations_table_show_available_options_btn', 'on'); ?>
 <div class="wrap">
   <h1><?php echo __('Woo Variations Table Settings', 'woo-variations-table'); ?></h1>
   <form method="post" action="options.php">
@@ -88,20 +91,37 @@ function woo_variations_table_settings_page_callback()
       <?php do_settings_sections('woo_variations_table_settings'); ?>
       <table class="form-table">
           <tr valign="top">
-          <th scope="row"><?php echo __('Columns to show', 'woo-variations-table'); ?></th>
-          <td><?php woo_variations_table_create_multi_select_options('woo-variations-table-columns', $default_columns, $columns, $columns_labels); ?></td>
+            <th scope="row"><?php echo __('Where to Place Variations Table', 'woo-variations-table'); ?></th>
+            <td>
+                <select name='woo_variations_table_place' >
+                    <option value="woocommerce_after_single_product_summary_9" <?php echo $place == 'woocommerce_after_single_product_summary_9' ? "selected" : ''; ?>>After product summary ( before description )</option>
+                    <option value="woocommerce_single_product_summary_11" <?php echo $place == 'woocommerce_single_product_summary_11' ? "selected" : ''; ?>>After product price</option>
+                    <option value="woocommerce_single_product_summary_41" <?php echo $place == 'woocommerce_single_product_summary_41' ? "selected" : ''; ?>>After product short description</option>
+                    <option value="woocommerce_after_single_product_summary_11" <?php echo $place == 'woocommerce_after_single_product_summary_11' ? "selected" : ''; ?>>After product description</option>
+                </select>
+            </td>
           </tr>
           <tr valign="top">
-          <th scope="row"><?php echo __('Show Attributes', 'woo-variations-table'); ?></th>
-          <td><ul style="margin-top: 5px;" class='mnt-checklist' id='woo-variations-table-attributes'><li>
-            <label><input type='checkbox' name='woo_variations_table_show_attributes' <?php echo $showAttributes ? "checked='checked'" : ''; ?> /> <?php echo __('Show Product Attributes', 'woo-variations-table'); ?></label>
-          </li></ul></td>
+            <th scope="row"><?php echo __('Select Columns to Show in the Variations Table', 'woo-variations-table'); ?></th>
+            <td><?php woo_variations_table_create_multi_select_options('woo-variations-table-columns', $default_columns, $columns, $columns_labels); ?></td>
           </tr>
           <tr valign="top">
-          <th scope="row"><?php echo __('Add to cart loader icon', 'woo-variations-table'); ?></th>
-          <td><ul style="margin-top: 5px;" class='mnt-checklist' id='woo-variations-table-attributes'><li>
-            <label><input type='checkbox' name='woo_variations_table_show_spinner' <?php echo $showSpinner ? "checked='checked'" : ''; ?> /> <?php echo __('Show animated loader icon when click add to cart and tick icon when variation added to cart', 'woo-variations-table'); ?></label>
-          </li></ul></td>
+            <th scope="row"><?php echo __('Show Attributes', 'woo-variations-table'); ?></th>
+            <td>
+                <label><input type='checkbox' name='woo_variations_table_show_attributes' <?php echo $showAttributes ? "checked='checked'" : ''; ?> /> <?php echo __('Show product attributes as columns', 'woo-variations-table'); ?></label>
+            </td>
+          </tr>
+          <tr valign="top">
+            <th scope="row"><?php echo __('Available Options Button', 'woo-variations-table'); ?></th>
+            <td>
+                <label><input type='checkbox' name='woo_variations_table_show_available_options_btn' <?php echo $showAvailableOptionBtn ? "checked='checked'" : ''; ?> /> <?php echo __('Show "Available Options" button to scroll to the variations table when clicked', 'woo-variations-table'); ?></label>
+            </td>
+          </tr>
+          <tr valign="top">
+            <th scope="row"><?php echo __('Add to Cart Loader Icon', 'woo-variations-table'); ?></th>
+            <td>
+                <label><input type='checkbox' name='woo_variations_table_show_spinner' <?php echo $showSpinner ? "checked='checked'" : ''; ?> /> <?php echo __('Show animated loader icon when click add to cart and tick icon when variation added to cart', 'woo-variations-table'); ?></label>
+            </td>
           </tr>
       </table>
       
@@ -135,19 +155,6 @@ function remove_variable_product_add_to_cart()
     remove_action('woocommerce_variable_add_to_cart', 'woocommerce_variable_add_to_cart', 30);
 }
 
-add_action('woocommerce_single_product_summary', 'woo_variations_table_available_options_btn', 11);
-function woo_variations_table_available_options_btn()
-{
-    global $product;
-    if (!$product->is_type('variable')) {
-        return;
-    } ?>
-  <div class="available-options-btn">
-    <button scrollto="#variations-table" type="button" class="single_add_to_cart_button button alt"><?php echo apply_filters('woo_variations_table_available_options_btn_text', __('Available options', 'woo-variations-table')); ?></button>
-  </div>
-  <?php
-}
-
 // Enqueue scripts and styles
 add_action('wp_enqueue_scripts', 'variations_table_scripts');
 function variations_table_scripts()
@@ -179,9 +186,36 @@ function variations_table_database_update()
     }
 }
 
-// Print variations table after product summary
-add_filter('woocommerce_after_single_product_summary', 'variations_table_print_table', 9);
-function variations_table_print_table()
+
+add_action('init', 'woo_variations_table_init');
+function woo_variations_table_init()
+{
+    $place = get_option('woo_variations_table_place', 'woocommerce_after_single_product_summary_9');
+    $priority = strrchr($place, "_");
+    $place = str_replace($priority, "", $place);
+    $priority = str_replace("_", "", $priority);
+    add_action($place, 'woo_variations_table_print_table', $priority);
+
+    $showAvailableOptionBtn = get_option('woo_variations_table_show_available_options_btn', 'on');
+    if ($showAvailableOptionBtn == 'on') {
+        add_action('woocommerce_single_product_summary', 'woo_variations_table_available_options_btn', 11);
+    }
+}
+
+function woo_variations_table_available_options_btn()
+{
+    global $product;
+    if (!$product->is_type('variable')) {
+        return;
+    } ?>
+  <div class="available-options-btn">
+    <button scrollto="#variations-table" type="button" class="single_add_to_cart_button button alt"><?php echo apply_filters('woo_variations_table_available_options_btn_text', __('Available options', 'woo-variations-table')); ?></button>
+  </div>
+  <?php
+}
+
+// Print variations table
+function woo_variations_table_print_table()
 {
     global $product;
     if ($product->is_type('variable')) {
