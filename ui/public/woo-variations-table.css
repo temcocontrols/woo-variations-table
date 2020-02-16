@@ -23,6 +23,7 @@
 
 #variations .filter label {
     display: inline-block;
+    vertical-align: middle;
 }
 
 #variations table.variations th {
@@ -40,12 +41,12 @@
 }
 
 #variations table.variations th.image_link {
-    width: 140px;
+    min-width: 140px;
     cursor: auto;
 }
 
 #variations table.variations th.add-to-cart {
-    width: 160px;
+    min-width: 160px;
     cursor: auto;
 }
 #variations table.variations th.quantity{
@@ -55,15 +56,15 @@
 #variations table.variations th.quantity,
 #variations table.variations th.price_html,
 #variations table.variations th.weight_html{
-    width: 60px;
+    min-width: 60px;
 }
 
 #variations table.variations input.qty {
-    width: 60px;
+    min-width: 60px;
 }
 
 #variations table.variations th.sku {
-    width: 90px;
+    min-width: 90px;
 }
 
 #variations table.variations th.active {

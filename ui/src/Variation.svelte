@@ -132,6 +132,7 @@ function findAttributeByKey(key){
 {/if}
 {#if activeColumns['quantity'] === 'on'}
 <td class="quantity">
+  {#if item['is_in_stock']}
     <input 
       bind:value={quantity} 
       type="number" 
@@ -145,13 +146,15 @@ function findAttributeByKey(key){
       pattern="[0-9]*" 
       inputmode="numeric"
     >
+  {/if}
 </td>
 {/if}
 <td class="add-to-cart">
     <button 
       bind:this={addToCartBtn} 
       on:click|preventDefault={addToCart} 
-      type="submit" 
+      type="submit"
+      disabled="{!item['is_in_stock']}"
       class="single_add_to_cart_button button alt"
       class:added class:loading
     >

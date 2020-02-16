@@ -4,7 +4,7 @@ Tags: woocommerce, variations, table, variations table, woocommerce variable, va
 Requires at least: 4.0.0
 Tested up to: 5.3.2
 Requires PHP: 5.6.20
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -49,6 +49,9 @@ To show an attibute in the variations table go to plugin settings and enable "Sh
 
 
 == Changelog ==
+
+= 2.1.1 =
+* Disable "Add to cart" button if the variation was out of stock
 
 = 2.1.0 =
 * Add new option to control where to place the variations table
