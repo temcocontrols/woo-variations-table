@@ -3,7 +3,8 @@
     margin-bottom: 10px;
 }
 
-#variations .filters, #variations .filter {
+#variations .filters,
+#variations .filter {
     display: inline-block;
     vertical-align: bottom;
 }
@@ -53,7 +54,9 @@
     cursor: auto;
 }
 
-#variations table.variations th.quantity, #variations table.variations th.price_html, #variations table.variations th.weight_html {
+#variations table.variations th.quantity,
+#variations table.variations th.price_html,
+#variations table.variations th.weight_html {
     min-width: 60px;
 }
 
@@ -127,7 +130,8 @@
     margin-bottom: 15px;
 }
 
-#variations input, #variations select {
+#variations input,
+#variations select {
     border-radius: 0;
     border: solid #eee 1px;
     padding: 5px;
@@ -170,7 +174,8 @@
         text-align: center;
         float: initial;
     }
-    #variations table.variations td.quantity, #variations table.variations td.add-to-cart {
+    #variations table.variations td.quantity,
+    #variations table.variations td.add-to-cart {
         width: 50%;
         display: inline-block;
         text-align: center;
