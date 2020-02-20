@@ -24,6 +24,9 @@ Woo Variations Table replace the default WooCommerce variations dropdowns by a t
 * Each variation will have its own "add to cart" button and this button use AJAX so ne reload needed to add it to cart.
 * You can select where you want the variations table to show up in the product page.
 
+= Upgrading from 1.x =
+It's completely safe to upgrade from 1.x released to 2.x release , there is no breaking changes.
+
 == Installation ==
 
 After downloading the ZIP file,
