@@ -12,13 +12,12 @@ Requires at least: 4.0.0
 Requires PHP: 5.6.20
 WC requires at least: 3.0.0
 WC tested up to: 3.9.1
-*/
+ */
 
 // Exit if accessed directly
 if (!defined('ABSPATH')) {
     exit;
 }
-
 
 define("WOO_VARIATIONS_TABLE_VERSION", '2.1.1');
 
@@ -32,10 +31,10 @@ function check_woocommerce_enabled()
     }
 }
 
- // Display WC disabled notice
+// Display WC disabled notice
 function woocommerce_disabled_notice()
 {
-    echo '<div class="error"><p><strong>' .__('Woo Variations Table', 'woo-variations-table') .'</strong> ' .sprintf(__('requires %sWooCommerce%s to be installed & activated!', 'woo-variations-table'), '<a href="http://wordpress.org/extend/plugins/woocommerce/">', '</a>') .'</p></div>';
+    echo '<div class="error"><p><strong>' . __('Woo Variations Table', 'woo-variations-table') . '</strong> ' . sprintf(__('requires %sWooCommerce%s to be installed & activated!', 'woo-variations-table'), '<a href="http://wordpress.org/extend/plugins/woocommerce/">', '</a>') . '</p></div>';
 }
 
 // Settings menu item
@@ -60,35 +59,35 @@ function woo_variations_table_register_settings()
 function woo_variations_table_settings_page_callback()
 {
     $default_columns = array(
-  'image_link' => 1,
-  'sku' => 1,
-  'variation_description' => 1,
-  'dimensions' => 0,
-  'weight_html' => 0,
-  'stock' => 1,
-  'price_html' => 1,
-  'quantity' => 1,
-  );
-    $columns_labels =  array(
-  'image_link' => __('Thumbnail', 'woo-variations-table'),
-  'sku' => __('SKU', 'woo-variations-table'),
-  'variation_description' => __('Description', 'woo-variations-table'),
-  'dimensions' => __('Dimensions', 'woo-variations-table'),
-  'weight_html' => __('Weight', 'woo-variations-table'),
-  'stock' =>  __('Stock', 'woo-variations-table'),
-  'price_html' => __('Price', 'woo-variations-table'),
-  'quantity' => __('Quantity', 'woo-variations-table'),
-  );
+        'image_link' => 1,
+        'sku' => 1,
+        'variation_description' => 1,
+        'dimensions' => 0,
+        'weight_html' => 0,
+        'stock' => 1,
+        'price_html' => 1,
+        'quantity' => 1,
+    );
+    $columns_labels = array(
+        'image_link' => __('Thumbnail', 'woo-variations-table'),
+        'sku' => __('SKU', 'woo-variations-table'),
+        'variation_description' => __('Description', 'woo-variations-table'),
+        'dimensions' => __('Dimensions', 'woo-variations-table'),
+        'weight_html' => __('Weight', 'woo-variations-table'),
+        'stock' => __('Stock', 'woo-variations-table'),
+        'price_html' => __('Price', 'woo-variations-table'),
+        'quantity' => __('Quantity', 'woo-variations-table'),
+    );
     $columns = get_option('woo_variations_table_columns', $default_columns);
     $showAttributes = get_option('woo_variations_table_show_attributes', '');
     $showSpinner = get_option('woo_variations_table_show_spinner', 'on');
     $place = get_option('woo_variations_table_place', 'woocommerce_after_single_product_summary_9');
-    $showAvailableOptionBtn = get_option('woo_variations_table_show_available_options_btn', 'on'); ?>
+    $showAvailableOptionBtn = get_option('woo_variations_table_show_available_options_btn', 'on');?>
 <div class="wrap">
   <h1><?php echo __('Woo Variations Table Settings', 'woo-variations-table'); ?></h1>
   <form method="post" action="options.php">
-      <?php settings_fields('woo_variations_table_settings'); ?>
-      <?php do_settings_sections('woo_variations_table_settings'); ?>
+      <?php settings_fields('woo_variations_table_settings');?>
+      <?php do_settings_sections('woo_variations_table_settings');?>
       <table class="form-table">
           <tr valign="top">
             <th scope="row"><?php echo __('Where to Place Variations Table', 'woo-variations-table'); ?></th>
@@ -103,7 +102,7 @@ function woo_variations_table_settings_page_callback()
           </tr>
           <tr valign="top">
             <th scope="row"><?php echo __('Select Columns to Show in the Variations Table', 'woo-variations-table'); ?></th>
-            <td><?php woo_variations_table_create_multi_select_options('woo-variations-table-columns', $default_columns, $columns, $columns_labels); ?></td>
+            <td><?php woo_variations_table_create_multi_select_options('woo-variations-table-columns', $default_columns, $columns, $columns_labels);?></td>
           </tr>
           <tr valign="top">
             <th scope="row"><?php echo __('Show Attributes', 'woo-variations-table'); ?></th>
@@ -124,25 +123,24 @@ function woo_variations_table_settings_page_callback()
             </td>
           </tr>
       </table>
-      
-      <?php submit_button(); ?>
-  
+
+      <?php submit_button();?>
+
   </form>
 </div>
 <?php
 }
 
-
 function woo_variations_table_create_multi_select_options($id, $columns, $values, $labels)
 {
-    echo "<ul style='margin-top: 5px;' class='mnt-checklist' id='$id' >"."\n";
+    echo "<ul style='margin-top: 5px;' class='mnt-checklist' id='$id' >" . "\n";
     foreach ($columns as $key => $value) {
         $checked = " ";
         if (isset($values[$key]) && $values[$key]) {
             $checked = " checked='checked' ";
         }
         echo "<li>\n";
-        echo "<label><input type='checkbox' name='woo_variations_table_columns[$key]' $checked />".$labels[$key]."</label>\n";
+        echo "<label><input type='checkbox' name='woo_variations_table_columns[$key]' $checked />" . $labels[$key] . "</label>\n";
         echo "</li>\n";
     }
     echo "</ul>\n";
@@ -160,7 +158,7 @@ add_action('wp_enqueue_scripts', 'variations_table_scripts');
 function variations_table_scripts()
 {
     if (is_product()) {
-        wp_enqueue_script('woo-variations-table-scripts', plugins_url('js/woo-variations-table-scripts.js', __FILE__), array( 'jquery' ), WOO_VARIATIONS_TABLE_VERSION, true);
+        wp_enqueue_script('woo-variations-table-scripts', plugins_url('js/woo-variations-table-scripts.js', __FILE__), array('jquery'), WOO_VARIATIONS_TABLE_VERSION, true);
         wp_enqueue_script('woo-variations-table-app', plugins_url('ui/public/build/woo-variations-table-app.js', __FILE__), array('wc-add-to-cart'), WOO_VARIATIONS_TABLE_VERSION, true);
         wp_enqueue_style('woo-variations-table-style', plugins_url('ui/public/woo-variations-table.css', __FILE__), array(), WOO_VARIATIONS_TABLE_VERSION);
         wp_enqueue_style('woo-variations-table-app-style', plugins_url('ui/public/build/woo-variations-table-app.css', __FILE__), array(), WOO_VARIATIONS_TABLE_VERSION);
@@ -186,7 +184,6 @@ function variations_table_database_update()
     }
 }
 
-
 add_action('init', 'woo_variations_table_init');
 function woo_variations_table_init()
 {
@@ -207,7 +204,7 @@ function woo_variations_table_available_options_btn()
     global $product;
     if (!$product->is_type('variable')) {
         return;
-    } ?>
+    }?>
   <div class="available-options-btn">
     <button scrollto="#variations-table" type="button" class="single_add_to_cart_button button alt"><?php echo apply_filters('woo_variations_table_available_options_btn_text', __('Available options', 'woo-variations-table')); ?></button>
   </div>
@@ -225,7 +222,7 @@ function woo_variations_table_print_table()
             $productImageURL = $productImageURL[0];
         }
         $variations = $product->get_available_variations();
-        
+
         // Image link is no longer exist in WooCommerce 3.x so do this work around
         foreach ($variations as $key => $variation) {
             if (!isset($variation['image_link']) && isset($variation['image'])) {
@@ -236,78 +233,78 @@ function woo_variations_table_print_table()
                 $variations[$key]['price_html'] = $product->get_price_html();
             }
         }
-        
+
         $product_attributes = $product->get_attributes();
         $variation_attributes = $product->get_variation_attributes();
         $attrs = array();
         foreach ($variation_attributes as $key => $name) {
             $correctkey = wc_sanitize_taxonomy_name(stripslashes($key));
             $options = array();
-            for ($i=0; count($name) > $i; $i++) {
+            for ($i = 0; count($name) > $i; $i++) {
                 $terms = array_values($name);
                 $term = get_term_by('slug', $terms[$i], $key);
                 $slug = array_values($name);
                 $slug = $slug[$i];
                 if ($term) {
-                    array_push($options, array('name'=>$term->name, 'slug'=> $slug));
+                    array_push($options, array('name' => $term->name, 'slug' => $slug));
                 } else {
-                    array_push($options, array('name'=>$slug, 'slug'=>$slug));
+                    array_push($options, array('name' => $slug, 'slug' => $slug));
                 }
             }
             array_push($attrs, array(
-              "key"=>$correctkey,
-              "name"=> wc_attribute_label($key),
-              "visible"=>$product_attributes[$correctkey]->get_visible(),
-              "options"=> $options
+                "key" => $correctkey,
+                "name" => wc_attribute_label($key),
+                "visible" => $product_attributes[$correctkey]->get_visible(),
+                "options" => $options,
             ));
         }
         $default_columns = array(
-          'image_link' => 'on',
-          'sku' => 'on',
-          'variation_description' => 'on',
-          'dimensions' => '',
-          'weight_html' => '',
-          'stock' => '',
-          'price_html' => 'on',
-          'quantity' => 'on',
+            'image_link' => 'on',
+            'sku' => 'on',
+            'variation_description' => 'on',
+            'dimensions' => '',
+            'weight_html' => '',
+            'stock' => '',
+            'price_html' => 'on',
+            'quantity' => 'on',
         );
         $activeColumns = get_option('woo_variations_table_columns', $default_columns);
         $showAttributes = get_option('woo_variations_table_show_attributes', '');
         $showSpinner = get_option('woo_variations_table_show_spinner', 'on');
         $columnsText = array(
-          'sku' => __('SKU', 'woo-variations-table'),
-          'variation_description' => __('Description', 'woo-variations-table'),
-          'weight_html' => __('Weight', 'woo-variations-table'),
-          'dimensions' => __('Dimensions', 'woo-variations-table'),
-          'price_html' => __('Price', 'woo-variations-table'),
-          'stock' => __('Stock', 'woo-variations-table'),
-          'quantity' => __('Quantity', 'woo-variations-table'),
+            'sku' => __('SKU', 'woo-variations-table'),
+            'variation_description' => __('Description', 'woo-variations-table'),
+            'weight_html' => __('Weight', 'woo-variations-table'),
+            'dimensions' => __('Dimensions', 'woo-variations-table'),
+            'price_html' => __('Price', 'woo-variations-table'),
+            'stock' => __('Stock', 'woo-variations-table'),
+            'quantity' => __('Quantity', 'woo-variations-table'),
         );
 
         $woo_variations_table_data = array(
-          "variations" => $variations,
-          "attributes" => $attrs,
-          "showAttributes" => $showAttributes,
-          "activeColumns" => $activeColumns,
-          "imageURL" => $productImageURL,
-          "ajaxURL" => admin_url('admin-ajax.php?add_variation_to_cart=1'),
-          "showSpinner" => $showSpinner,
-          "textVars" => array(
-            "columnsText" => $columnsText,
-            "addToCartText" => __("Add to Cart", 'woo-variations-table'),
-            "anyText" => __("Any", 'woo-variations-table'),
-            "searchPlaceholderText" => __("Keywords", 'woo-variations-table'),
-            "noResultsText" => __("No results!", 'woo-variations-table'),
-          ),
+            "variations" => $variations,
+            "attributes" => $attrs,
+            "showAttributes" => $showAttributes,
+            "activeColumns" => $activeColumns,
+            "imageURL" => $productImageURL,
+            "ajaxURL" => admin_url('admin-ajax.php?add_variation_to_cart=1'),
+            "showSpinner" => $showSpinner,
+            "textVars" => array(
+                "columnsText" => $columnsText,
+                "addToCartText" => __("Add to Cart", 'woo-variations-table'),
+                "anyText" => __("Any", 'woo-variations-table'),
+                "searchPlaceholderText" => __("Keywords", 'woo-variations-table'),
+                "noResultsText" => __("No results!", 'woo-variations-table'),
+            ),
         );
 
-        wp_localize_script('woo-variations-table-app', 'wooVariationsTableData', $woo_variations_table_data); ?>
+        wp_localize_script('woo-variations-table-app', 'wooVariationsTableData', $woo_variations_table_data);?>
         <div id='variations-table' class="variations-table">
           <h3 class="available-title"><?php echo esc_html_e('Available Options:', 'woo-variations-table'); ?></h3>
           <div id="woo-variations-table-component"></div>
         </div>
         <?php
-    } else {
+} else {
         wp_dequeue_script('woo-variations-table-scripts');
         wp_dequeue_script('woo-variations-table-app');
     }
