@@ -7,7 +7,7 @@ Author: Alaa Rihan
 Author URI: https://lb.linkedin.com/in/alaa-rihan-6971b686
 Text Domain: woo-variations-table
 Domain Path: /languages/
-Version: 2.1.2
+Version: 2.1.3
 Requires at least: 4.0.0
 Requires PHP: 5.6.20
 WC requires at least: 3.0.0
@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define("WOO_VARIATIONS_TABLE_VERSION", '2.1.2');
+define("WOO_VARIATIONS_TABLE_VERSION", '2.1.3');
 
 // Check if WooCommerce is enabled
 add_action('plugins_loaded', 'check_woocommerce_enabled', 1);
@@ -50,6 +50,7 @@ function woo_variations_table_register_settings()
 {
     register_setting('woo_variations_table_settings', 'woo_variations_table_columns');
     register_setting('woo_variations_table_settings', 'woo_variations_table_show_attributes');
+    register_setting('woo_variations_table_settings', 'woo_variations_table_show_filters');
     register_setting('woo_variations_table_settings', 'woo_variations_table_show_spinner');
     register_setting('woo_variations_table_settings', 'woo_variations_table_place');
     register_setting('woo_variations_table_settings', 'woo_variations_table_show_available_options_btn');
@@ -80,6 +81,7 @@ function woo_variations_table_settings_page_callback()
     );
     $columns = get_option('woo_variations_table_columns', $default_columns);
     $showAttributes = get_option('woo_variations_table_show_attributes', '');
+    $showFilters = get_option('woo_variations_table_show_filters', 'on');
     $showSpinner = get_option('woo_variations_table_show_spinner', 'on');
     $place = get_option('woo_variations_table_place', 'woocommerce_after_single_product_summary_9');
     $showAvailableOptionBtn = get_option('woo_variations_table_show_available_options_btn', 'on');?>
@@ -108,6 +110,12 @@ function woo_variations_table_settings_page_callback()
             <th scope="row"><?php echo __('Show Attributes', 'woo-variations-table'); ?></th>
             <td>
                 <label><input type='checkbox' name='woo_variations_table_show_attributes' <?php echo $showAttributes ? "checked='checked'" : ''; ?> /> <?php echo __('Show product attributes as columns', 'woo-variations-table'); ?></label>
+            </td>
+          </tr>
+          <tr valign="top">
+            <th scope="row"><?php echo __('Show Filters', 'woo-variations-table'); ?></th>
+            <td>
+                <label><input type='checkbox' name='woo_variations_table_show_filters' <?php echo $showFilters ? "checked='checked'" : ''; ?> /> <?php echo __('Show filters and search box', 'woo-variations-table'); ?></label>
             </td>
           </tr>
           <tr valign="top">
@@ -270,6 +278,7 @@ function woo_variations_table_print_table()
         );
         $activeColumns = get_option('woo_variations_table_columns', $default_columns);
         $showAttributes = get_option('woo_variations_table_show_attributes', '');
+        $showFilters = get_option('woo_variations_table_show_filters', 'on');
         $showSpinner = get_option('woo_variations_table_show_spinner', 'on');
         $columnsText = array(
             'sku' => __('SKU', 'woo-variations-table'),
@@ -285,6 +294,7 @@ function woo_variations_table_print_table()
             "variations" => $variations,
             "attributes" => $attrs,
             "showAttributes" => $showAttributes,
+            "showFilters" => $showFilters,
             "activeColumns" => $activeColumns,
             "imageURL" => $productImageURL,
             "ajaxURL" => admin_url('admin-ajax.php?add_variation_to_cart=1'),

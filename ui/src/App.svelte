@@ -6,6 +6,7 @@
   export let textVars;
   export let activeColumns;
   export let showAttributes;
+  export let showFilters;
   export let attributes;
   export let sortKey;
   export let imageURL;
@@ -128,12 +129,14 @@
 </style>
 
 <div id="variations">
-  <Filters
-    bind:searchQuery
-    {attributes}
-    {activeFilters}
-    {textVars}
-    on:setFilters={setFilters} />
+  {#if showFilters}
+    <Filters
+      bind:searchQuery
+      {attributes}
+      {activeFilters}
+      {textVars}
+      on:setFilters={setFilters} />
+  {/if}
   <table class="variations">
     <thead>
       <tr>
