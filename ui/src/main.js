@@ -6,6 +6,7 @@ const app = new App({
         variations: wooVariationsTableData.variations,
         attributes: wooVariationsTableData.attributes,
         showAttributes: wooVariationsTableData.showAttributes,
+        showFilters: wooVariationsTableData.showFilters,
         activeColumns: wooVariationsTableData.activeColumns,
         imageURL: wooVariationsTableData.imageURL,
         showSpinner: wooVariationsTableData.showSpinner,
