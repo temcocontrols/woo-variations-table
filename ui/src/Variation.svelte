@@ -7,7 +7,6 @@
   export let showAttributes;
   export let attributes;
   export let productImageURL;
-  export let ajaxURL;
   export let textVars;
   export let showSpinner;
   let addToCartBtn;
@@ -64,37 +63,45 @@
     return attr;
   }
   function addToCart() {
-    added = false;
-    loading = true;
-    const formData = new FormData();
-    formData.append("product_id", item.variation_id);
-    formData.append("variation_id", item.variation_id);
-    formData.append("quantity", quantity);
-    for (let key in item.attributes) {
-      formData.append(key, item.attributes[key]);
+   const data = {
+      product_id: item.variation_id,
+      variation_id: item.variation_id,
+      quantity,
+      ...item.attributes
     }
     jQuery(document.body).trigger("adding_to_cart", [
       jQuery(addToCartBtn),
-      formData
+      data
     ]);
 
-    postData(ajaxURL, formData)
-      .then(response => {
+    jQuery.ajax({
+      type: 'POST',
+      url: woocommerce_params.wc_ajax_url.toString().replace('%%endpoint%%', 'add_to_cart'),
+      data,
+      beforeSend: function (response) {
+        added = false;
+        loading = true;
+      },
+      complete: function (response) {
         added = true;
         loading = false;
+      },
+      success: function (response) {
+
         if (response.error & response.product_url) {
           window.location = response.product_url;
           return;
         }
-        jQuery(document.body).trigger("added_to_cart", [
-          response.fragments,
-          response.cart_hash,
-          undefined
-        ]);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+
+        // Redirect to cart option
+        if ( wc_add_to_cart_params.cart_redirect_after_add === 'yes' ) {
+          window.location = wc_add_to_cart_params.cart_url;
+          return;
+        }
+
+        jQuery(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash, undefined]);
+      },
+    });
   }
 </script>
 

@@ -4,7 +4,7 @@ Tags: woocommerce, variations, table, variations table, woocommerce variable, va
 Requires at least: 4.0.0
 Tested up to: 5.3.2
 Requires PHP: 5.6.20
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,6 +23,10 @@ Woo Variations Table replace the default WooCommerce variations dropdowns by a t
 * You can search variations by typing your search keywords.
 * Each variation will have its own "add to cart" button and this button use AJAX so ne reload needed to add it to cart.
 * You can select where you want the variations table to show up in the product page.
+
+= Demo =
+You can see live demo from here:
+[https://woo-variations-table-demo.cloudaccess.host/shop/hoodie/](https://woo-variations-table-demo.cloudaccess.host/shop/hoodie/#variations-table)
 
 = Upgrading from 1.x =
 It's completely safe to upgrade from 1.x released to 2.x release , there is no breaking changes.
@@ -52,6 +56,10 @@ To show an attibute in the variations table go to plugin settings and enable "Sh
 
 
 == Changelog ==
+
+= 2.1.2 =
+* Fix add to cart doesn't work on sub-drectory sites.
+* Other small fixes and improvements.
 
 = 2.1.1 =
 * Disable "Add to cart" button if the variation was out of stock

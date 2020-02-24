@@ -7,7 +7,7 @@ Author: Alaa Rihan
 Author URI: https://lb.linkedin.com/in/alaa-rihan-6971b686
 Text Domain: woo-variations-table
 Domain Path: /languages/
-Version: 2.1.1
+Version: 2.1.2
 Requires at least: 4.0.0
 Requires PHP: 5.6.20
 WC requires at least: 3.0.0
@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define("WOO_VARIATIONS_TABLE_VERSION", '2.1.1');
+define("WOO_VARIATIONS_TABLE_VERSION", '2.1.2');
 
 // Check if WooCommerce is enabled
 add_action('plugins_loaded', 'check_woocommerce_enabled', 1);
@@ -133,13 +133,13 @@ function woo_variations_table_settings_page_callback()
 
 function woo_variations_table_create_multi_select_options($id, $columns, $values, $labels)
 {
-    echo "<ul style='margin-top: 5px;' class='mnt-checklist' id='$id' >" . "\n";
+    echo "<ul style='margin-top: 5px;' class='mnt-checklist sortable' id='$id' >" . "\n";
     foreach ($columns as $key => $value) {
         $checked = " ";
         if (isset($values[$key]) && $values[$key]) {
             $checked = " checked='checked' ";
         }
-        echo "<li>\n";
+        echo "<li class='ui-state-default'>\n";
         echo "<label><input type='checkbox' name='woo_variations_table_columns[$key]' $checked />" . $labels[$key] . "</label>\n";
         echo "</li>\n";
     }

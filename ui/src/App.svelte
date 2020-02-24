@@ -9,7 +9,6 @@
   export let attributes;
   export let sortKey;
   export let imageURL;
-  export let ajaxURL;
   export let showSpinner;
   let filters = [];
   let activeFilters = [];
@@ -196,7 +195,6 @@
           {showAttributes}
           {attributes}
           productImageURL={imageURL}
-          {ajaxURL}
           {showSpinner}
           {textVars} />
       {/each}
