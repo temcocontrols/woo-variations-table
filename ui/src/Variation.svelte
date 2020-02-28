@@ -63,12 +63,12 @@
     return attr;
   }
   function addToCart() {
-   const data = {
+   const productData = {
       product_id: item.variation_id,
       variation_id: item.variation_id,
-      quantity,
-      ...item.attributes
+      quantity
     }
+    const data = Object.assign(item.attributes, productData);
     jQuery(document.body).trigger("adding_to_cart", [
       jQuery(addToCartBtn),
       data

@@ -4,7 +4,7 @@ Tags: woocommerce, variations, table, variations table, woocommerce variable, va
 Requires at least: 4.0.0
 Tested up to: 5.3.2
 Requires PHP: 5.6.20
-Stable tag: 2.1.3
+Stable tag: 2.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,10 @@ To show an attibute in the variations table go to plugin settings and enable "Sh
 
 
 == Changelog ==
+
+= 2.1.4 =
+* Fix the table doesn't work on Microsoft Edge browser.
+* Update POT file to include missing strings.
 
 = 2.1.3 =
 * Add an option to show/hide filters.
