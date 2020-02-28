@@ -7,7 +7,7 @@ Author: Alaa Rihan
 Author URI: https://lb.linkedin.com/in/alaa-rihan-6971b686
 Text Domain: woo-variations-table
 Domain Path: /languages/
-Version: 2.1.3
+Version: 2.1.4
 Requires at least: 4.0.0
 Requires PHP: 5.6.20
 WC requires at least: 3.0.0
@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define("WOO_VARIATIONS_TABLE_VERSION", '2.1.3');
+define("WOO_VARIATIONS_TABLE_VERSION", '2.1.4');
 
 // Check if WooCommerce is enabled
 add_action('plugins_loaded', 'check_woocommerce_enabled', 1);
