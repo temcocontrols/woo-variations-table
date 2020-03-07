@@ -1,0 +1,148 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-28 19:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: German\n"
+"Language:  de_DE\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: woo-variations-table.php:37 woo-variations-table.php:44
+#: woo-variations-table.php:44
+msgid "Woo Variations Table"
+msgstr "Woo Variations Table"
+
+#: woo-variations-table.php:37
+#, php-format
+msgid "requires %sWooCommerce%s to be installed & activated!"
+msgstr "%sWooCommerce%s muss installiert und aktiviert sein!"
+
+#: woo-variations-table.php:73
+msgid "Thumbnail"
+msgstr "Thumbnail"
+
+#: woo-variations-table.php:74 woo-variations-table.php:284
+msgid "SKU"
+msgstr "Artikelnr."
+
+#: woo-variations-table.php:75 woo-variations-table.php:285
+msgid "Description"
+msgstr "Beschreibung"
+
+#: woo-variations-table.php:76 woo-variations-table.php:287
+msgid "Dimensions"
+msgstr "Dimensionen"
+
+#: woo-variations-table.php:77 woo-variations-table.php:286
+msgid "Weight"
+msgstr "Gewicht"
+
+#: woo-variations-table.php:78 woo-variations-table.php:289
+msgid "Stock"
+msgstr "Vorrat"
+
+#: woo-variations-table.php:79 woo-variations-table.php:288
+msgid "Price"
+msgstr "Preis"
+
+#: woo-variations-table.php:80 woo-variations-table.php:290
+msgid "Quantity"
+msgstr "Menge"
+
+#: woo-variations-table.php:89
+msgid "Woo Variations Table Settings"
+msgstr "Woo Variations Table Einstellungen"
+
+#: woo-variations-table.php:95
+msgid "Where to Place Variations Table"
+msgstr "Platzierung der Tabelle"
+
+#: woo-variations-table.php:106
+msgid "Select Columns to Show in the Variations Table"
+msgstr "Auswahl der angezeigten Spalten"
+
+#: woo-variations-table.php:110
+msgid "Show Attributes"
+msgstr "Zeige Eigenschaften"
+
+#: woo-variations-table.php:112
+msgid "Show product attributes as columns"
+msgstr "Zeige Eigenschaften als Spalten"
+
+#: woo-variations-table.php:116
+msgid "Show Filters"
+msgstr "Zeige Filter"
+
+#: woo-variations-table.php:118
+msgid "Show filters and search box"
+msgstr "Zeige Filter und Suchfelder"
+
+#: woo-variations-table.php:122
+msgid "Available Options Button"
+msgstr "Verfügbare Optionen Button"
+
+#: woo-variations-table.php:124
+msgid ""
+"Show \"Available Options\" button to scroll to the variations table when "
+"clicked"
+msgstr "Zeige \"Verfügbare Optionen\" Button um durch Klicken zur Tabelle zu scrollen"
+
+#: woo-variations-table.php:128
+msgid "Add to Cart Loader Icon"
+msgstr "'Zum Warenkorb hinzufügen' Lade-Symbol"
+
+#: woo-variations-table.php:130
+msgid ""
+"Show animated loader icon when click add to cart and tick icon when "
+"variation added to cart"
+msgstr "Zeige animiertes Icon, wenn 'Zum Warenkorb hinzufügen' für eine Variation geklickt"
+
+#: woo-variations-table.php:217
+msgid "Available options"
+msgstr "Verfügbare Optionen"
+
+#: woo-variations-table.php:304
+msgid "Add to Cart"
+msgstr "Zum Warenkorb hinzufügen"
+
+#: woo-variations-table.php:305
+msgid "Any"
+msgstr "Beliebig"
+
+#: woo-variations-table.php:306
+msgid "Keywords"
+msgstr "Suchworte"
+
+#: woo-variations-table.php:307
+msgid "No results!"
+msgstr "Keine Ergebnisse!"
+
+#: woo-variations-table.php:313
+msgid "Available Options:"
+msgstr "Verfügbare Optionen:"
+
+#. Description of the plugin
+msgid ""
+"Show WooCommerce variable products variations as table with filters and "
+"sorting instead of normal dropdowns."
+msgstr "Zeigt WooCommerce variable Produkt-Varianten als Tabelle mit Filter- und Suchfunktionen, anstatt als normales Dropdown-Menü."
+
+#. URI of the plugin
+msgid "https://wordpress.org/plugins/woo-variations-table/"
+msgstr "https://wordpress.org/plugins/woo-variations-table/"
+
+#. Author of the plugin
+msgid "Alaa Rihan"
+msgstr "Alaa Rihan"
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://lb.linkedin.com/in/alaa-rihan-6971b686"
+msgstr "https://lb.linkedin.com/in/alaa-rihan-6971b686"
