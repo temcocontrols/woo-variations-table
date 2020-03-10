@@ -35,8 +35,7 @@
       title: textVars.columnsText.weight_html,
       type: "text"
     },
-    { key: "dimensions", title: textVars.columnsText.dimensions, type: "text" },
-    { key: "price_html", title: textVars.columnsText.price_html, type: "html" }
+    { key: "dimensions", title: textVars.columnsText.dimensions, type: "text" }
   ];
 
   function calcColumns() {
@@ -47,6 +46,9 @@
       }
     });
     if (activeColumns["stock"] === "on") {
+      columnsNum++;
+    }
+    if (activeColumns["price_html"] === "on") {
       columnsNum++;
     }
     if (activeColumns["quantity"] === "on") {
@@ -181,6 +183,18 @@
               class="arrow"
               class:asc={sortOrders['availability_html'] > 0 || sortKey !== 'availability_html'}
               class:dsc={sortOrders['availability_html'] < 0 && sortKey === 'availability_html'} />
+          </th>
+        {/if}
+        {#if activeColumns['price_html']}
+          <th
+            on:click={() => sortBy('price_html')}
+            class:active={sortKey === 'price_html'}
+            class='price_html'>
+            {textVars.columnsText.price_html}
+            <span
+              class="arrow"
+              class:asc={sortOrders['price_html'] > 0 || sortKey !== 'price_html'}
+              class:dsc={sortOrders['price_html'] < 0 && sortKey === 'price_html'} />
           </th>
         {/if}
         {#if activeColumns['quantity'] === 'on'}

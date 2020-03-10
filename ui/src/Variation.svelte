@@ -151,6 +151,13 @@
       </span>
     </td>
   {/if}
+  {#if activeColumns['price_html'] === 'on'}
+    <td class="price_html" data-title="Price">
+      <span class="item">
+        {@html item.price_html }
+      </span>
+    </td>
+  {/if}
   {#if activeColumns['quantity'] === 'on'}
     <td class="quantity">
       {#if item['is_in_stock']}
