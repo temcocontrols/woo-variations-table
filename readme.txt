@@ -21,7 +21,7 @@ Woo Variations Table replace the default WooCommerce variations dropdowns by a t
 * You can show variation attributes values as columns in the table.
 * You can filter the variations using the attributes values as select boxes.
 * You can search variations by typing your search keywords.
-* Each variation will have its own "add to cart" button and this button use AJAX so ne reload needed to add it to cart.
+* Each variation will have its own "add to cart" button and this button uses AJAX so no reload needed to add it to cart.
 * You can select where you want the variations table to show up in the product page.
 
 = Demo =
@@ -29,7 +29,7 @@ You can see live demo from here:
 [https://woo-variations-table-demo.cloudaccess.host/shop/hoodie/](https://woo-variations-table-demo.cloudaccess.host/shop/hoodie/#variations-table)
 
 = Upgrading from 1.x =
-It's completely safe to upgrade from 1.x released to 2.x release , there is no breaking changes.
+It's completely safe to upgrade from 1.x to 2.x releases , there is no breaking changes, just cleaner code and new features.
 
 == Installation ==
 
