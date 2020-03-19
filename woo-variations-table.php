@@ -331,7 +331,6 @@ function woo_variations_table_print_table()
             "activeColumns" => $activeColumns,
             "columnsOrder" => $columnsOrder,
             "imageURL" => $productImageURL,
-            "ajaxURL" => admin_url('admin-ajax.php?add_variation_to_cart=1'),
             "showSpinner" => $showSpinner,
             "textVars" => array(
                 "columnsText" => $columnsText,
