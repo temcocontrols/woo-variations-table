@@ -5,9 +5,9 @@ const app = new App({
     props: {
         variations: wooVariationsTableData.variations,
         attributes: wooVariationsTableData.attributes,
-        showAttributes: wooVariationsTableData.showAttributes,
         showFilters: wooVariationsTableData.showFilters,
         activeColumns: wooVariationsTableData.activeColumns,
+        columnsOrder: wooVariationsTableData.columnsOrder,
         imageURL: wooVariationsTableData.imageURL,
         showSpinner: wooVariationsTableData.showSpinner,
         textVars: wooVariationsTableData.textVars
