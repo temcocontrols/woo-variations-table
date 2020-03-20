@@ -2,9 +2,7 @@
   import Spinner from "./Spinner.svelte";
   import TickIcon from "./TickIcon.svelte";
   export let columns;
-  export let activeColumns;
   export let item;
-  export let showAttributes;
   export let attributes;
   export let productImageURL;
   export let textVars;
@@ -108,7 +106,8 @@
 <tr
   class="variation-{item.variation_id} image-{imageClass(item['image_link'])}">
   {#each columns as column, i}
-    {#if activeColumns[column.key] === 'on'}
+    {#if column.active === 'on'}
+      {#if column.key !== 'attributes' && column.key !== 'quantity'}
       <td data-title={column.title}>
         {#if column.type === 'image'}
           <span class="item">
@@ -125,57 +124,46 @@
             {@html item[column.key]}
           </span>
         {/if}
-      </td>
-    {/if}
-  {/each}
-  {#if showAttributes}
-    {#each Object.entries(item.attributes) as attr, i}
-      {#if findAttributeByKey(attr[0].substr(10)) && findAttributeByKey(attr[0].substr(10)).visible}
-        <td data-title={findAttributeByKey(attr[0].substr(10)).name}>
-          {getAttributeNameFromSlug(attr[1], findAttributeByKey(attr[0].substr(10)).options)}
-        </td>
-      {/if}
-    {/each}
-  {/if}
-
-  {#if activeColumns['stock'] === 'on'}
-    <td class="stock" data-title="Stock">
-      <span class="item">
-        {#if item['availability_html']}
-          <span
-            class:in-stock={item['is_in_stock']}
-            class:out-of-stock={!item['is_in_stock']}>
-            {@html item['availability_html']}
+        {#if column.type === 'stock'}
+          <span class="item">
+            {#if item[column.key]}
+              <span
+                class:in-stock={item['is_in_stock']}
+                class:out-of-stock={!item['is_in_stock']}>
+                {@html item['availability_html']}
+              </span>
+            {/if}
           </span>
         {/if}
-      </span>
-    </td>
-  {/if}
-  {#if activeColumns['price_html'] === 'on'}
-    <td class="price_html" data-title="Price">
-      <span class="item">
-        {@html item.price_html }
-      </span>
-    </td>
-  {/if}
-  {#if activeColumns['quantity'] === 'on'}
-    <td class="quantity">
-      {#if item['is_in_stock']}
-        <input
-          bind:value={quantity}
-          type="number"
-          step="1"
-          min="1"
-          name="quantity"
-          data-title="Qty"
-          title="Qty"
-          class="input-text qty text"
-          size="4"
-          pattern="[0-9]*"
-          inputmode="numeric" />
+      </td>
+      {:else if column.key === 'quantity'}
+        <td class="quantity">
+          {#if item['is_in_stock']}
+            <input
+              bind:value={quantity}
+              type="number"
+              step="1"
+              min="1"
+              name="quantity"
+              data-title="Qty"
+              title="Qty"
+              class="input-text qty text"
+              size="4"
+              pattern="[0-9]*"
+              inputmode="numeric" />
+          {/if}
+        </td>
+      {:else}
+        {#each Object.entries(item.attributes) as attr, i}
+          {#if findAttributeByKey(attr[0].substr(10)) && findAttributeByKey(attr[0].substr(10)).visible}
+            <td data-title={findAttributeByKey(attr[0].substr(10)).name}>
+              {getAttributeNameFromSlug(attr[1], findAttributeByKey(attr[0].substr(10)).options)}
+            </td>
+          {/if}
+        {/each}
       {/if}
-    </td>
-  {/if}
+    {/if}
+  {/each}
   <td class="add-to-cart">
     <button
       bind:this={addToCartBtn}

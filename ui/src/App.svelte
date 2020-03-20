@@ -5,7 +5,7 @@
   export let variations;
   export let textVars;
   export let activeColumns;
-  export let showAttributes;
+  export let columnsOrder;
   export let showFilters;
   export let attributes;
   export let sortKey;
@@ -21,22 +21,49 @@
     }
   });
 
+  if(!columnsOrder){
+    columnsOrder = {}
+  }
+
+  let columnsTypes = {
+    image_link: 'image',
+    sku: 'text',
+    variation_description: 'html',
+    weight_html: 'html',
+    dimensions_html: 'html',
+    attributes: 'array',
+    availability_html: 'stock',
+    price_html: 'html',
+    quantity: 'text'
+  }
+
   let sortOrders = {};
-  let columns = [
-    { key: "image_link", title: "", type: "image" },
-    { key: "sku", title: textVars.columnsText.sku, type: "text" },
-    {
-      key: "variation_description",
-      title: textVars.columnsText.variation_description,
-      type: "html"
-    },
-    {
-      key: "weight_html",
-      title: textVars.columnsText.weight_html,
-      type: "text"
-    },
-    { key: "dimensions", title: textVars.columnsText.dimensions, type: "text" }
-  ];
+  let columns = [];
+  for (const key in columnsOrder) {
+    if (columnsOrder.hasOwnProperty(key)) {
+      columns.push({
+        key: columnsOrder[key],
+        title: textVars.columnsText[columnsOrder[key]] || '',
+        type: columnsTypes[columnsOrder[key]],
+        active: activeColumns[columnsOrder[key]]
+      })
+    }
+  }
+
+  let columnsOrderValues = Object.values(columnsOrder)
+
+  for (const key in activeColumns) {
+    if (activeColumns.hasOwnProperty(key)) {
+      if(columnsOrderValues.includes(key))
+        continue;
+      columns.push({
+        key,
+        title: textVars.columnsText[key] || '',
+        type: columnsTypes[key],
+        active: activeColumns[key]
+      })
+    }
+  }
 
   function calcColumns() {
     let columnsNum = 1;
@@ -45,18 +72,6 @@
         columnsNum++;
       }
     });
-    if (activeColumns["stock"] === "on") {
-      columnsNum++;
-    }
-    if (activeColumns["price_html"] === "on") {
-      columnsNum++;
-    }
-    if (activeColumns["quantity"] === "on") {
-      columnsNum++;
-    }
-    if (showAttributes) {
-      columnsNum += attributes.length;
-    }
     return columnsNum;
   }
   let activeColumnsNum = calcColumns();
@@ -143,63 +158,38 @@
     <thead>
       <tr>
         {#each columns as column, i}
-          {#if activeColumns[column.key]}
-            <th
-              on:click={() => sortBy(column.key)}
-              class:active={sortKey === column.key}
-              class={column.key}>
-              {column.title}
-              <span
-                class="arrow"
-                class:asc={sortOrders[column.key] > 0 || sortKey !== column.key}
-                class:dsc={sortOrders[column.key] < 0 && sortKey === column.key} />
-            </th>
-          {/if}
-        {/each}
-
-        {#if showAttributes}
-          {#each attributes as attr, i}
-            {#if attr.visible}
+          {#if column.active === 'on'}
+            {#if column.key !== 'attributes' && column.key !== 'quantity'}
               <th
-                class={attr.key}
-                on:click={() => sortBy('attribute_' + attr.key)}
-                class:active={sortKey === 'attribute_' + attr.key}>
-                {attr.name}
+                on:click={() => sortBy(column.key)}
+                class:active={sortKey === column.key}
+                class={column.key}>
+                {column.title}
                 <span
                   class="arrow"
-                  class:asc={sortOrders['attribute_' + attr.key] > 0 || sortKey !== 'attribute_' + attr.key}
-                  class:dsc={sortOrders['attribute_' + attr.key] < 0 && sortKey === 'attribute_' + attr.key} />
+                  class:asc={sortOrders[column.key] > 0 || sortKey !== column.key}
+                  class:dsc={sortOrders[column.key] < 0 && sortKey === column.key} />
               </th>
+            {:else if column.key === 'quantity'}
+              <th class={column.key}>{column.title}</th>
+            {:else}
+              {#each attributes as attr, i}
+                {#if attr.visible}
+                  <th
+                    class={attr.key}
+                    on:click={() => sortBy('attribute_' + attr.key)}
+                    class:active={sortKey === 'attribute_' + attr.key}>
+                    {attr.name}
+                    <span
+                      class="arrow"
+                      class:asc={sortOrders['attribute_' + attr.key] > 0 || sortKey !== 'attribute_' + attr.key}
+                      class:dsc={sortOrders['attribute_' + attr.key] < 0 && sortKey === 'attribute_' + attr.key} />
+                  </th>
+                {/if}
+              {/each}
             {/if}
-          {/each}
-        {/if}
-        {#if activeColumns['stock'] === 'on'}
-          <th
-            class="stock"
-            on:click={() => sortBy('availability_html')}
-            class:active={sortKey === 'availability_html'}>
-            {textVars.columnsText.stock}
-            <span
-              class="arrow"
-              class:asc={sortOrders['availability_html'] > 0 || sortKey !== 'availability_html'}
-              class:dsc={sortOrders['availability_html'] < 0 && sortKey === 'availability_html'} />
-          </th>
-        {/if}
-        {#if activeColumns['price_html']}
-          <th
-            on:click={() => sortBy('price_html')}
-            class:active={sortKey === 'price_html'}
-            class='price_html'>
-            {textVars.columnsText.price_html}
-            <span
-              class="arrow"
-              class:asc={sortOrders['price_html'] > 0 || sortKey !== 'price_html'}
-              class:dsc={sortOrders['price_html'] < 0 && sortKey === 'price_html'} />
-          </th>
-        {/if}
-        {#if activeColumns['quantity'] === 'on'}
-          <th class="quantity">{textVars.columnsText.quantity}</th>
-        {/if}
+          {/if}
+        {/each}
         <th class="add-to-cart" />
       </tr>
     </thead>
@@ -208,8 +198,6 @@
         <Variation
           item={entry}
           {columns}
-          bind:activeColumns
-          {showAttributes}
           {attributes}
           productImageURL={imageURL}
           {showSpinner}
