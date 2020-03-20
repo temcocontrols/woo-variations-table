@@ -7,7 +7,7 @@ Author: Alaa Rihan
 Author URI: https://lb.linkedin.com/in/alaa-rihan-6971b686
 Text Domain: woo-variations-table
 Domain Path: /languages/
-Version: 2.1.6
+Version: 2.2.0
 Requires at least: 4.7.0
 Requires PHP: 5.6.20
 WC requires at least: 3.0.0
@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define("WOO_VARIATIONS_TABLE_VERSION", '2.1.6');
+define("WOO_VARIATIONS_TABLE_VERSION", '2.2.0');
 
 // Check if WooCommerce is enabled
 add_action('plugins_loaded', 'check_woocommerce_enabled', 1);
@@ -61,12 +61,26 @@ function woo_variations_table_get_default_columns(){
         'image_link' => 'on',
         'sku' => 'on',
         'variation_description' => 'on',
-        'dimensions' => '',
+        'dimensions_html' => '',
         'weight_html' => '',
         'attributes' => '',
-        'stock' => 'on',
+        'availability_html' => 'on',
         'price_html' => 'on',
         'quantity' => 'on',
+    );
+}
+
+function woo_variations_table_get_columns_labels(){
+    return array(
+        'image_link' => __('Thumbnail', 'woo-variations-table'),
+        'sku' => __('SKU', 'woo-variations-table'),
+        'variation_description' => __('Description', 'woo-variations-table'),
+        'dimensions_html' => __('Dimensions', 'woo-variations-table'),
+        'weight_html' => __('Weight', 'woo-variations-table'),
+        'attributes' => __('Attributes', 'woo-variations-table'),
+        'availability_html' => __('Stock', 'woo-variations-table'),
+        'price_html' => __('Price', 'woo-variations-table'),
+        'quantity' => __('Quantity', 'woo-variations-table'),
     );
 }
 
@@ -74,17 +88,7 @@ function woo_variations_table_get_default_columns(){
 function woo_variations_table_settings_page_callback()
 {
     $default_columns = woo_variations_table_get_default_columns();
-    $columns_labels = array(
-        'image_link' => __('Thumbnail', 'woo-variations-table'),
-        'sku' => __('SKU', 'woo-variations-table'),
-        'variation_description' => __('Description', 'woo-variations-table'),
-        'dimensions' => __('Dimensions', 'woo-variations-table'),
-        'weight_html' => __('Weight', 'woo-variations-table'),
-        'attributes' => __('Attributes', 'woo-variations-table'),
-        'stock' => __('Stock', 'woo-variations-table'),
-        'price_html' => __('Price', 'woo-variations-table'),
-        'quantity' => __('Quantity', 'woo-variations-table'),
-    );
+    $columns_labels = woo_variations_table_get_columns_labels();
     $columns = (array) get_option('woo_variations_table_columns', $default_columns);
     $showFilters = get_option('woo_variations_table_show_filters', 'on');
     $showSpinner = get_option('woo_variations_table_show_spinner', 'on');
@@ -147,6 +151,7 @@ function woo_variations_table_create_list_of_columns($id, $columns, $values, $la
     if(!empty($ordering)){
         ksort($ordering);
         foreach ($ordering as $key => $value){
+            if(!isset($columns[$value])) continue;
             if(!isset($values[$value])){
                 $values[$value] = '';
             }
@@ -220,7 +225,7 @@ add_action('upgrader_process_complete', 'variations_table_database_update');
 function variations_table_database_update()
 {
     $plugin_db_version = get_option('woo_variations_table_db_version', WOO_VARIATIONS_TABLE_VERSION);
-    if (in_array($plugin_db_version, array('1.1', '1.0', '0.9.0', '0.8.1'))) {
+    if (version_compare($plugin_db_version, '1.2', '<')) {
         $activeColumns = get_option('woo_variations_table_columns');
         if (isset($activeColumns['weight'])) {
             $activeColumns['weight_html'] = $activeColumns['weight'];
@@ -228,6 +233,17 @@ function variations_table_database_update()
             update_option('woo_variations_table_columns', $activeColumns);
         }
         update_option('woo_variations_table_show_attributes', '');
+    }else if(version_compare($plugin_db_version, '2.2.0', '<')){
+        $activeColumns = get_option('woo_variations_table_columns');
+        if (isset($activeColumns['stock'])) {
+            $activeColumns['availability_html'] = $activeColumns['stock'];
+            unset($activeColumns['stock']);
+        }
+        if (isset($activeColumns['dimensions'])) {
+            $activeColumns['dimensions_html'] = $activeColumns['dimensions'];
+            unset($activeColumns['dimensions']);
+        }
+        update_option('woo_variations_table_columns', $activeColumns);
     }
     if ($plugin_db_version != WOO_VARIATIONS_TABLE_VERSION) {
         update_option('woo_variations_table_db_version', WOO_VARIATIONS_TABLE_VERSION);
@@ -312,16 +328,7 @@ function woo_variations_table_print_table()
         $activeColumns = get_option('woo_variations_table_columns', $default_columns);
         $showFilters = get_option('woo_variations_table_show_filters', 'on');
         $showSpinner = get_option('woo_variations_table_show_spinner', 'on');
-        $columnsText = array(
-            'sku' => __('SKU', 'woo-variations-table'),
-            'variation_description' => __('Description', 'woo-variations-table'),
-            'weight_html' => __('Weight', 'woo-variations-table'),
-            'dimensions' => __('Dimensions', 'woo-variations-table'),
-            'attributes' => __('Attributes', 'woo-variations-table'),
-            'stock' => __('Stock', 'woo-variations-table'),
-            'price_html' => __('Price', 'woo-variations-table'),
-            'quantity' => __('Quantity', 'woo-variations-table'),
-        );
+        $columnsText = woo_variations_table_get_columns_labels();
         $columnsOrder  = get_option( 'woo_variations_table_columns_order', array() );
 
         $woo_variations_table_data = array(
@@ -331,7 +338,6 @@ function woo_variations_table_print_table()
             "activeColumns" => $activeColumns,
             "columnsOrder" => $columnsOrder,
             "imageURL" => $productImageURL,
-            "ajaxURL" => admin_url('admin-ajax.php?add_variation_to_cart=1'),
             "showSpinner" => $showSpinner,
             "textVars" => array(
                 "columnsText" => $columnsText,
