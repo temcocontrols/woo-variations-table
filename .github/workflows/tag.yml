@@ -11,6 +11,7 @@ jobs:
     - uses: actions/checkout@master
     - name: Build # Remove or modify this step as needed
       run: |
+        cd ui
         npm install
         npm run build
     - name: WordPress Plugin Deploy
