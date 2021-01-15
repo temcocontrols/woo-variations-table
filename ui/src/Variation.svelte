@@ -61,10 +61,6 @@
     return attr;
   }
   function addToCart() {
-    if(item.max_qty && item.max_qty < quantity && !item.backorders_allowed ){
-      alert(textVars.tooMuchAdded)
-      return;
-    }
    const productData = {
       product_id: item.variation_id,
       variation_id: item.variation_id,

@@ -4,7 +4,7 @@ Tags: woocommerce, variations, table, variations table, woocommerce variable, va
 Requires at least: 4.7.0
 Tested up to: 5.6.0
 Requires PHP: 5.6.20
-Stable tag: 2.2.2
+Stable tag: 2.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,8 +54,11 @@ To show an attibute in the variations table go to plugin settings and check "Att
 
 == Changelog ==
 
+= 2.2.3 =
+* Use the native WooCommerce error message in case of added quantity of an item exceeded the available stock qty.
+
 = 2.2.2 =
-* Show an error if the added quantity of an item exceeded the available stock qty.
+* Show an error if the adding quantity of an item exceeded the available stock qty.
 *  Other small improvements and fixes.
 
 = 2.2.0 =

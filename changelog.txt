@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 2.2.3 =
+* Use the native WooCommerce error message in case of adding quantity of an item exceeded the available stock qty.
+
 = 2.2.2 =
 * Show an error if the added quantity of an item exceeded the available stock qty.
 * Other small improvements and fixes.
