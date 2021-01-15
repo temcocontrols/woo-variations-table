@@ -1,22 +1,22 @@
 === Woo Variations Table ===
 Contributors: alaa-rihan
-Tags: woocommerce, variations, table, variations table, woocommerce variable, variable product, AJAX, AJAX add to cart, variations list
+Tags: woocommerce, variations, table, variations table, woocommerce variable, variable product, AJAX, AJAX add to cart, variations list, table of variations
 Requires at least: 4.7.0
-Tested up to: 5.3.2
+Tested up to: 5.6.0
 Requires PHP: 5.6.20
-Stable tag: 2.2.0
+Stable tag: 2.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Show WooCommerce variable products variations as table with search filter by attributes and sorting instead of normal select options dropdowns.
+Show a table of all the available variations of a variable product to make it easier for users to find the variation they are searching for.
 
 == Description ==
 
-Woo Variations Table replace the default WooCommerce variations dropdowns by a table with search by keywords and filters by attributes with AJAX add to cart button.
+Woo Variations Table replace the default WooCommerce way to select a variation by showing a table of all the available varations with the abilty to search by a keyword, filter by attributes and an AJAX add to cart button for each variation.
 
 = Features =
 
-* Show a table of variable product variations instead of forcing the customer to select options before he see the product add to cart button.
+* Show a table of all the available variations of a variable product instead of forcing the customer to select the product attributes before even he be able to see the variation description that he want to add to cart.
 * You can control what columns to show/hide in the variations table from settings page WooCommerce -> Woo Variations Table
 * You can show variation attributes values as columns in the table.
 * You can filter the variations using the attributes values as select boxes.
@@ -24,10 +24,6 @@ Woo Variations Table replace the default WooCommerce variations dropdowns by a t
 * Each variation will have its own "add to cart" button and this button uses AJAX so no reload needed to add it to cart.
 * You can select where you want the variations table to show up in the product page.
 * You can sort the table columns as you wish using easy drag'n drop table in settings
-
-= Demo =
-You can see live demo from here:
-[https://woo-variations-table-demo.cloudaccess.host/shop/hoodie/](https://woo-variations-table-demo.cloudaccess.host/shop/hoodie/#variations-table)
 
 = Upgrading from 1.x =
 It's completely safe to upgrade from 1.x to 2.x releases , there is no breaking changes, just cleaner code and new features.
@@ -57,6 +53,10 @@ To show an attibute in the variations table go to plugin settings and check "Att
 
 
 == Changelog ==
+
+= 2.2.2 =
+* Show an error if the added quantity of an item exceeded the available stock qty.
+*  Other small improvements and fixes.
 
 = 2.2.0 =
 * It's possible now to sort columns by drag'n drop easily.

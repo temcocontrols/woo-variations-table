@@ -61,6 +61,10 @@
     return attr;
   }
   function addToCart() {
+    if(item.max_qty && item.max_qty < quantity && !item.backorders_allowed ){
+      alert(textVars.tooMuchAdded)
+      return;
+    }
    const productData = {
       product_id: item.variation_id,
       variation_id: item.variation_id,
@@ -81,12 +85,10 @@
         loading = true;
       },
       complete: function (response) {
-        added = true;
         loading = false;
       },
       success: function (response) {
-
-        if (response.error & response.product_url) {
+        if (response.error && response.product_url) {
           window.location = response.product_url;
           return;
         }
@@ -96,6 +98,8 @@
           window.location = wc_add_to_cart_params.cart_url;
           return;
         }
+
+        added = true;
 
         jQuery(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash, undefined]);
       },

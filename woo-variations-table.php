@@ -2,12 +2,12 @@
 /*
 Plugin Name: Woo Variations Table
 Plugin URI: https://wordpress.org/plugins/woo-variations-table/
-Description: Show WooCommerce variable products variations as table with filters and sorting instead of the default dropdowns.
+Description: Show a table of all the available variations of a variable product to make it easier for users to find the variation they are searching for.
 Author: Alaa Rihan
 Author URI: https://lb.linkedin.com/in/alaa-rihan-6971b686
 Text Domain: woo-variations-table
 Domain Path: /languages/
-Version: 2.2.0
+Version: 2.2.2
 Requires at least: 4.7.0
 Requires PHP: 5.6.20
 WC requires at least: 3.0.0
@@ -19,20 +19,24 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define("WOO_VARIATIONS_TABLE_VERSION", '2.2.0');
+define("WOO_VARIATIONS_TABLE_VERSION", '2.2.2');
 
-// Check if WooCommerce is enabled
-add_action('plugins_loaded', 'check_woocommerce_enabled', 1);
-function check_woocommerce_enabled()
+
+add_action('plugins_loaded', 'woo_variations_table_loaded', 1);
+function woo_variations_table_loaded()
 {
+    // Load Plugin text domain
+    load_plugin_textdomain( 'woo-variations-table', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+
+    // Check if WooCommerce is enabled
     if (!class_exists('WooCommerce')) {
-        add_action('admin_notices', 'woocommerce_disabled_notice');
+        add_action('admin_notices', 'woo_variations_table_woocommerce_disabled_notice');
         return;
     }
 }
 
 // Display WC disabled notice
-function woocommerce_disabled_notice()
+function woo_variations_table_woocommerce_disabled_notice()
 {
     echo '<div class="error"><p><strong>' . __('Woo Variations Table', 'woo-variations-table') . '</strong> ' . sprintf(__('requires %sWooCommerce%s to be installed & activated!', 'woo-variations-table'), '<a href="http://wordpress.org/extend/plugins/woocommerce/">', '</a>') . '</p></div>';
 }
@@ -345,6 +349,7 @@ function woo_variations_table_print_table()
                 "anyText" => __("Any", 'woo-variations-table'),
                 "searchPlaceholderText" => __("Keywords", 'woo-variations-table'),
                 "noResultsText" => __("No results!", 'woo-variations-table'),
+                "tooMuchAdded" => __("You can't add that amount of this item to the cart because there is not enough quantity available in stock!", 'woo-variations-table'),
             ),
         );
 

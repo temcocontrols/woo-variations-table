@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 2.2.2 =
+* Show an error if the added quantity of an item exceeded the available stock qty.
+* Other small improvements and fixes.
+
 = 2.2.0 =
 * It's possible now to sort columns by drag'n drop easily.
 * Fix dimensions column value did not show up correctly.
