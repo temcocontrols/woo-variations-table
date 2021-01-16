@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 2.2.4 =
+* Add min and max html attributes to the qty input from the variation data.
+* Add actions before and after the variations table.
+
 = 2.2.3 =
 * Use the native WooCommerce error message in case of adding quantity of an item exceeded the available stock qty.
 

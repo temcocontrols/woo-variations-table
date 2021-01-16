@@ -143,7 +143,8 @@
               bind:value={quantity}
               type="number"
               step="1"
-              min="1"
+              min="{item.min_qty}"
+              max="{item.max_qty}"
               name="quantity"
               data-title="Qty"
               title="Qty"
