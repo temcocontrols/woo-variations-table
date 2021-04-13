@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 2.2.6 =
+* Don't push ui build folder to git anymore.
+
 = 2.2.5 =
 * Add "add to cart" button element to "added_to_cart" trigger to let themes do what they need with it ( this would fix some problems in some themes ).
 
