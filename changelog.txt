@@ -1,5 +1,8 @@
 == Changelog ==
 
+= Next =
+* Add Czech translation, thanks to @dancernohorsky
+
 = 2.2.7 =
 * Add "add to cart" button element to "added_to_cart" trigger to let themes do what they need with it ( this would fix some problems in some themes ).
 * Don't push ui build folder to git anymore.
