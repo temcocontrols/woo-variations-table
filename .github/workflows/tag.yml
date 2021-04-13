@@ -1,6 +1,7 @@
 name: Deploy tag to WordPress.org
 on:
-  tags:
+  push:
+    tags:
     - "*"
 jobs:
   tag:
