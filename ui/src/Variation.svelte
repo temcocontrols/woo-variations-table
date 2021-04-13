@@ -33,32 +33,14 @@
       .replace(/\s+/g, "");
     return imageClass;
   }
-  function getAttributeNameFromSlug(attr, options) {
-    var AttrName = options.filter(function(option) {
-      return option.slug === attr;
-    });
-    if (!AttrName[0] || !AttrName[0].name) return "";
-    return AttrName[0].name;
-  }
-  async function postData(url = "", data = {}) {
-    // Default options are marked with *
-    const response = await fetch(url, {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-      mode: "cors", // no-cors, *cors, same-origin
-      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: "same-origin", // include, *same-origin, omit
-      redirect: "follow", // manual, *follow, error
-      referrerPolicy: "no-referrer", // no-referrer, *client
-      body: data // body data type must match "Content-Type" header
-    });
-    return await response.json(); // parses JSON response into native JavaScript objects
-  }
-  function findAttributeByKey(key) {
-    let attr = attributes.find(item => item.key === key);
-    if (attr === undefined) {
+  
+  function findVariationAttrValByKey(key) {
+    const varAttr = item.attributes[`attribute_${key}`]
+
+    if (varAttr === undefined) {
       return false;
     }
-    return attr;
+    return varAttr;
   }
   function addToCart() {
    const productData = {
@@ -155,10 +137,10 @@
           {/if}
         </td>
       {:else}
-        {#each Object.entries(item.attributes) as attr, i}
-          {#if findAttributeByKey(attr[0].substr(10)) && findAttributeByKey(attr[0].substr(10)).visible}
-            <td data-title={findAttributeByKey(attr[0].substr(10)).name}>
-              {getAttributeNameFromSlug(attr[1], findAttributeByKey(attr[0].substr(10)).options)}
+      {#each attributes as attr, i}
+          {#if attr.visible}
+            <td data-title={attr.name}>
+              {findVariationAttrValByKey(attr.key)}
             </td>
           {/if}
         {/each}

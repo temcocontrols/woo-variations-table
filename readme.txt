@@ -4,7 +4,7 @@ Tags: woocommerce, variations, table, variations table, woocommerce variable, va
 Requires at least: 4.7.0
 Tested up to: 5.7.0
 Requires PHP: 5.6.20
-Stable tag: 2.2.7
+Stable tag: 2.2.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,7 @@ Woo Variations Table replace the default WooCommerce way to select a variation b
 
 = Features =
 
-* Show a table of all the available variations of a variable product instead of forcing the customer to select the product attributes before even he be able to see the variation description that he want to add to cart.
+* Show a table of all the available variations of a variable product instead of forcing the customer to select the product attributes before even he can see the variation description that he want to add to cart.
 * You can control what columns to show/hide in the variations table from settings page WooCommerce -> Woo Variations Table
 * You can show variation attributes values as columns in the table.
 * You can filter the variations using the attributes values as select boxes.

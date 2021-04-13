@@ -1,6 +1,7 @@
 == Changelog ==
 
-= Next =
+= 2.2.8 =
+* Fix attributes ordering sometimes show values in a different order than the headers.
 * Add Czech translation, thanks to @dancernohorsky
 
 = 2.2.7 =
