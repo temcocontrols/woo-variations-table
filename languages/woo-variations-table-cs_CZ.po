@@ -1,0 +1,156 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-20 03:31+0000\n"
+"PO-Revision-Date: 2021-02-14 17:17+0100\n"
+"Language-Team: \n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"Last-Translator: \n"
+"Language: cs_CZ\n"
+
+#: woo-variations-table.php:37 woo-variations-table.php:44
+msgid "Woo Variations Table"
+msgstr "Woo Variations Table"
+
+#: woo-variations-table.php:37
+#, php-format
+msgid "requires %sWooCommerce%s to be installed & activated!"
+msgstr "vyžaduje instalaci a aktivaci %sWooCommerce%s!"
+
+#: woo-variations-table.php:75
+msgid "Thumbnail"
+msgstr "Náhled"
+
+#: woo-variations-table.php:76
+msgid "SKU"
+msgstr "Kód zboží"
+
+#: woo-variations-table.php:77
+msgid "Description"
+msgstr "Popis"
+
+#: woo-variations-table.php:78
+msgid "Dimensions"
+msgstr "Rozměry"
+
+#: woo-variations-table.php:79
+msgid "Weight"
+msgstr "Váha"
+
+#: woo-variations-table.php:80
+msgid "Attributes"
+msgstr "Vlastnosti"
+
+#: woo-variations-table.php:81
+msgid "Stock"
+msgstr "Skladem"
+
+#: woo-variations-table.php:82
+msgid "Price"
+msgstr "Cena"
+
+#: woo-variations-table.php:83
+msgid "Quantity"
+msgstr "Počet"
+
+#: woo-variations-table.php:98
+msgid "Woo Variations Table Settings"
+msgstr "Nastavení Woo Variations Table"
+
+#: woo-variations-table.php:104
+msgid "Where to Place Variations Table"
+msgstr "Umístění tabulky s variantami"
+
+#: woo-variations-table.php:115
+msgid "Select Columns to Show in the Variations Table"
+msgstr "Výběr sloupců, zobrazených v tabulce s variantami"
+
+#: woo-variations-table.php:119
+msgid "Show Filters"
+msgstr "Zobrazení filtrů"
+
+#: woo-variations-table.php:121
+msgid "Show filters and search box"
+msgstr "Zobrazit filtry a vyhledávací pole"
+
+#: woo-variations-table.php:125
+msgid "Available Options Button"
+msgstr "Tlačítko \"Dostupné varianty\""
+
+#: woo-variations-table.php:127
+msgid ""
+"Show \"Available Options\" button to scroll to the variations table when "
+"clicked"
+msgstr ""
+"Zobrazit tlačítko \"Dostupné varianty\" pro přechod na tabulku s "
+"variantami"
+
+#: woo-variations-table.php:131
+msgid "Add to Cart Loader Icon"
+msgstr "Ikona \"Přidat do košíku\""
+
+#: woo-variations-table.php:133
+msgid ""
+"Show animated loader icon when click add to cart and tick icon when "
+"variation added to cart"
+msgstr ""
+"Po kliknutí na tlačítko „Přidat do košíku“ zobrazit animovanou ikonu a "
+"ikonu se zaškrtnutím"
+
+#: woo-variations-table.php:185
+msgid "Move up"
+msgstr "Přesunout nahoru"
+
+#: woo-variations-table.php:186
+msgid "Move down"
+msgstr "Přesunout dolů"
+
+#: woo-variations-table.php:275
+msgid "Available options"
+msgstr "Dostupné varianty"
+
+#: woo-variations-table.php:344
+msgid "Add to Cart"
+msgstr "Přidat do košíku"
+
+#: woo-variations-table.php:345
+msgid "Any"
+msgstr "Vše"
+
+#: woo-variations-table.php:346
+msgid "Keywords"
+msgstr "Klíčová slova"
+
+#: woo-variations-table.php:347
+msgid "No results!"
+msgstr "Žádný výsledek!"
+
+#: woo-variations-table.php:353
+msgid "Available Options:"
+msgstr "Dostupné varianty:"
+
+#. Description of the plugin
+msgid ""
+"Show WooCommerce variable products variations as table with filters and "
+"sorting instead of the default dropdowns."
+msgstr ""
+"Zobrazit varianty produktů WooCommerce jako tabulku s filtry a "
+"vyhledáváním místo výchozí rozevírací nabídky."
+
+#. URI of the plugin
+msgid "https://wordpress.org/plugins/woo-variations-table/"
+msgstr ""
+
+#. Author of the plugin
+msgid "Alaa Rihan"
+msgstr ""
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://lb.linkedin.com/in/alaa-rihan-6971b686"
+msgstr ""
