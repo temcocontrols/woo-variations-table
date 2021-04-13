@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 2.2.5 =
+* Add "add to cart" button element to "added_to_cart" trigger to let themes do what they need with it ( this would fix some problems in some themes ).
+
 = 2.2.4 =
 * Add min and max html attributes to the qty input from the variation data.
 * Add actions before and after the variations table.
