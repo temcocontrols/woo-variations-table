@@ -97,7 +97,7 @@
 
         added = true;
 
-        jQuery(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash, addToCartBtn]);
+        jQuery(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash, jQuery(addToCartBtn)]);
       },
     });
   }
