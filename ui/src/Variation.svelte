@@ -33,30 +33,38 @@
       .replace(/\s+/g, "");
     return imageClass;
   }
-  
+
   function findVariationAttrValByKey(key) {
-    const varAttr = item.attributes[`attribute_${key}`]
+    const varAttr = item.attributes[`attribute_${key}`];
 
     if (varAttr === undefined) {
       return false;
     }
     return varAttr;
   }
+  function getAttributeNameFromSlug(slug, options) {
+    const attrSlug = findVariationAttrValByKey(slug)
+    let AttrName = options.find((option) => option.slug === attrSlug);
+    if (!AttrName || !AttrName.name) return "";
+    return AttrName.name;
+  }
   function addToCart() {
-   const productData = {
+    const productData = {
       product_id: item.variation_id,
       variation_id: item.variation_id,
-      quantity
-    }
+      quantity,
+    };
     const data = Object.assign(item.attributes, productData);
     jQuery(document.body).trigger("adding_to_cart", [
       jQuery(addToCartBtn),
-      data
+      data,
     ]);
 
     jQuery.ajax({
-      type: 'POST',
-      url: woocommerce_params.wc_ajax_url.toString().replace('%%endpoint%%', 'add_to_cart'),
+      type: "POST",
+      url: woocommerce_params.wc_ajax_url
+        .toString()
+        .replace("%%endpoint%%", "add_to_cart"),
       data,
       beforeSend: function (response) {
         added = false;
@@ -72,75 +80,82 @@
         }
 
         // Redirect to cart option
-        if ( wc_add_to_cart_params.cart_redirect_after_add === 'yes' ) {
+        if (wc_add_to_cart_params.cart_redirect_after_add === "yes") {
           window.location = wc_add_to_cart_params.cart_url;
           return;
         }
 
         added = true;
 
-        jQuery(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash, jQuery(addToCartBtn)]);
+        jQuery(document.body).trigger("added_to_cart", [
+          response.fragments,
+          response.cart_hash,
+          jQuery(addToCartBtn),
+        ]);
       },
     });
   }
 </script>
 
 <tr
-  class="variation-{item.variation_id} image-{imageClass(item['image_link'])}">
+  class="variation-{item.variation_id} image-{imageClass(item['image_link'])}"
+>
   {#each columns as column, i}
-    {#if column.active === 'on'}
-      {#if column.key !== 'attributes' && column.key !== 'quantity'}
-      <td data-title={column.title}>
-        {#if column.type === 'image'}
-          <span class="item">
-            {#if imageURL(item[column.key]) != ''}
-              <img src={imageURL(item[column.key])} alt={item.sku} />
-            {/if}
-          </span>
-        {/if}
-        {#if column.type === 'text'}
-          <span class="item">{item[column.key]}</span>
-        {/if}
-        {#if column.type === 'html'}
-          <span class="item">
-            {@html item[column.key]}
-          </span>
-        {/if}
-        {#if column.type === 'stock'}
-          <span class="item">
-            {#if item[column.key]}
-              <span
-                class:in-stock={item['is_in_stock']}
-                class:out-of-stock={!item['is_in_stock']}>
-                {@html item['availability_html']}
-              </span>
-            {/if}
-          </span>
-        {/if}
-      </td>
-      {:else if column.key === 'quantity'}
+    {#if column.active === "on"}
+      {#if column.key !== "attributes" && column.key !== "quantity"}
+        <td data-title={column.title}>
+          {#if column.type === "image"}
+            <span class="item">
+              {#if imageURL(item[column.key]) != ""}
+                <img src={imageURL(item[column.key])} alt={item.sku} />
+              {/if}
+            </span>
+          {/if}
+          {#if column.type === "text"}
+            <span class="item">{item[column.key]}</span>
+          {/if}
+          {#if column.type === "html"}
+            <span class="item">
+              {@html item[column.key]}
+            </span>
+          {/if}
+          {#if column.type === "stock"}
+            <span class="item">
+              {#if item[column.key]}
+                <span
+                  class:in-stock={item["is_in_stock"]}
+                  class:out-of-stock={!item["is_in_stock"]}
+                >
+                  {@html item["availability_html"]}
+                </span>
+              {/if}
+            </span>
+          {/if}
+        </td>
+      {:else if column.key === "quantity"}
         <td class="quantity">
-          {#if item['is_in_stock']}
+          {#if item["is_in_stock"]}
             <input
               bind:value={quantity}
               type="number"
               step="1"
-              min="{item.min_qty}"
-              max="{item.max_qty}"
+              min={item.min_qty}
+              max={item.max_qty}
               name="quantity"
               data-title="Qty"
               title="Qty"
               class="input-text qty text"
               size="4"
               pattern="[0-9]*"
-              inputmode="numeric" />
+              inputmode="numeric"
+            />
           {/if}
         </td>
       {:else}
-      {#each attributes as attr, i}
+        {#each attributes as attr, i}
           {#if attr.visible}
             <td data-title={attr.name}>
-              {findVariationAttrValByKey(attr.key)}
+              {getAttributeNameFromSlug(attr.key, attr.options)}
             </td>
           {/if}
         {/each}
@@ -152,15 +167,16 @@
       bind:this={addToCartBtn}
       on:click|preventDefault={addToCart}
       type="submit"
-      disabled={!item['is_in_stock']}
+      disabled={!item["is_in_stock"]}
       class="single_add_to_cart_button button alt"
       class:added
-      class:loading>
+      class:loading
+    >
       {textVars.addToCartText}
-      {#if loading && showSpinner === 'on'}
+      {#if loading && showSpinner === "on"}
         <Spinner />
       {/if}
-      {#if !loading && added && showSpinner === 'on'}
+      {#if !loading && added && showSpinner === "on"}
         <TickIcon />
       {/if}
     </button>

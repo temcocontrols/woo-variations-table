@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 2.2.9 =
+* Show attribute value name instead of slug.
+
 = 2.2.8 =
 * Fix attributes ordering sometimes show values in a different order than the headers.
 * Add Czech translation, thanks to @dancernohorsky
