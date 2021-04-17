@@ -1,8 +1,9 @@
 == Changelog ==
 
 
-= 2.2.10 =
+= 2.2.11 =
 * Show native validation errors in case of qty min or max value is invalid.
+* Small fix.
 
 = 2.2.9 =
 * Show attribute value name instead of slug.

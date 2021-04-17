@@ -44,15 +44,18 @@
     return varAttr;
   }
   function getAttributeNameFromSlug(slug, options) {
-    const attrSlug = findVariationAttrValByKey(slug)
+    const attrSlug = findVariationAttrValByKey(slug);
     let AttrName = options.find((option) => option.slug === attrSlug);
     if (!AttrName || !AttrName.name) return "";
     return AttrName.name;
   }
   function addToCart() {
-    if(quantityForm && (item.min_qty < quantity || item.max_qty > quantity)){
-      quantityForm.reportValidity()
-      return
+    if (
+      quantityForm &&
+      (item.min_qty < quantity || (item.max_qty && item.max_qty > quantity))
+    ) {
+      quantityForm.reportValidity();
+      return;
     }
     const productData = {
       product_id: item.variation_id,
@@ -140,10 +143,7 @@
       {:else if column.key === "quantity"}
         <td class="quantity">
           {#if item["is_in_stock"]}
-            <form
-              action="#"
-              bind:this={quantityForm}
-            >
+            <form action="#" bind:this={quantityForm}>
               <input
                 bind:value={quantity}
                 type="number"
