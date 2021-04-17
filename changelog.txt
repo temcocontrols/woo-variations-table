@@ -1,7 +1,7 @@
 == Changelog ==
 
 
-= 2.2.11 =
+= 2.2.12 =
 * Show native validation errors in case of qty min or max value is invalid.
 * Small fix.
 

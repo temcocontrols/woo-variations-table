@@ -52,7 +52,7 @@
   function addToCart() {
     if (
       quantityForm &&
-      (item.min_qty < quantity || (item.max_qty && item.max_qty > quantity))
+      (item.min_qty > quantity || (item.max_qty && item.max_qty < quantity))
     ) {
       quantityForm.reportValidity();
       return;
