@@ -11,6 +11,7 @@
   let quantity = 1;
   let added = false;
   let loading = false;
+  let quantityForm;
   function imageURL(image) {
     var imageURL = "";
     if (image) {
@@ -49,6 +50,10 @@
     return AttrName.name;
   }
   function addToCart() {
+    if(quantityForm && (item.min_qty < quantity || item.max_qty > quantity)){
+      quantityForm.reportValidity()
+      return
+    }
     const productData = {
       product_id: item.variation_id,
       variation_id: item.variation_id,
@@ -135,20 +140,25 @@
       {:else if column.key === "quantity"}
         <td class="quantity">
           {#if item["is_in_stock"]}
-            <input
-              bind:value={quantity}
-              type="number"
-              step="1"
-              min={item.min_qty}
-              max={item.max_qty}
-              name="quantity"
-              data-title="Qty"
-              title="Qty"
-              class="input-text qty text"
-              size="4"
-              pattern="[0-9]*"
-              inputmode="numeric"
-            />
+            <form
+              action="#"
+              bind:this={quantityForm}
+            >
+              <input
+                bind:value={quantity}
+                type="number"
+                step="1"
+                min={item.min_qty}
+                max={item.max_qty}
+                name="quantity"
+                data-title="Qty"
+                title="Qty"
+                class="input-text qty text"
+                size="4"
+                pattern="[0-9]*"
+                inputmode="numeric"
+              />
+            </form>
           {/if}
         </td>
       {:else}

@@ -2,9 +2,9 @@
 Contributors: alaa-rihan
 Tags: woocommerce, variations, table, variations table, woocommerce variable, variable product, AJAX, AJAX add to cart, variations list, table of variations
 Requires at least: 4.7.0
-Tested up to: 5.7.0
+Tested up to: 5.7.1
 Requires PHP: 5.6.20
-Stable tag: 2.2.9
+Stable tag: 2.2.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
