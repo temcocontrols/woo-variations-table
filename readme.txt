@@ -2,9 +2,9 @@
 Contributors: alaa-rihan
 Tags: woocommerce, variations, table, variations table, woocommerce variable, variable product, AJAX, AJAX add to cart, variations list, table of variations
 Requires at least: 4.7.0
-Tested up to: 5.7.1
+Tested up to: 5.9.1
 Requires PHP: 5.6.20
-Stable tag: 2.2.12
+Stable tag: 2.2.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -53,6 +53,25 @@ To show an attibute in the variations table go to plugin settings and check "Att
 
 
 == Changelog ==
+
+= 2.2.13 =
+* Update dependencies to fix vulnerabilities.
+
+= 2.2.12 =
+* Show native validation errors in case of qty min or max value is invalid.
+* Small fix.
+
+= 2.2.9 =
+* Show attribute value name instead of slug.
+
+= 2.2.8 =
+* Fix attributes ordering sometimes show values in a different order than the headers.
+* Add Czech translation, thanks to @dancernohorsky
+
+= 2.2.7 =
+* Add "add to cart" button element to "added_to_cart" trigger to let themes do what they need with it ( this would fix some problems in some themes ).
+* Don't push ui build folder to git anymore.
+* Small fix.
 
 = 2.2.4 =
 * Add min and max html attributes to the qty input from the variation data.
