@@ -1,5 +1,7 @@
 == Changelog ==
 
+= 2.2.14 =
+* Fix: Take external qty changes before adding to cart ( this will fix the qty issues for themes that use a custom buttons for increase/decrease qty like Avada theme).
 
 = 2.2.13 =
 * Update dependencies to fix vulnerabilities.

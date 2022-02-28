@@ -4,7 +4,7 @@ Tags: woocommerce, variations, table, variations table, woocommerce variable, va
 Requires at least: 4.7.0
 Tested up to: 5.9.1
 Requires PHP: 5.6.20
-Stable tag: 2.2.13
+Stable tag: 2.2.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -53,6 +53,10 @@ To show an attibute in the variations table go to plugin settings and check "Att
 
 
 == Changelog ==
+
+
+= 2.2.14 =
+* Fix: Take external qty changes before adding to cart ( this will fix the qty issues for themes that use a custom buttons for increase/decrease qty like Avada theme).
 
 = 2.2.13 =
 * Update dependencies to fix vulnerabilities.
@@ -141,46 +145,6 @@ To show an attibute in the variations table go to plugin settings and check "Att
 * Add tick icon to show up in add to cart button when the item added to cart.
 * Make all texts translatable and update pot file.
 * It's much faster and stable now.
-
-= 1.3.10 =
-* Fix PHP error happened in old PHP versions
-
-= 1.3.9 =
-* Make 'Any' translatable.
-* Fix PHP error happened in old PHP versions
-* Small css fix.
-
-= 1.3.8 =
-* CSS improvments to compatible with more themes like Storefront and other WooCommerce themes.
-* Fix a PHP bug to compatible with older PHP versions.
-* Add new filter to filter variation thumb name.
-
-= 1.3.5 =
-* Show Attribute name instead of slug in the table.
-* Add some actions and filters hooks to let others extend this plugin.
-
-= 1.3.3 =
-* Fix variations price doesn't show up if all variations have the same price issue.
-* Fix filters don't work when the attribute label has spesial characters.
-* Fix translation issue were contain wrong text domain and Add to cart was not translatable.
-
-= 1.3 =
-* Add an option to show stock column.
-* Show only attributes with "Visible on the product page" enabled option when enable "Show Attributes" option.
-* Show variation image as thumbnail when available (bug fix for WooCommerce 3.x).
-* Other bug fixes & improvments.
-
-= 1.2 =
-* Add new option to show attributes values as columns in the table.
-* Fix Table wasn't working in Internet Explorer.
-* Show weight unit in the variations table.
-
-= 1.1 =
-* Support multilangual and include PO file.
-
-= 1.0 =
-* Make the variation table responsive.
-* WooCommerce 3.x compatible.
 
 == Feedback ==
 

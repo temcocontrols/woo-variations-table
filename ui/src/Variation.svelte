@@ -12,6 +12,7 @@
   let added = false;
   let loading = false;
   let quantityForm;
+  let quantityInput;
   function imageURL(image) {
     var imageURL = "";
     if (image) {
@@ -50,6 +51,7 @@
     return AttrName.name;
   }
   function addToCart() {
+    quantity = parseInt(quantityInput.value);
     if (
       quantityForm &&
       (item.min_qty > quantity || (item.max_qty && item.max_qty < quantity))
@@ -146,6 +148,7 @@
             <form action="#" bind:this={quantityForm}>
               <input
                 bind:value={quantity}
+                bind:this={quantityInput}
                 type="number"
                 step="1"
                 min={item.min_qty}
