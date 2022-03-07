@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 2.2.15 =
+* Fix a bug when there is no qty field for the variation
+
 = 2.2.14 =
 * Fix: Take external qty changes before adding to cart ( this will fix the qty issues for themes that use a custom buttons for increase/decrease qty like Avada theme).
 

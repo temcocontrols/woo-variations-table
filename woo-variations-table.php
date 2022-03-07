@@ -7,11 +7,11 @@ Author: Alaa Rihan
 Author URI: https://lb.linkedin.com/in/alaa-rihan-6971b686
 Text Domain: woo-variations-table
 Domain Path: /languages/
-Version: 2.2.14
+Version: 2.2.15
 Requires at least: 4.7.0
 Requires PHP: 5.6.20
 WC requires at least: 3.0.0
-WC tested up to: 4.0.0
+WC tested up to: 6.2.1
  */
 
 // Exit if accessed directly
@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define("WOO_VARIATIONS_TABLE_VERSION", '2.2.14');
+define("WOO_VARIATIONS_TABLE_VERSION", '2.2.15');
 
 
 add_action('plugins_loaded', 'woo_variations_table_loaded', 1);

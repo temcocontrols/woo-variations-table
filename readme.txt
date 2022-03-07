@@ -4,7 +4,7 @@ Tags: woocommerce, variations, table, variations table, woocommerce variable, va
 Requires at least: 4.7.0
 Tested up to: 5.9.1
 Requires PHP: 5.6.20
-Stable tag: 2.2.14
+Stable tag: 2.2.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,6 +54,8 @@ To show an attibute in the variations table go to plugin settings and check "Att
 
 == Changelog ==
 
+= 2.2.15 =
+* Fix a bug when there is no qty field for the variation
 
 = 2.2.14 =
 * Fix: Take external qty changes before adding to cart ( this will fix the qty issues for themes that use a custom buttons for increase/decrease qty like Avada theme).

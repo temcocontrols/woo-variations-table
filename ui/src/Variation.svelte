@@ -51,7 +51,9 @@
     return AttrName.name;
   }
   function addToCart() {
-    quantity = parseInt(quantityInput.value);
+    if(quantityInput && quantityInput.value){
+      quantity = parseInt(quantityInput.value);
+    }
     if (
       quantityForm &&
       (item.min_qty > quantity || (item.max_qty && item.max_qty < quantity))
