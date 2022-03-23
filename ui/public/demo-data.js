@@ -306,7 +306,7 @@ var wooVariationsTableData = {
       "is_purchasable": true,
       "is_sold_individually": "no",
       "is_virtual": false,
-      "max_qty": "",
+      "max_qty": 10,
       "min_qty": 1,
       "price_html": "<span class=\"price\"><span class=\"woocommerce-Price-amount amount\"><span class=\"woocommerce-Price-currencySymbol\">&#36;<\/span>22.00<\/span><\/span>",
       "sku": "BLUELARGE",
@@ -508,7 +508,7 @@ var wooVariationsTableData = {
   }, {
       "key": "pa_condition",
       "name": "Condition",
-      "visible": false,
+      "visible": true,
       "options": [{
           "name": "New",
           "slug": "new"
@@ -525,7 +525,8 @@ var wooVariationsTableData = {
       "dimensions_html": "on",
       "availability_html": "on",
       "price_html": "on",
-      "quantity": "on"
+      "quantity": "on",
+      "attributes": "on",
   },
   "columnsOrder": ["image_link", "sku", "variation_description", "dimensions_html", "weight_html", "attributes", "availability_html", "price_html", "quantity"],
   "imageURL": "https:\/\/woo-variations-table.cloudaccess.host\/wp-content\/uploads\/2020\/02\/tshirts.jpg",
