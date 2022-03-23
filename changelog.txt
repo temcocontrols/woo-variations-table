@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 2.2.16 =
+* Fix colspan value for "no results" row
+
 = 2.2.15 =
 * Fix a bug when there is no qty field for the variation
 
