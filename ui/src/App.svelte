@@ -72,6 +72,9 @@
         columnsNum++;
       }
     });
+    if(activeColumns.attributes){
+      columnsNum += Object.keys(attributes).length -1
+    }
     return columnsNum;
   }
   let activeColumnsNum = calcColumns();
